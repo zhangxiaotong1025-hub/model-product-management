@@ -256,10 +256,13 @@ function initChart() {
 
 // 初始化事件监听
 function initEventListeners() {
-    // 导航菜单切换
+    // 导航菜单切换 - 移除阻止默认行为，允许正常跳转
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', function(e) {
-            e.preventDefault();
+            // 只有当链接是 # 开头时才阻止默认行为
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+            }
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             this.classList.add('active');
         });
