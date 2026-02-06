@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+            <span>PULSAR</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="enterprise-management.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span>企业管理</span>
+            </a>
+            <a href="model-management.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                <span>模型管理</span>
+            </a>
+            <a href="product-management.html" class="nav-item active">
+                <i class="fas fa-shopping-cart"></i>
+                <span>商品管理</span>
+            </a>
+            <a href="backend-category.html" class="nav-item">
+                <i class="fas fa-folder-tree"></i>
+                <span>后台类目</span>
+            </a>
+            <a href="attribute-management.html" class="nav-item">
+                <i class="fas fa-tags"></i>
+                <span>属性管理</span>
+            </a>
+            <a href="frontend-category.html" class="nav-item">
+                <i class="fas fa-sitemap"></i>
+                <span>前端类目</span>
+            </a>
+        </nav>
+        
+        <div class="nav-divider">其他</div>
+        
+        <nav class="nav-menu">
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>设置</span>
+            </a>
+            <a href="#help" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                <span>帮助</span>
+            </a>
+        </nav>
+        
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <h1 class="page-title">商品管理</h1>
+            <div class="top-bar-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索商品SKU、名称...">
+                </div>
+            </div>
+        </header>
+
+        <!-- 数据概览 -->
+        <section class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #667EEA, #764BA2);">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">2,847</div>
+                    <div class="stat-label">商品总数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #F093FB, #F5576C);">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">2,156</div>
+                    <div class="stat-label">建模成功</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #4FACFE, #00F2FE);">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">1,923</div>
+                    <div class="stat-label">已上架商品</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #FA709A, #FEE140);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">128</div>
+                    <div class="stat-label">审核失败</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 标签页 -->
+        <section class="tabs-section">
+            <div class="tabs-nav">
+                <button class="tab-item active" data-tab="platform">平台商品管理</button>
+                <button class="tab-item" data-tab="enterprise">企业商品管理</button>
+            </div>
+        </section>
+
+        <!-- 平台商品管理 -->
+        <div id="platformTab" class="tab-content active">
+            <!-- 操作栏 -->
+            <section class="action-bar">
+                <div class="action-left">
+                    <button class="btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i>
+                        新建商品
+                    </button>
+                    <button class="btn-secondary" id="linkModelBtn" disabled>
+                        <i class="fas fa-link"></i>
+                        关联模型
+                    </button>
+                    <button class="btn-secondary" id="editBtn" disabled>
+                        <i class="fas fa-edit"></i>
+                        编辑
+                    </button>
+                    <button class="btn-secondary" id="deleteBtn" disabled>
+                        <i class="fas fa-trash"></i>
+                        删除
+                    </button>
+                </div>
+                <div class="action-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-filter"></i>
+                        筛选
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-download"></i>
+                        导出
+                    </button>
+                </div>
+            </section>
+
+            <!-- 筛选条件 -->
+            <section class="filter-section">
+                <div class="filter-group">
+                    <label>商品状态：</label>
+                    <select class="filter-select">
+                        <option>全部状态</option>
+                        <option>已上架</option>
+                        <option>已下架</option>
+                        <option>待审核</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>销售类目：</label>
+                    <select class="filter-select">
+                        <option>全部类目</option>
+                        <option>家具</option>
+                        <option>灯具</option>
+                        <option>装饰品</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>模型状态：</label>
+                    <select class="filter-select">
+                        <option>全部</option>
+                        <option>已关联</option>
+                        <option>未关联</option>
+                    </select>
+                </div>
+                <button class="btn-secondary btn-sm">重置</button>
+            </section>
+
+            <!-- 商品列表 -->
+            <section class="data-table-section">
+                <div class="table-info-bar">
+                    <div class="info-left">
+                        已选择 <strong id="platformSelectedCount">0</strong> 个商品，共 <strong>2,847</strong> 个商品
+                    </div>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="platformSelectAll"></th>
+                                <th>商品SKU</th>
+                                <th>商品名称</th>
+                                <th>预览图</th>
+                                <th>性质</th>
+                                <th>品牌</th>
+                                <th>销售类目</th>
+                                <th>模型状态</th>
+                                <th>模型ID</th>
+                                <th>建模时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="platformTableBody">
+                            <!-- 数据行将通过JS动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="page-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">...</button>
+                        <button class="page-btn">29</button>
+                        <button class="page-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 企业商品管理 -->
+        <div id="enterpriseTab" class="tab-content">
+            <!-- 操作栏 -->
+            <section class="action-bar">
+                <div class="action-left">
+                    <button class="btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i>
+                        新建商品
+                    </button>
+                    <button class="btn-secondary" id="enterpriseLinkModelBtn" disabled>
+                        <i class="fas fa-link"></i>
+                        关联模型
+                    </button>
+                    <button class="btn-secondary" id="enterpriseEditBtn" disabled>
+                        <i class="fas fa-edit"></i>
+                        编辑
+                    </button>
+                    <button class="btn-secondary" id="enterpriseDeleteBtn" disabled>
+                        <i class="fas fa-trash"></i>
+                        删除
+                    </button>
+                    <button class="btn-secondary" id="unbindBtn" disabled>
+                        <i class="fas fa-unlink"></i>
+                        解绑
+                    </button>
+                </div>
+                <div class="action-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-filter"></i>
+                        筛选
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-download"></i>
+                        导出
+                    </button>
+                </div>
+            </section>
+
+            <!-- 筛选条件 -->
+            <section class="filter-section">
+                <div class="filter-group">
+                    <label>企业：</label>
+                    <select class="filter-select">
+                        <option>全部企业</option>
+                        <option>阿里巴巴集团</option>
+                        <option>淘宝事业部</option>
+                        <option>天猫事业部</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>数据性质：</label>
+                    <select class="filter-select">
+                        <option>全部</option>
+                        <option>主数据</option>
+                        <option>子数据</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>商品状态：</label>
+                    <select class="filter-select">
+                        <option>全部状态</option>
+                        <option>已上架</option>
+                        <option>已下架</option>
+                    </select>
+                </div>
+                <button class="btn-secondary btn-sm">重置</button>
+            </section>
+
+            <!-- 商品列表 -->
+            <section class="data-table-section">
+                <div class="table-info-bar">
+                    <div class="info-left">
+                        已选择 <strong id="enterpriseSelectedCount">0</strong> 个商品，共 <strong>1,523</strong> 个商品
+                    </div>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="enterpriseSelectAll"></th>
+                                <th>商品SKU</th>
+                                <th>商品名称</th>
+                                <th>预览图</th>
+                                <th>数据性质</th>
+                                <th>归属企业</th>
+                                <th>品牌</th>
+                                <th>销售类目</th>
+                                <th>模型状态</th>
+                                <th>模型ID</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enterpriseTableBody">
+                            <!-- 数据行将通过JS动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="page-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">...</button>
+                        <button class="page-btn">16</button>
+                        <button class="page-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 新建商品模态框 -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>新建商品</h2>
+                <button class="close-btn" onclick="closeModal('addProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-vertical">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">商品SKU</label>
+                            <input type="text" class="form-control" placeholder="请输入商品SKU">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">商品名称</label>
+                            <input type="text" class="form-control" placeholder="请输入商品名称">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">品牌</label>
+                            <input type="text" class="form-control" placeholder="请输入品牌">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">销售类目</label>
+                            <select class="form-control">
+                                <option>请选择销售类目</option>
+                                <option>家具 > 客厅 > 沙发</option>
+                                <option>家具 > 卧室 > 床</option>
+                                <option>灯具 > 吊灯</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>商品图片</label>
+                        <div class="upload-area">
+                            <i class="fas fa-image"></i>
+                            <p>点击或拖拽图片到此区域上传</p>
+                            <p class="upload-hint">支持格式：.jpg, .png, .gif</p>
+                            <input type="file" class="file-input" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>商品描述</label>
+                        <textarea class="form-control" rows="3" placeholder="请输入商品描述"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>关联模型</label>
+                        <button type="button" class="btn-secondary btn-block" onclick="showSelectModelModal()">
+                            <i class="fas fa-link"></i>
+                            选择关联模型
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('addProductModal')">取消</button>
+                <button class="btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/product-management.js"></script>
+</body>
+</html>

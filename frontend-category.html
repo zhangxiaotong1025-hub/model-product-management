@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端类目管理 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"><i class="fas fa-cube"></i><span>PULSAR</span></div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="enterprise-management.html" class="nav-item"><i class="fas fa-building"></i><span>企业管理</span></a>
+            <a href="model-management.html" class="nav-item"><i class="fas fa-box"></i><span>模型管理</span></a>
+            <a href="product-management.html" class="nav-item"><i class="fas fa-shopping-cart"></i><span>商品管理</span></a>
+            <a href="backend-category.html" class="nav-item"><i class="fas fa-folder-tree"></i><span>后台类目</span></a>
+            <a href="attribute-management.html" class="nav-item"><i class="fas fa-tags"></i><span>属性管理</span></a>
+            <a href="frontend-category.html" class="nav-item active"><i class="fas fa-sitemap"></i><span>前端类目</span></a>
+        </nav>
+        <div class="nav-divider">其他</div>
+        <nav class="nav-menu">
+            <a href="#settings" class="nav-item"><i class="fas fa-cog"></i><span>设置</span></a>
+            <a href="#help" class="nav-item"><i class="fas fa-question-circle"></i><span>帮助</span></a>
+        </nav>
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">前端类目管理</h1>
+            <div class="top-bar-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索前端类目...">
+                </div>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <div class="section-split">
+                <div class="tree-panel">
+                    <div class="panel-header">
+                        <h3>前端菜单树</h3>
+                        <div class="header-actions">
+                            <button class="btn-primary btn-sm" onclick="showAddMenuModal()">
+                                <i class="fas fa-plus"></i>
+                                新建菜单
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="tree-container">
+                        <div class="tree-node">
+                            <div class="tree-node-content active">
+                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-home"></i>
+                                <span>首页</span>
+                                <span class="badge badge-primary">类型库</span>
+                                <div class="tree-node-actions">
+                                    <button class="icon-btn-sm" title="创建同级"><i class="fas fa-plus"></i></button>
+                                    <button class="icon-btn-sm" title="创建子级"><i class="fas fa-level-down-alt"></i></button>
+                                    <button class="icon-btn-sm" title="编辑"><i class="fas fa-edit"></i></button>
+                                </div>
+                            </div>
+                            <div class="tree-children">
+                                <div class="tree-node">
+                                    <div class="tree-node-content">
+                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-couch"></i>
+                                        <span>家具</span>
+                                        <span class="badge badge-success">一级菜单</span>
+                                        <div class="tree-node-actions">
+                                            <button class="icon-btn-sm"><i class="fas fa-plus"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-level-down-alt"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="tree-children">
+                                        <div class="tree-node">
+                                            <div class="tree-node-content">
+                                                <i class="fas fa-chevron-down"></i>
+                                                <i class="fas fa-door-open"></i>
+                                                <span>客厅</span>
+                                                <span class="badge badge-info">二级菜单</span>
+                                                <div class="tree-node-actions">
+                                                    <button class="icon-btn-sm"><i class="fas fa-plus"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-level-down-alt"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="tree-children">
+                                                <div class="tree-node">
+                                                    <div class="tree-node-content">
+                                                        <i class="fas fa-tag"></i>
+                                                        <span>沙发</span>
+                                                        <span class="badge badge-warning">三级菜单</span>
+                                                        <div class="tree-node-actions">
+                                                            <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                                            <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tree-node">
+                                            <div class="tree-node-content">
+                                                <i class="fas fa-bed"></i>
+                                                <span>卧室</span>
+                                                <span class="badge badge-info">二级菜单</span>
+                                                <div class="tree-node-actions">
+                                                    <button class="icon-btn-sm"><i class="fas fa-plus"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-level-down-alt"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                                    <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tree-node">
+                                    <div class="tree-node-content">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>灯具</span>
+                                        <span class="badge badge-success">一级菜单</span>
+                                        <div class="tree-node-actions">
+                                            <button class="icon-btn-sm"><i class="fas fa-plus"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-level-down-alt"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tree-node">
+                                    <div class="tree-node-content">
+                                        <i class="fas fa-palette"></i>
+                                        <span>涂料</span>
+                                        <span class="badge badge-success">一级菜单</span>
+                                        <span class="badge badge-warning">涂料类型</span>
+                                        <div class="tree-node-actions">
+                                            <button class="icon-btn-sm"><i class="fas fa-plus"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-level-down-alt"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-panel">
+                    <div class="panel-header">
+                        <h3>菜单详情</h3>
+                        <div class="header-actions">
+                            <button class="btn-secondary btn-sm"><i class="fas fa-edit"></i>编辑</button>
+                            <button class="btn-secondary btn-sm"><i class="fas fa-copy"></i>复制菜单</button>
+                            <button class="btn-secondary btn-sm"><i class="fas fa-trash"></i>删除</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-content">
+                        <div class="tabs-section">
+                            <div class="tabs-nav">
+                                <button class="tab-item active" data-tab="related">关联类目</button>
+                                <button class="tab-item" data-tab="models">关联模型</button>
+                                <button class="tab-item" data-tab="blocks">板块设置</button>
+                            </div>
+                        </div>
+
+                        <div id="relatedTab" class="tab-content active">
+                            <div class="info-section">
+                                <h4>基本信息</h4>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <label>菜单名称</label>
+                                        <div class="info-value">首页</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>菜单类型</label>
+                                        <div class="info-value"><span class="badge badge-primary">类型库</span></div>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>显示状态</label>
+                                        <div class="info-value"><span class="status-badge status-success">显示</span></div>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>排序</label>
+                                        <div class="info-value">1</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-section">
+                                <h4>关联后台类目</h4>
+                                <button class="btn-secondary btn-sm" onclick="addRelatedCategory()">
+                                    <i class="fas fa-plus"></i>
+                                    添加关联类目
+                                </button>
+                                <div class="related-list">
+                                    <div class="related-item">
+                                        <i class="fas fa-folder"></i>
+                                        <span>3D模型 > 家具 > 客厅 > 沙发</span>
+                                        <button class="icon-btn-sm"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <div class="related-item">
+                                        <i class="fas fa-folder"></i>
+                                        <span>3D模型 > 家具 > 客厅 > 茶几</span>
+                                        <button class="icon-btn-sm"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-section">
+                                <h4>查看包含模型</h4>
+                                <button class="btn-secondary btn-sm" onclick="viewModels()">
+                                    <i class="fas fa-eye"></i>
+                                    查看模型（共 156 个）
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="modelsTab" class="tab-content">
+                            <div class="info-section">
+                                <button class="btn-primary btn-sm" onclick="addModels()">
+                                    <i class="fas fa-plus"></i>
+                                    添加模型
+                                </button>
+                                <button class="btn-secondary btn-sm">
+                                    <i class="fas fa-upload"></i>
+                                    单个上传
+                                </button>
+                                <button class="btn-secondary btn-sm">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel上传
+                                </button>
+                                <div class="model-grid" style="margin-top: 20px;">
+                                    <div class="model-card-mini">
+                                        <img src="https://via.placeholder.com/100" alt="模型">
+                                        <div class="model-name">现代沙发</div>
+                                        <button class="remove-btn"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <div class="model-card-mini">
+                                        <img src="https://via.placeholder.com/100" alt="模型">
+                                        <div class="model-name">北欧茶几</div>
+                                        <button class="remove-btn"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="blocksTab" class="tab-content">
+                            <div class="info-section">
+                                <button class="btn-primary btn-sm" onclick="addBlock()">
+                                    <i class="fas fa-plus"></i>
+                                    创建板块
+                                </button>
+                                <button class="btn-secondary btn-sm" onclick="addPaintBlock()">
+                                    <i class="fas fa-palette"></i>
+                                    创建涂料板块
+                                </button>
+                                <div class="block-list" style="margin-top: 20px;">
+                                    <div class="block-item">
+                                        <i class="fas fa-th-large"></i>
+                                        <span>热门推荐</span>
+                                        <span class="count">23个模型</span>
+                                        <div class="block-actions">
+                                            <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn-sm"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script>
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(tabName + 'Tab').classList.add('active');
+            });
+        });
+        function showAddMenuModal() { alert('新建菜单'); }
+        function addRelatedCategory() { alert('添加关联类目'); }
+        function viewModels() { alert('查看模型列表'); }
+        function addModels() { alert('添加模型'); }
+        function addBlock() { alert('创建板块'); }
+        function addPaintBlock() { alert('创建涂料板块'); }
+    </script>
+</body>
+</html>

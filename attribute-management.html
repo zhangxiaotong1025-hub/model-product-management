@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性管理 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"><i class="fas fa-cube"></i><span>PULSAR</span></div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="enterprise-management.html" class="nav-item"><i class="fas fa-building"></i><span>企业管理</span></a>
+            <a href="model-management.html" class="nav-item"><i class="fas fa-box"></i><span>模型管理</span></a>
+            <a href="product-management.html" class="nav-item"><i class="fas fa-shopping-cart"></i><span>商品管理</span></a>
+            <a href="backend-category.html" class="nav-item"><i class="fas fa-folder-tree"></i><span>后台类目</span></a>
+            <a href="attribute-management.html" class="nav-item active"><i class="fas fa-tags"></i><span>属性管理</span></a>
+            <a href="frontend-category.html" class="nav-item"><i class="fas fa-sitemap"></i><span>前端类目</span></a>
+        </nav>
+        <div class="nav-divider">其他</div>
+        <nav class="nav-menu">
+            <a href="#settings" class="nav-item"><i class="fas fa-cog"></i><span>设置</span></a>
+            <a href="#help" class="nav-item"><i class="fas fa-question-circle"></i><span>帮助</span></a>
+        </nav>
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">属性管理</h1>
+            <div class="top-bar-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索属性名称...">
+                </div>
+            </div>
+        </header>
+
+        <section class="action-bar">
+            <div class="action-left">
+                <button class="btn-primary" onclick="showAddAttributeModal()">
+                    <i class="fas fa-plus"></i>
+                    新建属性
+                </button>
+                <button class="btn-secondary" id="batchDeleteBtn" disabled>
+                    <i class="fas fa-trash"></i>
+                    批量删除
+                </button>
+            </div>
+            <div class="action-right">
+                <button class="btn-secondary">
+                    <i class="fas fa-filter"></i>
+                    筛选
+                </button>
+            </div>
+        </section>
+
+        <section class="data-table-section">
+            <div class="table-info-bar">
+                <div class="info-left">
+                    已选择 <strong id="selectedCount">0</strong> 个属性，共 <strong>45</strong> 个属性
+                </div>
+            </div>
+
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th>属性名称</th>
+                            <th>属性类型</th>
+                            <th>控件类型</th>
+                            <th>属性值数量</th>
+                            <th>使用次数</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attributeTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <div class="pagination">
+                    <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="addAttributeModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>新建属性</h2>
+                <button class="close-btn" onclick="closeModal('addAttributeModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-vertical">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">属性名称</label>
+                            <input type="text" class="form-control" placeholder="请输入属性名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">属性类型</label>
+                            <select class="form-control">
+                                <option>单选</option>
+                                <option>多选</option>
+                                <option>文本</option>
+                                <option>数字</option>
+                                <option>日期</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">控件类型</label>
+                        <select class="form-control">
+                            <option>下拉选择</option>
+                            <option>单选按钮</option>
+                            <option>复选框</option>
+                            <option>输入框</option>
+                            <option>文本域</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>属性值</label>
+                        <div class="attribute-values">
+                            <div class="value-item">
+                                <input type="text" class="form-control" placeholder="属性值">
+                                <button class="icon-btn-sm" onclick="removeValue(this)"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-secondary btn-sm" onclick="addValue()">
+                            <i class="fas fa-plus"></i>
+                            添加属性值
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label>属性描述</label>
+                        <textarea class="form-control" rows="3" placeholder="请输入属性描述"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('addAttributeModal')">取消</button>
+                <button class="btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        const mockAttributes = [
+            {id: 'ATTR001', name: '品牌', type: '单选', control: '下拉选择', valueCount: 50, useCount: 1247, createTime: '2024-01-01'},
+            {id: 'ATTR002', name: '材质', type: '单选', control: '下拉选择', valueCount: 30, useCount: 856, createTime: '2024-01-02'},
+            {id: 'ATTR003', name: '尺寸', type: '文本', control: '输入框', valueCount: 0, useCount: 2145, createTime: '2024-01-03'},
+            {id: 'ATTR004', name: '颜色', type: '多选', control: '复选框', valueCount: 20, useCount: 1523, createTime: '2024-01-04'},
+            {id: 'ATTR005', name: '风格', type: '单选', control: '单选按钮', valueCount: 15, useCount: 945, createTime: '2024-01-05'}
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+            document.getElementById('selectAll').addEventListener('change', function() {
+                document.querySelectorAll('.attr-checkbox').forEach(cb => cb.checked = this.checked);
+                updateCount();
+            });
+        });
+
+        function renderTable() {
+            const tbody = document.getElementById('attributeTableBody');
+            tbody.innerHTML = mockAttributes.map(attr => `
+                <tr>
+                    <td><input type="checkbox" class="attr-checkbox" data-id="${attr.id}" onchange="updateCount()"></td>
+                    <td><strong>${attr.name}</strong></td>
+                    <td>${attr.type}</td>
+                    <td>${attr.control}</td>
+                    <td>${attr.valueCount}</td>
+                    <td>${attr.useCount}</td>
+                    <td>${attr.createTime}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn primary" onclick="viewAttribute('${attr.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn" onclick="editAttribute('${attr.id}')"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn" onclick="deleteAttribute('${attr.id}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateCount() {
+            const count = document.querySelectorAll('.attr-checkbox:checked').length;
+            document.getElementById('selectedCount').textContent = count;
+            document.getElementById('batchDeleteBtn').disabled = count === 0;
+        }
+
+        function showAddAttributeModal() { document.getElementById('addAttributeModal').classList.add('show'); }
+        function viewAttribute(id) { alert('查看属性: ' + id); }
+        function editAttribute(id) { alert('编辑属性: ' + id); }
+        function deleteAttribute(id) { if(confirm('确定删除该属性吗？')) alert('已删除'); }
+        function addValue() {
+            const container = document.querySelector('.attribute-values');
+            const item = document.createElement('div');
+            item.className = 'value-item';
+            item.innerHTML = '<input type="text" class="form-control" placeholder="属性值"><button class="icon-btn-sm" onclick="removeValue(this)"><i class="fas fa-times"></i></button>';
+            container.appendChild(item);
+        }
+        function removeValue(btn) { btn.parentElement.remove(); }
+    </script>
+</body>
+</html>

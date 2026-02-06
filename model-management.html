@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型管理 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+            <span>PULSAR</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="enterprise-management.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span>企业管理</span>
+            </a>
+            <a href="model-management.html" class="nav-item active">
+                <i class="fas fa-box"></i>
+                <span>模型管理</span>
+            </a>
+            <a href="product-management.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>商品管理</span>
+            </a>
+            <a href="backend-category.html" class="nav-item">
+                <i class="fas fa-folder-tree"></i>
+                <span>后台类目</span>
+            </a>
+            <a href="attribute-management.html" class="nav-item">
+                <i class="fas fa-tags"></i>
+                <span>属性管理</span>
+            </a>
+            <a href="frontend-category.html" class="nav-item">
+                <i class="fas fa-sitemap"></i>
+                <span>前端类目</span>
+            </a>
+        </nav>
+        
+        <div class="nav-divider">其他</div>
+        
+        <nav class="nav-menu">
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>设置</span>
+            </a>
+            <a href="#help" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                <span>帮助</span>
+            </a>
+        </nav>
+        
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <h1 class="page-title">模型管理</h1>
+            <div class="top-bar-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索模型ID、名称、类目...">
+                </div>
+            </div>
+        </header>
+
+        <!-- 操作栏 -->
+        <section class="action-bar">
+            <div class="action-left">
+                <button class="btn-primary" onclick="showUploadModal()">
+                    <i class="fas fa-upload"></i>
+                    单个上传
+                </button>
+                <button class="btn-primary" onclick="showBatchUploadModal()">
+                    <i class="fas fa-file-excel"></i>
+                    Excel上传
+                </button>
+                <button class="btn-secondary" onclick="showSkinModelModal()">
+                    <i class="fas fa-palette"></i>
+                    皮肤模型
+                </button>
+                <button class="btn-secondary" id="batchAuditBtn" disabled>
+                    <i class="fas fa-check-double"></i>
+                    批量审核
+                </button>
+                <button class="btn-secondary" id="batchDeleteBtn" disabled>
+                    <i class="fas fa-trash"></i>
+                    批量删除
+                </button>
+            </div>
+            <div class="action-right">
+                <button class="btn-secondary">
+                    <i class="fas fa-filter"></i>
+                    筛选
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i>
+                    导出
+                </button>
+            </div>
+        </section>
+
+        <!-- 标签页 -->
+        <section class="tabs-section">
+            <div class="tabs-nav">
+                <button class="tab-item active" data-tab="all">全部模型</button>
+                <button class="tab-item" data-tab="pending">待审核</button>
+                <button class="tab-item" data-tab="online">已上架</button>
+                <button class="tab-item" data-tab="offline">已下架</button>
+                <button class="tab-item" data-tab="failed">审核失败</button>
+            </div>
+        </section>
+
+        <!-- 筛选条件 -->
+        <section class="filter-section">
+            <div class="filter-group">
+                <label>后台类目：</label>
+                <select class="filter-select">
+                    <option>全部类目</option>
+                    <option>家具</option>
+                    <option>灯具</option>
+                    <option>装饰品</option>
+                    <option>涂料</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>模型类型：</label>
+                <select class="filter-select">
+                    <option>全部类型</option>
+                    <option>3D模型</option>
+                    <option>2D贴图</option>
+                    <option>涂料</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>上传时间：</label>
+                <input type="date" class="filter-input">
+                <span>至</span>
+                <input type="date" class="filter-input">
+            </div>
+            <button class="btn-secondary btn-sm">重置</button>
+        </section>
+
+        <!-- 模型列表 -->
+        <section class="data-table-section">
+            <div class="table-info-bar">
+                <div class="info-left">
+                    已选择 <strong id="selectedCount">0</strong> 个模型，共 <strong>1,247</strong> 个模型
+                </div>
+                <div class="info-right">
+                    <div class="view-switch">
+                        <button class="view-btn active" data-view="card">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片视图 -->
+            <div id="cardView" class="model-grid">
+                <!-- 模型卡片将通过JS动态生成 -->
+            </div>
+
+            <!-- 列表视图 -->
+            <div id="listView" class="data-table" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th>模型ID</th>
+                            <th>模型名称</th>
+                            <th>预览图</th>
+                            <th>后台类目</th>
+                            <th>模型类型</th>
+                            <th>状态</th>
+                            <th>上传时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modelTableBody">
+                        <!-- 数据行将通过JS动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 分页 -->
+            <div class="table-footer">
+                <div class="pagination">
+                    <button class="page-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">...</button>
+                    <button class="page-btn">25</button>
+                    <button class="page-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 单个上传模态框 -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>上传模型</h2>
+                <button class="close-btn" onclick="closeModal('uploadModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-vertical">
+                    <div class="form-group">
+                        <label class="required">模型名称</label>
+                        <input type="text" class="form-control" placeholder="请输入模型名称">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="required">后台类目</label>
+                            <select class="form-control">
+                                <option>请选择后台类目</option>
+                                <option>家具 > 客厅 > 沙发</option>
+                                <option>家具 > 卧室 > 床</option>
+                                <option>灯具 > 吊灯</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">模型类型</label>
+                            <select class="form-control">
+                                <option>请选择模型类型</option>
+                                <option>3D模型</option>
+                                <option>2D贴图</option>
+                                <option>涂料</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">模型文件</label>
+                        <div class="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>点击或拖拽文件到此区域上传</p>
+                            <p class="upload-hint">支持格式：.obj, .fbx, .glb, .gltf</p>
+                            <input type="file" class="file-input" accept=".obj,.fbx,.glb,.gltf">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>模型属性</label>
+                        <div class="attribute-list">
+                            <div class="attribute-item">
+                                <label>品牌</label>
+                                <input type="text" class="form-control" placeholder="请输入品牌">
+                            </div>
+                            <div class="attribute-item">
+                                <label>材质</label>
+                                <input type="text" class="form-control" placeholder="请输入材质">
+                            </div>
+                            <div class="attribute-item">
+                                <label>尺寸</label>
+                                <input type="text" class="form-control" placeholder="长x宽x高(mm)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>模型描述</label>
+                        <textarea class="form-control" rows="3" placeholder="请输入模型描述"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('uploadModal')">取消</button>
+                <button class="btn-primary">确定上传</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量上传模态框 -->
+    <div id="batchUploadModal" class="modal">
+        <div class="modal-content modal-md">
+            <div class="modal-header">
+                <h2>Excel批量上传</h2>
+                <button class="close-btn" onclick="closeModal('batchUploadModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-steps">
+                    <div class="step-item active">
+                        <div class="step-number">1</div>
+                        <div class="step-text">下载模板</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">填写数据</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">上传文件</div>
+                    </div>
+                </div>
+                <div class="upload-content">
+                    <button class="btn-secondary btn-block">
+                        <i class="fas fa-download"></i>
+                        下载Excel模板
+                    </button>
+                    <div class="upload-area" style="margin-top: 20px;">
+                        <i class="fas fa-file-excel"></i>
+                        <p>点击或拖拽Excel文件到此区域上传</p>
+                        <p class="upload-hint">支持格式：.xlsx, .xls</p>
+                        <input type="file" class="file-input" accept=".xlsx,.xls">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('batchUploadModal')">取消</button>
+                <button class="btn-primary">开始导入</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/model-management.js"></script>
+</body>
+</html>
