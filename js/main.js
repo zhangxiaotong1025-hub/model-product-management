@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initRiskTable();
     initChart();
     initEventListeners();
+    initNavigation();
 });
 
 // 初始化商品表格
@@ -254,58 +255,58 @@ function initChart() {
     });
 }
 
-// 初始化事件监听
-function initEventListeners() {
-    // 导航菜单切换 - 移除阻止默认行为，允许正常跳转
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-            // 只有当链接是 # 开头时才阻止默认行为
-            if (this.getAttribute('href').startsWith('#')) {
+// 初始化导航菜单
+function initNavigation() {
+    // 折叠菜单功能
+    const navGroups = document.querySelectorAll('.nav-group');
+    
+    navGroups.forEach(group => {
+        const title = group.querySelector('.nav-group-title');
+        if (title) {
+            title.addEventListener('click', function(e) {
                 e.preventDefault();
-            }
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-    
-    // 表格标签切换
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-    
-    // 全选复选框
-    const headerCheckbox = document.querySelector('thead input[type="checkbox"]');
-    if (headerCheckbox) {
-        headerCheckbox.addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-            checkboxes.forEach(cb => cb.checked = this.checked);
-            updateSelectedCount();
-        });
-    }
-    
-    // 单个复选框
-    document.querySelectorAll('tbody input[type="checkbox"]').forEach(cb => {
-        cb.addEventListener('change', updateSelectedCount);
-    });
-    
-    // 模态框关闭
-    const modal = document.getElementById('productModal');
-    const closeBtn = modal.querySelector('.close-btn');
-    
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('show');
-    });
-    
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('show');
+                e.stopPropagation();
+                
+                // 切换当前组的展开状态
+                group.classList.toggle('active');
+                
+                // 可选：关闭其他展开的组（手风琴效果）
+                // navGroups.forEach(otherGroup => {
+                //     if (otherGroup !== group) {
+                //         otherGroup.classList.remove('active');
+                //     }
+                // });
+            });
         }
+    });
+    
+    // 检查当前页面，自动展开对应的菜单组
+    const currentPath = window.location.pathname;
+    const currentFileName = currentPath.split('/').pop();
+    
+    navGroups.forEach(group => {
+        const items = group.querySelectorAll('.nav-group-items .nav-item');
+        items.forEach(item => {
+            const href = item.getAttribute('href');
+            if (href && href === currentFileName) {
+                group.classList.add('active');
+                item.classList.add('active');
+            }
+        });
     });
 }
 
+// 初始化事件监听
+function initEventListeners() {
+    // 全选功能
+    const selectAll = document.getElementById('selectAll');
+    if (selectAll) {
+        selectAll.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('#productTableBody input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+        });
+    }
+}
 // 更新选中数量
 function updateSelectedCount() {
     const checked = document.querySelectorAll('tbody input[type="checkbox"]:checked').length;
