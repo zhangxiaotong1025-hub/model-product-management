@@ -294,17 +294,12 @@ function initNavigation() {
             console.log(`✓ 自动展开菜单组 ${index}`);
         }
         
-        // 检查是否已经绑定过事件（避免重复绑定）
-        if (title.dataset.initialized === 'true') {
-            console.log(`⚠️ 菜单组 ${index} 已初始化，跳过`);
-            return;
-        }
+        // 移除所有旧的事件监听器（通过克隆节点）
+        const newTitle = title.cloneNode(true);
+        title.parentNode.replaceChild(newTitle, title);
         
-        // 标记为已初始化
-        title.dataset.initialized = 'true';
-        
-        // 添加点击事件监听器 - 使用闭包保持对 group 的正确引用
-        title.addEventListener('click', function(e) {
+        // 在新节点上添加点击事件监听器
+        newTitle.addEventListener('click', function(e) {
             // 阻止事件冒泡和默认行为
             e.stopPropagation();
             e.preventDefault();
