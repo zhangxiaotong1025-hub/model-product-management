@@ -143,7 +143,7 @@
         <!-- 操作栏 -->
         <section class="action-bar">
             <div class="action-left">
-                <button class="btn-primary" onclick="window.location.href='menu-create.html'">
+                <button class="btn-primary" onclick="showCreateModal()">
                     <i class="fas fa-plus"></i>
                     新建模块
                 </button>
@@ -462,6 +462,195 @@
             console.log('切换状态:', id);
             alert('状态切换功能待实现');
         }
+
+        // 弹窗控制函数
+        function showCreateModal() {
+            document.getElementById('createModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCreateModal() {
+            document.getElementById('createModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 表单提交
+        document.getElementById('menuForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('表单提交');
+            alert('创建成功！');
+            closeCreateModal();
+            // 这里可以添加实际的表单提交逻辑
+        });
+
+        // ESC 键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCreateModal();
+            }
+        });
     </script>
+
+    <!-- 新建菜单弹窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeCreateModal()"></div>
+        <div class="modal-dialog" style="max-width: 600px; margin: 50px auto;">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #E2E8F0;">
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">新建菜单</h3>
+                    <button onclick="closeCreateModal()" style="background: none; border: none; font-size: 24px; color: #94A3B8; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                        ×
+                    </button>
+                </div>
+                
+                <div class="modal-body" style="padding: 24px;">
+                    <form id="menuForm">
+                        <!-- 模块名称 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>模块名称：
+                            </label>
+                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                                <option value="">请选择模块名称</option>
+                                <option value="enterprise">企业管理</option>
+                                <option value="user">人员管理</option>
+                                <option value="product">商品管理</option>
+                                <option value="permission">权限管理</option>
+                                <option value="material">素材管理</option>
+                                <option value="public-material">公有素材管理</option>
+                                <option value="private-material">私有素材管理</option>
+                            </select>
+                        </div>
+
+                        <!-- 所属系统 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>所属系统：
+                            </label>
+                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                                <option value="">请选择所属系统</option>
+                                <option value="enterprise">企业管理系统</option>
+                                <option value="product">商品管理系统</option>
+                                <option value="material">素材管理系统</option>
+                                <option value="permission">权限管理系统</option>
+                            </select>
+                        </div>
+
+                        <!-- 层级结构 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>层级结构：
+                            </label>
+                            <div style="display: flex; gap: 20px;">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="radio" name="level" value="1" checked style="margin-right: 8px; width: 16px; height: 16px;">
+                                    <span style="font-size: 14px; color: #334155;">一级</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="radio" name="level" value="2" style="margin-right: 8px; width: 16px; height: 16px; accent-color: #F59E0B;">
+                                    <span style="font-size: 14px; color: #F59E0B;">子级</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 选择父级 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>选择父级：
+                            </label>
+                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                                <option value="">请选择父级菜单</option>
+                                <option value="enterprise">企业管理</option>
+                                <option value="material">素材管理</option>
+                                <option value="material-public">素材管理/公有素材管理</option>
+                                <option value="material-private">素材管理/私有素材管理</option>
+                                <option value="product">商品管理</option>
+                                <option value="permission">权限管理</option>
+                            </select>
+                        </div>
+
+                        <!-- URL -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>URL：
+                            </label>
+                            <input type="text" class="form-control" placeholder="请输入URL路径，例如：/enterprise-management" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                        </div>
+
+                        <!-- 排列顺序 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>排列顺序：
+                            </label>
+                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                                <option value="">请选择排列顺序（仅在同层级模块中进行排列）</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+
+                        <!-- 技术标识 -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
+                                <span style="color: #EF4444; margin-right: 4px;">*</span>技术标识：
+                            </label>
+                            <input type="text" class="form-control" placeholder="请输入技术唯一标识" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer" style="display: flex; justify-content: center; gap: 12px; padding: 20px; border-top: 1px solid #E2E8F0;">
+                    <button type="button" onclick="closeCreateModal()" style="padding: 8px 24px; background: #F1F5F9; color: #64748B; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; min-width: 100px;">
+                        取消
+                    </button>
+                    <button type="submit" form="menuForm" style="padding: 8px 24px; background: #F59E0B; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; min-width: 100px; font-weight: 500;">
+                        创建
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+        
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-dialog {
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        input[type="radio"]:checked {
+            accent-color: #334155;
+        }
+
+        input[type="radio"][value="2"]:checked {
+            accent-color: #F59E0B;
+        }
+    </style>
 </body>
 </html>
