@@ -609,6 +609,7 @@
     </main>
 
     <script src="js/main.js"></script>
+    <script src="js/custom-select.js"></script>
     <script>
         // 权限管理菜单专用修复脚本 - 覆盖 main.js 的行为
         (function() {
@@ -824,7 +825,7 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>所属系统：
                             </label>
-                            <select id="systemType" class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <select id="systemType" class="form-control" required data-custom-select data-placeholder="请选择所属系统" data-clearable="true">
                                 <option value="">请选择所属系统</option>
                                 <option value="enterprise">企业管理系统</option>
                                 <option value="product">商品管理系统</option>
@@ -857,7 +858,7 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>选择父级：
                             </label>
-                            <select id="parentMenu" class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <select id="parentMenu" class="form-control" data-custom-select data-placeholder="请选择父级菜单" data-clearable="true">
                                 <option value="">请选择父级菜单</option>
                                 <option value="1">企业管理</option>
                                 <option value="2">人员管理</option>
