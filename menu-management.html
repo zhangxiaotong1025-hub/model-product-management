@@ -791,13 +791,13 @@
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>层级结构：
                             </label>
                             <div style="display: flex; gap: 20px;">
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="radio" name="level" value="1" checked style="margin-right: 8px; width: 16px; height: 16px;">
-                                    <span style="font-size: 14px; color: #334155;">一级</span>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="1" checked>
+                                    <span>一级</span>
                                 </label>
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="radio" name="level" value="2" style="margin-right: 8px; width: 16px; height: 16px; accent-color: #F59E0B;">
-                                    <span style="font-size: 14px; color: #F59E0B;">子级</span>
+                                <label class="radio">
+                                    <input type="radio" name="level" value="2">
+                                    <span>子级</span>
                                 </label>
                             </div>
                         </div>
@@ -863,43 +863,5 @@
         </div>
     </div>
 
-    <style>
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-        }
-        
-        .modal-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-dialog {
-            position: relative;
-            z-index: 1001;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        input[type="radio"]:checked {
-            accent-color: #334155;
-        }
-
-        input[type="radio"][value="2"]:checked {
-            accent-color: #F59E0B;
-        }
-    </style>
 </body>
 </html>

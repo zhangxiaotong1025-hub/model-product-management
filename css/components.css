@@ -382,35 +382,92 @@ select.form-control:disabled,
     user-select: none;
 }
 
-.checkbox input[type="checkbox"],
-.radio input[type="radio"] {
+/* 复选框样式 */
+.checkbox input[type="checkbox"] {
+    appearance: none;
     width: 16px;
     height: 16px;
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all var(--transition-base);
+    position: relative;
+    background: var(--bg-primary);
 }
 
-.checkbox input[type="checkbox"]:hover,
-.radio input[type="radio"]:hover {
+.checkbox input[type="checkbox"]:hover {
     border-color: var(--color-primary);
 }
 
-.checkbox input[type="checkbox"]:checked,
-.radio input[type="radio"]:checked {
+.checkbox input[type="checkbox"]:checked {
     background: var(--color-primary);
     border-color: var(--color-primary);
 }
 
-.checkbox input[type="checkbox"]:disabled,
+.checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 单选框样式 */
+.radio input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    background: var(--bg-primary);
+}
+
+.radio input[type="radio"]:hover {
+    border-color: var(--color-primary);
+}
+
+.radio input[type="radio"]:checked {
+    border-color: var(--color-primary);
+    background: var(--bg-primary);
+}
+
+.radio input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+}
+
 .radio input[type="radio"]:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.radio input[type="radio"] {
-    border-radius: var(--radius-full);
+/* 单选框标签文字 */
+.radio span {
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.radio input[type="radio"]:checked + span {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
 }
 
 
@@ -620,7 +677,7 @@ select.form-control:disabled,
 }
 
 .modal-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
