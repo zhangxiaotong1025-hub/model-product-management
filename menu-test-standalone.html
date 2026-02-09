@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>独立测试 - 菜单管理</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 - 完全复制 menu-management.html 的结构 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <div class="nav-group">
+                    <div class="nav-group-title"><i class="fas fa-project-diagram"></i><span>项目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    <div class="nav-group-items">
+                        <a href="project-list.html" class="nav-item"><span>项目列表</span></a>
+                        <a href="project-detail.html" class="nav-item"><span>项目详情</span></a>
+                        <a href="plan-management.html" class="nav-item"><span>方案管理</span></a>
+                    </div>
+                </div>
+                <a href="case-management.html" class="nav-item"><i class="fas fa-images"></i><span>智能案例管理</span></a>
+                <div class="nav-group">
+                    <div class="nav-group-title"><i class="fas fa-sitemap"></i><span>前台类目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    <div class="nav-group-items">
+                        <a href="frontend-category-domestic.html" class="nav-item"><span>国内展示目录</span></a>
+                        <a href="frontend-category-international.html" class="nav-item"><span>国际展示目录</span></a>
+                        <a href="frontend-category-guide.html" class="nav-item"><span>智能导购展示目录</span></a>
+                        <a href="frontend-layout.html" class="nav-item"><span>智能导购布局管理</span></a>
+                    </div>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title"><i class="fas fa-file-alt"></i><span>内容管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    <div class="nav-group-items">
+                        <a href="content-template.html" class="nav-item"><span>内容模版管理</span></a>
+                        <a href="content-management.html" class="nav-item"><span>内容管理</span></a>
+                        <a href="panorama-management.html" class="nav-item"><span>全景图管理</span></a>
+                        <a href="3d-product.html" class="nav-item"><span>3D爆品棚拍</span></a>
+                    </div>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title"><i class="fas fa-bullhorn"></i><span>营销管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    <div class="nav-group-items">
+                        <a href="ad-management.html" class="nav-item"><span>广告位管理</span></a>
+                        <a href="product-pool.html" class="nav-item"><span>选品池管理</span></a>
+                        <a href="content-pool.html" class="nav-item"><span>内容池管理</span></a>
+                        <a href="promotion-management.html" class="nav-item"><span>优惠管理</span></a>
+                    </div>
+                </div>
+                <a href="data-dashboard.html" class="nav-item"><i class="fas fa-chart-line"></i><span>数据看板</span></a>
+            </nav>
+            
+            <div class="nav-divider">基础模块</div>
+            
+            <nav class="nav-menu">
+                <a href="enterprise-management.html" class="nav-item">
+                    <i class="fas fa-building"></i>
+                    <span>企业管理</span>
+                </a>
+                <a href="model-management.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>模型管理</span>
+                </a>
+                <a href="product-management.html" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>商品管理</span>
+                </a>
+                <a href="backend-category.html" class="nav-item">
+                    <i class="fas fa-folder-tree"></i>
+                    <span>后台类目</span>
+                </a>
+                <a href="attribute-management.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>属性管理</span>
+                </a>
+                
+                <!-- 权限管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>权限管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="menu-management.html" class="nav-item active">
+                            <span>菜单管理</span>
+                        </a>
+                        <a href="role-management.html" class="nav-item">
+                            <span>角色管理</span>
+                        </a>
+                        <a href="policy-management.html" class="nav-item">
+                            <span>策略管理</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="nav-divider">个人中心</div>
+            
+            <nav class="nav-menu">
+                <a href="my-benefits.html" class="nav-item"><i class="fas fa-gift"></i><span>权益管理</span></a>
+                <a href="my-profile.html" class="nav-item"><i class="fas fa-user"></i><span>个人信息</span></a>
+                <a href="my-uploads.html" class="nav-item"><i class="fas fa-cloud-upload-alt"></i><span>我的上传</span></a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">独立测试 - 菜单管理</h1>
+        </header>
+
+        <section class="content-section">
+            <div class="card">
+                <h2>🔍 测试说明</h2>
+                <p><strong>这是一个完全独立的测试页面，不加载 main.js</strong></p>
+                <ol>
+                    <li>打开浏览器控制台（F12）查看日志</li>
+                    <li>点击左侧的"权限管理"菜单标题</li>
+                    <li>观察菜单是否能正常展开/收起</li>
+                    <li>如果这个页面正常工作，说明 main.js 有问题</li>
+                    <li>如果这个页面也不正常，说明 CSS 或 HTML 结构有问题</li>
+                </ol>
+                
+                <h3 style="margin-top: 20px;">📊 预期行为</h3>
+                <ul>
+                    <li>页面加载时："权限管理"菜单应该自动展开（因为当前页面是菜单管理）</li>
+                    <li>第一次点击标题：菜单应该收起</li>
+                    <li>第二次点击标题：菜单应该展开</li>
+                    <li>可以无限次切换</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 独立的 JavaScript，不依赖 main.js -->
+    <script>
+        console.log('========================================');
+        console.log('独立测试脚本开始执行');
+        console.log('========================================');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOMContentLoaded 事件触发');
+            
+            // 获取所有菜单组
+            const navGroups = document.querySelectorAll('.nav-group');
+            console.log(`📋 找到 ${navGroups.length} 个菜单组`);
+            
+            // 获取当前页面文件名
+            const currentPath = window.location.pathname;
+            const currentFileName = currentPath.split('/').pop() || 'index.html';
+            console.log(`📄 当前页面: ${currentFileName}`);
+            
+            // 遍历每个菜单组
+            navGroups.forEach((group, index) => {
+                console.log(`\n--- 处理菜单组 ${index} ---`);
+                
+                const title = group.querySelector('.nav-group-title');
+                const items = group.querySelectorAll('.nav-group-items .nav-item');
+                
+                if (!title) {
+                    console.error(`❌ 菜单组 ${index} 缺少标题元素`);
+                    return;
+                }
+                
+                const titleText = title.textContent.trim();
+                console.log(`菜单组名称: ${titleText}`);
+                console.log(`子菜单数量: ${items.length}`);
+                
+                // 检查当前页面是否在这个菜单组中
+                let isCurrentGroup = false;
+                items.forEach((item, itemIndex) => {
+                    const href = item.getAttribute('href');
+                    console.log(`  子菜单 ${itemIndex}: ${href}`);
+                    
+                    if (href && (href === currentFileName || (currentFileName === '' && href === 'index.html'))) {
+                        isCurrentGroup = true;
+                        item.classList.add('active');
+                        console.log(`  ✓ 找到当前页面菜单项: ${href}`);
+                    }
+                });
+                
+                // 如果是当前页面所在的菜单组，自动展开
+                if (isCurrentGroup) {
+                    group.classList.add('active');
+                    console.log(`✓ 自动展开菜单组 ${index}: ${titleText}`);
+                }
+                
+                // 添加点击事件
+                console.log(`绑定点击事件到菜单组 ${index}...`);
+                
+                title.addEventListener('click', function(e) {
+                    console.log(`\n🖱️ 点击了菜单组 ${index}: ${titleText}`);
+                    
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // 获取父级 nav-group
+                    const currentGroup = this.closest('.nav-group');
+                    
+                    if (!currentGroup) {
+                        console.error('❌ 无法找到父级 .nav-group 元素');
+                        return;
+                    }
+                    
+                    // 检查当前状态
+                    const wasActive = currentGroup.classList.contains('active');
+                    console.log(`当前状态: ${wasActive ? '展开' : '收起'}`);
+                    
+                    // 切换状态
+                    currentGroup.classList.toggle('active');
+                    
+                    // 检查新状态
+                    const isNowActive = currentGroup.classList.contains('active');
+                    console.log(`新状态: ${isNowActive ? '展开' : '收起'}`);
+                    
+                    if (wasActive !== isNowActive) {
+                        console.log(`✅ 状态切换成功: ${wasActive ? '展开→收起' : '收起→展开'}`);
+                    } else {
+                        console.error(`❌ 状态切换失败！状态没有改变`);
+                    }
+                });
+                
+                console.log(`✓ 菜单组 ${index} 事件绑定完成`);
+            });
+            
+            console.log('\n========================================');
+            console.log('✅ 所有菜单组初始化完成');
+            console.log('========================================\n');
+        });
+    </script>
+</body>
+</html>
