@@ -247,6 +247,77 @@
 
     <script src="js/main.js"></script>
     <script>
+        // 权限管理菜单专用修复脚本 - 覆盖 main.js 的行为
+        (function() {
+            console.log('🔧 权限管理菜单修复脚本启动');
+            
+            // 等待 DOM 完全加载
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPermissionMenu);
+            } else {
+                initPermissionMenu();
+            }
+            
+            function initPermissionMenu() {
+                console.log('✅ 开始修复权限管理菜单');
+                
+                // 找到所有菜单组
+                const navGroups = document.querySelectorAll('.nav-group');
+                console.log(`找到 ${navGroups.length} 个菜单组`);
+                
+                // 获取当前页面
+                const currentPath = window.location.pathname;
+                const currentFileName = currentPath.split('/').pop() || 'index.html';
+                console.log(`当前页面: ${currentFileName}`);
+                
+                navGroups.forEach((group, index) => {
+                    const title = group.querySelector('.nav-group-title');
+                    if (!title) return;
+                    
+                    const titleText = title.textContent.trim();
+                    
+                    // 检查是否是当前页面所在的菜单组
+                    const items = group.querySelectorAll('.nav-group-items .nav-item');
+                    let isCurrentGroup = false;
+                    
+                    items.forEach(item => {
+                        const href = item.getAttribute('href');
+                        if (href === currentFileName) {
+                            isCurrentGroup = true;
+                            item.classList.add('active');
+                        }
+                    });
+                    
+                    // 自动展开当前页面所在的菜单组
+                    if (isCurrentGroup) {
+                        group.classList.add('active');
+                        console.log(`✓ 自动展开: ${titleText}`);
+                    }
+                    
+                    // 移除所有旧的事件监听器
+                    const newTitle = title.cloneNode(true);
+                    title.parentNode.replaceChild(newTitle, title);
+                    
+                    // 添加新的点击事件
+                    newTitle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const currentGroup = this.closest('.nav-group');
+                        if (currentGroup) {
+                            const wasActive = currentGroup.classList.contains('active');
+                            currentGroup.classList.toggle('active');
+                            console.log(`${titleText}: ${wasActive ? '收起' : '展开'}`);
+                        }
+                    });
+                    
+                    console.log(`✓ ${titleText} 事件绑定完成`);
+                });
+                
+                console.log('✅ 权限管理菜单修复完成');
+            }
+        })();
+        
         // 全选功能
         document.getElementById('selectAll').addEventListener('change', function() {
             const checkboxes = document.querySelectorAll('.row-checkbox');
