@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件库示例 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .demo-section {
+            margin-bottom: 48px;
+        }
+        .demo-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-primary);
+            padding-bottom: 12px;
+        }
+        .demo-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 24px 0 16px;
+            color: var(--text-primary);
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .demo-item {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+        }
+        .demo-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="components-demo.html" class="nav-item active">
+                    <i class="fas fa-palette"></i>
+                    <span>组件库示例</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">PULSAR 组件库示例</h1>
+        </header>
+
+        <!-- 1. 按钮组件 -->
+        <section class="demo-section">
+            <h2 class="demo-title">1. 按钮组件 (Buttons)</h2>
+            
+            <h3 class="demo-subtitle">按钮变体</h3>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <div class="demo-label">Primary</div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        主要按钮
+                    </button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Secondary</div>
+                    <button class="btn btn-secondary">次要按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Success</div>
+                    <button class="btn btn-success">成功按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Warning</div>
+                    <button class="btn btn-warning">警告按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Danger</div>
+                    <button class="btn btn-danger">危险按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Ghost</div>
+                    <button class="btn btn-ghost">幽灵按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Link</div>
+                    <button class="btn btn-link">链接按钮</button>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">Disabled</div>
+                    <button class="btn btn-primary" disabled>禁用按钮</button>
+                </div>
+            </div>
+
+            <h3 class="demo-subtitle">按钮尺寸</h3>
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm">小按钮</button>
+                <button class="btn btn-primary btn-md">中按钮</button>
+                <button class="btn btn-primary btn-lg">大按钮</button>
+                <button class="btn btn-primary btn-icon"><i class="fas fa-search"></i></button>
+                <button class="btn btn-primary btn-icon-sm"><i class="fas fa-search"></i></button>
+            </div>
+        </section>
+
+        <!-- 2. 输入框组件 -->
+        <section class="demo-section">
+            <h2 class="demo-title">2. 输入框组件 (Inputs)</h2>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <div class="demo-label">默认输入框</div>
+                    <input type="text" class="input" placeholder="请输入内容">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">小尺寸</div>
+                    <input type="text" class="input input-sm" placeholder="小尺寸输入框">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">中尺寸</div>
+                    <input type="text" class="input input-md" placeholder="中尺寸输入框">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">大尺寸</div>
+                    <input type="text" class="input input-lg" placeholder="大尺寸输入框">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">错误状态</div>
+                    <input type="text" class="input input-error" placeholder="错误状态" value="错误的输入">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">成功状态</div>
+                    <input type="text" class="input input-success" placeholder="成功状态" value="正确的输入">
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">禁用状态</div>
+                    <input type="text" class="input" placeholder="禁用状态" disabled>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 下拉选择框 -->
+        <section class="demo-section">
+            <h2 class="demo-title">3. 下拉选择框 (Select)</h2>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <div class="demo-label">默认选择框</div>
+                    <select class="form-control">
+                        <option>请选择</option>
+                        <option>选项 1</option>
+                        <option>选项 2</option>
+                        <option>选项 3</option>
+                    </select>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-label">禁用选择框</div>
+                    <select class="form-control" disabled>
+                        <option>禁用状态</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 复选框和单选框 -->
+        <section class="demo-section">
+            <h2 class="demo-title">4. 复选框和单选框 (Checkbox & Radio)</h2>
+            
+            <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+                <div>
+                    <h3 class="demo-subtitle">复选框</h3>
+                    <label class="checkbox">
+                        <input type="checkbox" checked>
+                        <span>已选中</span>
+                    </label>
+                    <br><br>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <span>未选中</span>
+                    </label>
+                    <br><br>
+                    <label class="checkbox">
+                        <input type="checkbox" disabled>
+                        <span>禁用状态</span>
+                    </label>
+                </div>
+                <div>
+                    <h3 class="demo-subtitle">单选框</h3>
+                    <label class="radio">
+                        <input type="radio" name="demo-radio" checked>
+                        <span>选项 1</span>
+                    </label>
+                    <br><br>
+                    <label class="radio">
+                        <input type="radio" name="demo-radio">
+                        <span>选项 2</span>
+                    </label>
+                    <br><br>
+                    <label class="radio">
+                        <input type="radio" name="demo-radio" disabled>
+                        <span>禁用选项</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 标签/徽章 -->
+        <section class="demo-section">
+            <h2 class="demo-title">5. 标签/徽章 (Badges)</h2>
+            
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                <span class="badge badge-primary">Primary</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-danger">Danger</span>
+                <span class="badge badge-info">Info</span>
+                <span class="badge badge-secondary">Secondary</span>
+            </div>
+        </section>
+
+        <!-- 6. 状态指示器 -->
+        <section class="demo-section">
+            <h2 class="demo-title">6. 状态指示器 (Status)</h2>
+            
+            <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                <div class="status status-success">
+                    <span class="status-dot"></span>
+                    <span>启用</span>
+                </div>
+                <div class="status status-error">
+                    <span class="status-dot"></span>
+                    <span>已停用</span>
+                </div>
+                <div class="status status-warning">
+                    <span class="status-dot"></span>
+                    <span>警告</span>
+                </div>
+                <div class="status status-info">
+                    <span class="status-dot"></span>
+                    <span>信息</span>
+                </div>
+                <div class="status status-secondary">
+                    <span class="status-dot"></span>
+                    <span>默认</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 卡片 -->
+        <section class="demo-section">
+            <h2 class="demo-title">7. 卡片 (Card)</h2>
+            
+            <div style="max-width: 600px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">卡片标题</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>这是卡片的内容区域。可以放置任何内容，如文本、图片、表单等。</p>
+                        <p style="margin-top: 12px;">卡片组件提供了统一的容器样式，包含 header、body 和 footer 三个部分。</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm">确定</button>
+                        <button class="btn btn-secondary btn-sm">取消</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. 搜索框 -->
+        <section class="demo-section">
+            <h2 class="demo-title">8. 搜索框 (Search Box)</h2>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" class="input" placeholder="搜索...">
+            </div>
+        </section>
+
+        <!-- 9. 表单组 -->
+        <section class="demo-section">
+            <h2 class="demo-title">9. 表单组 (Form Group)</h2>
+            
+            <div style="max-width: 600px;">
+                <div class="form-group">
+                    <label class="form-label required">用户名</label>
+                    <input type="text" class="form-control" placeholder="请输入用户名">
+                    <span class="form-help">用户名长度为 3-20 个字符</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">邮箱</label>
+                    <input type="email" class="form-control input-error" value="invalid-email">
+                    <span class="form-error">请输入有效的邮箱地址</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">备注</label>
+                    <textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. 工具类示例 -->
+        <section class="demo-section">
+            <h2 class="demo-title">10. 工具类 (Utility Classes)</h2>
+            
+            <h3 class="demo-subtitle">文本颜色</h3>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+                <span class="text-primary">主要文本</span>
+                <span class="text-secondary">次要文本</span>
+                <span class="text-tertiary">三级文本</span>
+                <span class="text-success">成功文本</span>
+                <span class="text-warning">警告文本</span>
+                <span class="text-error">错误文本</span>
+            </div>
+
+            <h3 class="demo-subtitle">字重</h3>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+                <span class="font-normal">Normal (400)</span>
+                <span class="font-medium">Medium (500)</span>
+                <span class="font-semibold">Semibold (600)</span>
+                <span class="font-bold">Bold (700)</span>
+            </div>
+
+            <h3 class="demo-subtitle">圆角</h3>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+                <div class="rounded-sm" style="width: 60px; height: 60px; background: var(--color-primary);"></div>
+                <div class="rounded-md" style="width: 60px; height: 60px; background: var(--color-success);"></div>
+                <div class="rounded-lg" style="width: 60px; height: 60px; background: var(--color-warning);"></div>
+                <div class="rounded-xl" style="width: 60px; height: 60px; background: var(--color-error);"></div>
+                <div class="rounded-full" style="width: 60px; height: 60px; background: var(--color-info);"></div>
+            </div>
+
+            <h3 class="demo-subtitle">阴影</h3>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <div class="shadow-xs" style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">XS</div>
+                <div class="shadow-sm" style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">SM</div>
+                <div class="shadow-md" style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">MD</div>
+                <div class="shadow-lg" style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">LG</div>
+                <div class="shadow-xl" style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">XL</div>
+            </div>
+        </section>
+
+        <!-- CSS 变量参考 -->
+        <section class="demo-section">
+            <h2 class="demo-title">11. CSS 变量参考 (Design Tokens)</h2>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="demo-subtitle">使用方式</h3>
+                    <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px; overflow-x: auto;"><code>/* 在 CSS 中使用 */
+.my-button {
+    background: var(--color-primary);
+    color: var(--text-inverse);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* 常用变量 */
+--color-primary: #6366F1
+--color-success: #10B981
+--text-primary: #1E293B
+--spacing-md: 12px
+--radius-md: 6px
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05)</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
