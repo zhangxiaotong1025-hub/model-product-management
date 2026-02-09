@@ -294,40 +294,48 @@ function initNavigation() {
             console.log(`✓ 自动展开菜单组 ${index}`);
         }
         
-        // 移除旧的事件监听器（如果存在）
-        const newTitle = title.cloneNode(true);
-        title.parentNode.replaceChild(newTitle, title);
+        // 检查是否已经绑定过事件（避免重复绑定）
+        if (title.dataset.initialized === 'true') {
+            console.log(`⚠️ 菜单组 ${index} 已初始化，跳过`);
+            return;
+        }
         
-        // 添加点击事件监听器
-        newTitle.addEventListener('click', function(e) {
-            // 阻止事件冒泡
+        // 标记为已初始化
+        title.dataset.initialized = 'true';
+        
+        // 添加点击事件监听器 - 使用闭包保持对 group 的正确引用
+        title.addEventListener('click', function(e) {
+            // 阻止事件冒泡和默认行为
             e.stopPropagation();
+            e.preventDefault();
+            
+            // 重新获取当前 group 元素（确保引用正确）
+            const currentGroup = this.closest('.nav-group');
+            if (!currentGroup) {
+                console.error('❌ 无法找到父级 nav-group 元素');
+                return;
+            }
             
             // 切换当前组的展开状态
-            const wasActive = group.classList.contains('active');
-            group.classList.toggle('active');
+            const wasActive = currentGroup.classList.contains('active');
+            currentGroup.classList.toggle('active');
             
             console.log(`${wasActive ? '🔽' : '🔼'} 菜单组 ${index} ${wasActive ? '收起' : '展开'}`);
             
             // 可选：手风琴效果（关闭其他菜单组）
-            // navGroups.forEach(otherGroup => {
-            //     if (otherGroup !== group && otherGroup.classList.contains('active')) {
+            // const allGroups = document.querySelectorAll('.nav-group');
+            // allGroups.forEach(otherGroup => {
+            //     if (otherGroup !== currentGroup && otherGroup.classList.contains('active')) {
             //         otherGroup.classList.remove('active');
             //     }
             // });
         });
         
-        // 阻止标题区域的默认行为，但保持焦点
-        newTitle.addEventListener('mousedown', function(e) {
-            if (e.target.tagName !== 'A') {
-                e.preventDefault();
-            }
-        });
+        console.log(`✓ 菜单组 ${index} 事件绑定完成`);
     });
     
     console.log('✅ 导航菜单初始化完成');
 }
-
 // 初始化事件监听
 function initEventListeners() {
     // 全选功能
