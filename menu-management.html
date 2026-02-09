@@ -140,216 +140,441 @@
             </div>
         </header>
 
-        <!-- 操作栏 -->
-        <section class="action-bar">
+        <!-- 主功能区 -->
+        <section class="action-bar" style="margin-bottom: 16px;">
             <div class="action-left">
                 <button class="btn-primary" onclick="showCreateModal()">
                     <i class="fas fa-plus"></i>
                     新建模块
                 </button>
                 <button class="btn-secondary">
-                    <i class="fas fa-sync-alt"></i>
-                    刷新
+                    <i class="fas fa-trash-alt"></i>
+                    批量删除
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i>
+                    导出
                 </button>
             </div>
             <div class="action-right">
-                <div class="search-box" style="margin-right: 10px;">
+                <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="请输入">
+                    <input type="text" placeholder="搜索模块名称、URL...">
                 </div>
-                <button class="btn-secondary">
-                    <i class="fas fa-filter"></i>
-                    查询
-                </button>
-                <button class="btn-secondary">
-                    <i class="fas fa-redo"></i>
-                    重置
-                </button>
-                <button class="btn-secondary">
-                    <i class="fas fa-ellipsis-h"></i>
-                    更多
-                </button>
             </div>
         </section>
 
         <!-- 筛选区域 -->
-        <section class="content-section" style="padding: 16px; margin-bottom: 0;">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
-                <div>
-                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">公司名：</label>
-                    <select class="form-control" style="width: 100%;">
-                        <option value="">请输入</option>
-                        <option value="1">阿里巴巴集团</option>
-                        <option value="2">腾讯科技</option>
-                        <option value="3">字节跳动</option>
-                    </select>
+        <section class="content-section" style="padding: 20px; margin-bottom: 0; background: #FAFBFC;">
+            <div style="display: flex; align-items: flex-end; gap: 16px;">
+                <!-- 常规筛选条件（最多3个） -->
+                <div style="flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">模块名称</label>
+                        <select class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                            <option value="">全部</option>
+                            <option value="1">企业管理</option>
+                            <option value="2">人员管理</option>
+                            <option value="3">商品管理</option>
+                            <option value="4">权限管理</option>
+                            <option value="5">素材管理</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">模块层级</label>
+                        <select class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                            <option value="">全部</option>
+                            <option value="1">一级</option>
+                            <option value="2">二级</option>
+                            <option value="3">三级</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">状态</label>
+                        <select class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                            <option value="">全部</option>
+                            <option value="1">启用</option>
+                            <option value="0">已停用</option>
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">管理员：</label>
-                    <select class="form-control" style="width: 100%;">
-                        <option value="">请输入</option>
-                        <option value="1">张三</option>
-                        <option value="2">李四</option>
-                        <option value="3">王五</option>
-                    </select>
+                
+                <!-- 更多筛选 -->
+                <div style="flex-shrink: 0;">
+                    <button class="btn-secondary" onclick="toggleMoreFilters()" style="height: 36px; padding: 0 16px; border: 1px solid #E2E8F0; background: white; color: #64748B;">
+                        <i class="fas fa-filter"></i>
+                        <span id="moreFilterText">更多筛选</span>
+                        <i class="fas fa-chevron-down" id="moreFilterIcon" style="margin-left: 4px; font-size: 12px;"></i>
+                    </button>
                 </div>
-                <div>
-                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">联系方式：</label>
-                    <select class="form-control" style="width: 100%;">
-                        <option value="">请输入</option>
-                        <option value="1">13800138000</option>
-                        <option value="2">13900139000</option>
-                    </select>
+                
+                <!-- 筛选操作按钮 -->
+                <div style="flex-shrink: 0; display: flex; gap: 8px;">
+                    <button class="btn-primary" style="height: 36px; padding: 0 20px;">
+                        <i class="fas fa-search"></i>
+                        查询
+                    </button>
+                    <button class="btn-secondary" style="height: 36px; padding: 0 20px; border: 1px solid #E2E8F0; background: white; color: #64748B;">
+                        <i class="fas fa-redo"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 更多筛选项（默认隐藏） -->
+            <div id="moreFilters" style="display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid #E2E8F0;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">所属系统</label>
+                        <select class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                            <option value="">全部</option>
+                            <option value="1">企业管理系统</option>
+                            <option value="2">商品管理系统</option>
+                            <option value="3">素材管理系统</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">创建时间</label>
+                        <input type="date" class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 13px; font-weight: 500;">更新时间</label>
+                        <input type="date" class="form-control" style="width: 100%; height: 36px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px; background: white;">
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 数据表格 -->
-        <section class="content-section" style="padding-top: 0;">
-            <div class="table-container">
-                <table class="data-table">
+        <section class="content-section" style="padding: 20px; margin-top: 0;">
+            <div class="table-container" style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+                <table class="data-table" style="width: 100%; border-collapse: collapse;">
                     <thead>
-                        <tr>
-                            <th width="120">模块ID</th>
-                            <th width="150">模块名称</th>
-                            <th width="250">URL</th>
-                            <th width="100">状态</th>
-                            <th width="120">模块层级</th>
-                            <th>层级结构</th>
-                            <th width="150">操作</th>
+                        <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 50px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 100px;">模块ID</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 140px;">模块名称</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569;">URL</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 90px;">状态</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 100px;">模块层级</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 200px;">层级结构</th>
+                            <th style="padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: #475569; width: 140px;">操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110808</span></td>
-                            <td>企业管理</td>
-                            <td><code style="font-size: 12px;">/enterprise-management</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">企业管理/企业信息/基本信息</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=1'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(1)">停用</button>
+                        <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110808</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">企业管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/enterprise-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>
+                                    启用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #FEF3C7; color: #D97706; border-radius: 4px; font-size: 12px; font-weight: 500;">一级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">企业管理/企业信息/基本信息</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=1'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(1)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110809</span></td>
-                            <td>企业管理</td>
-                            <td><code style="font-size: 12px;">/enterprise-management/list</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">企业管理/企业列表/列表管理</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=2'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(2)">停用</button>
+                        <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110809</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">企业管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/enterprise-management/list</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>
+                                    启用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #DBEAFE; color: #1D4ED8; border-radius: 4px; font-size: 12px; font-weight: 500;">二级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">企业管理/企业列表/列表管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=2'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(2)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110810</span></td>
-                            <td>人员管理</td>
-                            <td><code style="font-size: 12px;">/user-management</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">企业管理/人员管理</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=3'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(3)">停用</button>
+                        <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110810</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">人员管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/user-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>
+                                    启用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">企业管理/人员管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=3'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(3)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110811</span></td>
-                            <td>商品管理</td>
-                            <td><code style="font-size: 12px;">/product-management</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">商品管理/商品列表/商品详情</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=4'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(4)">停用</button>
+                        <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;"><input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;"></td>
+                            <td style="padding: 14px 16px;"><span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110811</span></td>
+                            <td style="padding: 14px 16px;"><span style="color: #1E293B; font-size: 14px; font-weight: 500;">商品管理</span></td>
+                            <td style="padding: 14px 16px;"><code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/product-management</code></td>
+                            <td style="padding: 14px 16px;"><span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;"><span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>启用</span></td>
+                            <td style="padding: 14px 16px;"><span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span></td>
+                            <td style="padding: 14px 16px;"><span style="color: #64748B; font-size: 13px;">商品管理/商品列表/商品详情</span></td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=4'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(4)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110812</span></td>
-                            <td>权限管理</td>
-                            <td><code style="font-size: 12px;">/permission-management</code></td>
-                            <td><span style="color: #EF4444;">● 已停用</span></td>
-                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">权限管理</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=5'">编辑</button>
-                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(5)">启用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110812</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">权限管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/permission-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #EF4444; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #EF4444; border-radius: 50%;"></span>
+                                    已停用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #FEF3C7; color: #D97706; border-radius: 4px; font-size: 12px; font-weight: 500;">一级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">权限管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=5'">编辑</button>
+                                <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(5)">启用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110813</span></td>
-                            <td>素材管理</td>
-                            <td><code style="font-size: 12px;">/material-management</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">素材管理/图片素材/视频素材</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=6'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(6)">停用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110813</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">素材管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/material-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>
+                                    启用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #FEF3C7; color: #D97706; border-radius: 4px; font-size: 12px; font-weight: 500;">一级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">素材管理/图片素材/视频素材</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=6'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(6)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110814</span></td>
-                            <td>公有素材管理</td>
-                            <td><code style="font-size: 12px;">/public-material-management</code></td>
-                            <td><span style="color: #EF4444;">● 已停用</span></td>
-                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">素材管理/公有素材/素材库</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=7'">编辑</button>
-                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(7)">启用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110814</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">公有素材管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/public-material-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #EF4444; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #EF4444; border-radius: 50%;"></span>
+                                    已停用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">素材管理/公有素材/素材库</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=7'">编辑</button>
+                                <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(7)">启用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110815</span></td>
-                            <td>私有素材管理</td>
-                            <td><code style="font-size: 12px;">/private-material-management</code></td>
-                            <td><span style="color: #10B981;">● 启用</span></td>
-                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">素材管理/私有素材</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=8'">编辑</button>
-                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(8)">停用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110815</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">私有素材管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/private-material-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #10B981; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #10B981; border-radius: 50%;"></span>
+                                    启用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">素材管理/私有素材</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=8'">编辑</button>
+                                <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(8)">停用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110816</span></td>
-                            <td>工程工艺</td>
-                            <td><code style="font-size: 12px;">/engineering-process</code></td>
-                            <td><span style="color: #EF4444;">● 已停用</span></td>
-                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">工程管理/工艺流程</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=9'">编辑</button>
-                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(9)">启用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110816</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">工程工艺</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/engineering-process</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #EF4444; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #EF4444; border-radius: 50%;"></span>
+                                    已停用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">工程管理/工艺流程</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=9'">编辑</button>
+                                <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(9)">启用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110817</span></td>
-                            <td>数据统计</td>
-                            <td><code style="font-size: 12px;">/data-statistics</code></td>
-                            <td><span style="color: #EF4444;">● 已停用</span></td>
-                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">数据中心/统计分析</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=10'">编辑</button>
-                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(10)">启用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110817</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">数据统计</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/data-statistics</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #EF4444; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #EF4444; border-radius: 50%;"></span>
+                                    已停用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #DBEAFE; color: #1D4ED8; border-radius: 4px; font-size: 12px; font-weight: 500;">二级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">数据中心/统计分析</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=10'">编辑</button>
+                                <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(10)">启用</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><span style="color: #F59E0B; font-weight: 500;">1110818</span></td>
-                            <td>资源管理</td>
-                            <td><code style="font-size: 12px;">/resource-management</code></td>
-                            <td><span style="color: #EF4444;">● 已停用</span></td>
-                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
-                            <td><span style="color: #64748B; font-size: 13px;">系统管理/资源配置</span></td>
-                            <td>
-                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=11'">编辑</button>
-                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(11)">启用</button>
+                                                <tr style="border-bottom: 1px solid #F1F5F9; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#F8FAFC'" onmouseout="this.style.backgroundColor='white'">
+                            <td style="padding: 14px 16px;">
+                                <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;">
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #6366F1; font-weight: 500; font-size: 14px;">1110818</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #1E293B; font-size: 14px; font-weight: 500;">资源管理</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <code style="font-size: 12px; color: #64748B; background: #F1F5F9; padding: 4px 8px; border-radius: 4px;">/resource-management</code>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-flex; align-items: center; gap: 6px; color: #EF4444; font-size: 13px;">
+                                    <span style="width: 6px; height: 6px; background: #EF4444; border-radius: 50%;"></span>
+                                    已停用
+                                </span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="display: inline-block; padding: 4px 10px; background: #DBEAFE; color: #1D4ED8; border-radius: 4px; font-size: 12px; font-weight: 500;">二级</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <span style="color: #64748B; font-size: 13px;">系统管理/资源配置</span>
+                            </td>
+                            <td style="padding: 14px 16px;">
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=11'">编辑</button>
+                                <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(11)">启用</button>
                             </td>
                         </tr>
                     </tbody>
@@ -357,28 +582,32 @@
             </div>
 
             <!-- 分页 -->
-            <div class="pagination" style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
-                <div style="color: #64748B; font-size: 14px;">
-                    <select style="border: 1px solid #E2E8F0; border-radius: 4px; padding: 4px 8px; margin-right: 8px;">
-                        <option>100条/页</option>
-                        <option>50条/页</option>
-                        <option>20条/页</option>
+            <div style="margin-top: 20px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #FAFBFC; border-top: 1px solid #F1F5F9;">
+                <div style="display: flex; align-items: center; gap: 8px; color: #64748B; font-size: 13px;">
+                    <span>每页显示</span>
+                    <select style="border: 1px solid #E2E8F0; border-radius: 6px; padding: 6px 10px; font-size: 13px; background: white; cursor: pointer;">
+                        <option>10</option>
+                        <option>20</option>
+                        <option selected>50</option>
+                        <option>100</option>
                     </select>
+                    <span>条</span>
+                    <span style="margin-left: 16px;">共 <strong style="color: #1E293B;">11</strong> 条数据</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <button class="btn-secondary btn-sm" disabled>
-                        <i class="fas fa-chevron-left"></i>
+                    <button style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; color: #94A3B8; cursor: not-allowed; font-size: 13px;" disabled>
+                        <i class="fas fa-chevron-left" style="font-size: 11px;"></i>
                     </button>
-                    <button class="btn-secondary btn-sm" style="background: #6366F1; color: white;">1</button>
-                    <button class="btn-secondary btn-sm">2</button>
-                    <button class="btn-secondary btn-sm">3</button>
-                    <button class="btn-secondary btn-sm">4</button>
-                    <button class="btn-secondary btn-sm">
-                        <i class="fas fa-chevron-right"></i>
+                    <button style="padding: 6px 12px; border: 1px solid #6366F1; border-radius: 6px; background: #6366F1; color: white; cursor: pointer; font-size: 13px; min-width: 32px;">1</button>
+                    <button style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; color: #64748B; cursor: pointer; font-size: 13px; min-width: 32px;">2</button>
+                    <button style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; background: white; color: #64748B; cursor: pointer; font-size: 13px; min-width: 32px;">3</button>
+                    <button style="padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 6px; background: #6366F1; color: white; cursor: pointer; font-size: 13px;">
+                        <i class="fas fa-chevron-right" style="font-size: 11px;"></i>
                     </button>
-                    <span style="margin-left: 8px; color: #64748B; font-size: 14px;">前往</span>
-                    <input type="number" value="4" style="width: 50px; border: 1px solid #E2E8F0; border-radius: 4px; padding: 4px 8px; text-align: center;">
-                    <span style="color: #64748B; font-size: 14px;">页</span>
+                    <span style="margin: 0 8px; color: #CBD5E1;">|</span>
+                    <span style="color: #64748B; font-size: 13px;">跳至</span>
+                    <input type="number" value="1" min="1" style="width: 50px; border: 1px solid #E2E8F0; border-radius: 6px; padding: 6px 8px; text-align: center; font-size: 13px;">
+                    <span style="color: #64748B; font-size: 13px;">页</span>
                 </div>
             </div>
         </section>
@@ -461,6 +690,25 @@
         function toggleStatus(id) {
             console.log('切换状态:', id);
             alert('状态切换功能待实现');
+        }
+
+        // 更多筛选功能
+        function toggleMoreFilters() {
+            const moreFilters = document.getElementById('moreFilters');
+            const moreFilterText = document.getElementById('moreFilterText');
+            const moreFilterIcon = document.getElementById('moreFilterIcon');
+            
+            if (moreFilters.style.display === 'none') {
+                moreFilters.style.display = 'block';
+                moreFilterText.textContent = '收起筛选';
+                moreFilterIcon.classList.remove('fa-chevron-down');
+                moreFilterIcon.classList.add('fa-chevron-up');
+            } else {
+                moreFilters.style.display = 'none';
+                moreFilterText.textContent = '更多筛选';
+                moreFilterIcon.classList.remove('fa-chevron-up');
+                moreFilterIcon.classList.add('fa-chevron-down');
+            }
         }
 
         // 弹窗控制函数
