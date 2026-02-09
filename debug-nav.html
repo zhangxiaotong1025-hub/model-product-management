@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航调试页面 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .debug-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            max-height: 80vh;
+            background: white;
+            border: 2px solid #6366F1;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            z-index: 10000;
+            font-size: 13px;
+        }
+        .debug-panel h3 {
+            margin: 0 0 15px 0;
+            color: #6366F1;
+            font-size: 16px;
+        }
+        .debug-section {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #F8F9FA;
+            border-radius: 6px;
+        }
+        .debug-section h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .debug-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .debug-item:last-child {
+            border-bottom: none;
+        }
+        .status-ok { color: #10B981; font-weight: bold; }
+        .status-error { color: #EF4444; font-weight: bold; }
+        .status-warning { color: #F59E0B; font-weight: bold; }
+        .test-button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #6366F1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .test-button:hover {
+            background: #4F46E5;
+        }
+        .log-entry {
+            padding: 5px;
+            margin: 3px 0;
+            background: white;
+            border-left: 3px solid #6366F1;
+            font-family: monospace;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 调试面板 -->
+    <div class="debug-panel">
+        <h3>🔍 导航调试面板</h3>
+        
+        <div class="debug-section">
+            <h4>快速测试</h4>
+            <button class="test-button" onclick="testNavigation()">🧪 运行完整测试</button>
+            <button class="test-button" onclick="testClickEvents()">👆 测试点击事件</button>
+            <button class="test-button" onclick="testScrolling()">📜 测试滚动功能</button>
+            <button class="test-button" onclick="clearLogs()">🗑️ 清空日志</button>
+        </div>
+        
+        <div class="debug-section">
+            <h4>结构检查</h4>
+            <div id="structureCheck"></div>
+        </div>
+        
+        <div class="debug-section">
+            <h4>事件监听器</h4>
+            <div id="eventCheck"></div>
+        </div>
+        
+        <div class="debug-section">
+            <h4>实时日志</h4>
+            <div id="logOutput" style="max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <!-- 项目管理 -->
+                <div class="nav-group" data-group-name="项目管理">
+                    <div class="nav-group-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>项目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="project-list.html" class="nav-item">
+                            <span>项目列表</span>
+                        </a>
+                        <a href="project-detail.html" class="nav-item">
+                            <span>项目详情</span>
+                        </a>
+                        <a href="plan-management.html" class="nav-item">
+                            <span>方案管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="case-management.html" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    <span>智能案例管理</span>
+                </a>
+            </nav>
+            
+            <div class="nav-divider">基础模块</div>
+            
+            <nav class="nav-menu">
+                <a href="enterprise-management.html" class="nav-item">
+                    <i class="fas fa-building"></i>
+                    <span>企业管理</span>
+                </a>
+                <a href="model-management.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>模型管理</span>
+                </a>
+                
+                <!-- 权限管理 -->
+                <div class="nav-group" data-group-name="权限管理">
+                    <div class="nav-group-title">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>权限管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="menu-management.html" class="nav-item">
+                            <span>菜单管理</span>
+                        </a>
+                        <a href="role-management.html" class="nav-item">
+                            <span>角色管理</span>
+                        </a>
+                        <a href="policy-management.html" class="nav-item">
+                            <span>策略管理</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">导航功能调试页面</h1>
+        </header>
+
+        <section class="content-section">
+            <div class="card">
+                <h2>📋 测试说明</h2>
+                <ol>
+                    <li>点击右侧调试面板中的"运行完整测试"按钮</li>
+                    <li>查看测试结果和实时日志</li>
+                    <li>手动点击左侧的"权限管理"菜单，观察是否能正常展开/收起</li>
+                    <li>点击"菜单管理"链接，观察页面跳转后菜单状态</li>
+                    <li>如果发现问题，查看控制台（F12）的详细日志</li>
+                </ol>
+                
+                <h3 style="margin-top: 30px;">🎯 预期行为</h3>
+                <ul>
+                    <li>✅ 点击"权限管理"标题应该展开/收起子菜单</li>
+                    <li>✅ 展开后应该看到三个子菜单项</li>
+                    <li>✅ 点击子菜单项应该跳转到对应页面</li>
+                    <li>✅ 页面刷新后，当前页面所在的菜单组应该自动展开</li>
+                    <li>✅ 侧边栏内容区域应该可以滚动</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        let logCount = 0;
+        
+        function addLog(message, type = 'info') {
+            const logOutput = document.getElementById('logOutput');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.style.borderLeftColor = type === 'error' ? '#EF4444' : type === 'success' ? '#10B981' : '#6366F1';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logOutput.appendChild(entry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+            logCount++;
+        }
+        
+        function clearLogs() {
+            document.getElementById('logOutput').innerHTML = '';
+            logCount = 0;
+            addLog('日志已清空');
+        }
+        
+        function testNavigation() {
+            addLog('🔄 开始运行完整测试...', 'info');
+            
+            // 测试1: 检查结构
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarHeader = document.querySelector('.sidebar-header');
+            const sidebarContent = document.querySelector('.sidebar-content');
+            const sidebarFooter = document.querySelector('.sidebar-footer');
+            
+            let structureHtml = '';
+            if (sidebar && sidebarHeader && sidebarContent && sidebarFooter) {
+                structureHtml += '<div class="debug-item"><span class="status-ok">✓</span> 侧边栏三段式结构正确</div>';
+                addLog('✓ 侧边栏结构检查通过', 'success');
+            } else {
+                structureHtml += '<div class="debug-item"><span class="status-error">✗</span> 侧边栏结构错误</div>';
+                addLog('✗ 侧边栏结构检查失败', 'error');
+            }
+            
+            // 测试2: 检查滚动
+            const contentStyle = window.getComputedStyle(sidebarContent);
+            if (contentStyle.overflowY === 'auto' || contentStyle.overflowY === 'scroll') {
+                structureHtml += '<div class="debug-item"><span class="status-ok">✓</span> 侧边栏支持滚动</div>';
+                addLog('✓ 滚动功能正常', 'success');
+            } else {
+                structureHtml += '<div class="debug-item"><span class="status-error">✗</span> 侧边栏不支持滚动</div>';
+                addLog('✗ 滚动功能异常', 'error');
+            }
+            
+            // 测试3: 检查菜单组
+            const navGroups = document.querySelectorAll('.nav-group');
+            structureHtml += `<div class="debug-item"><span class="status-ok">✓</span> 找到 ${navGroups.length} 个折叠菜单组</div>`;
+            addLog(`✓ 找到 ${navGroups.length} 个折叠菜单组`, 'success');
+            
+            // 测试4: 检查权限管理菜单
+            const permGroup = Array.from(navGroups).find(g => 
+                g.querySelector('.nav-group-title')?.textContent.includes('权限管理')
+            );
+            
+            if (permGroup) {
+                const items = permGroup.querySelectorAll('.nav-group-items .nav-item');
+                structureHtml += `<div class="debug-item"><span class="status-ok">✓</span> 权限管理菜单组存在，包含 ${items.length} 个子项</div>`;
+                addLog(`✓ 权限管理菜单组包含 ${items.length} 个子项`, 'success');
+                
+                items.forEach(item => {
+                    const text = item.textContent.trim();
+                    addLog(`  - ${text}`, 'info');
+                });
+            } else {
+                structureHtml += '<div class="debug-item"><span class="status-error">✗</span> 未找到权限管理菜单组</div>';
+                addLog('✗ 未找到权限管理菜单组', 'error');
+            }
+            
+            document.getElementById('structureCheck').innerHTML = structureHtml;
+            
+            // 测试5: 检查事件监听器
+            testClickEvents();
+            
+            addLog('✅ 完整测试完成', 'success');
+        }
+        
+        function testClickEvents() {
+            addLog('🧪 开始测试点击事件...', 'info');
+            
+            const navGroups = document.querySelectorAll('.nav-group');
+            let eventHtml = '';
+            let allPassed = true;
+            
+            navGroups.forEach((group, index) => {
+                const title = group.querySelector('.nav-group-title');
+                const groupName = group.getAttribute('data-group-name') || `菜单组${index + 1}`;
+                
+                if (!title) {
+                    eventHtml += `<div class="debug-item"><span class="status-error">✗</span> ${groupName}: 缺少标题元素</div>`;
+                    addLog(`✗ ${groupName}: 缺少标题元素`, 'error');
+                    allPassed = false;
+                    return;
+                }
+                
+                // 模拟点击测试
+                const wasActive = group.classList.contains('active');
+                title.click();
+                const isNowActive = group.classList.contains('active');
+                
+                if (wasActive !== isNowActive) {
+                    eventHtml += `<div class="debug-item"><span class="status-ok">✓</span> ${groupName}: 点击响应正常</div>`;
+                    addLog(`✓ ${groupName}: 点击测试通过 (${wasActive ? '展开→收起' : '收起→展开'})`, 'success');
+                    // 恢复原状态
+                    title.click();
+                } else {
+                    eventHtml += `<div class="debug-item"><span class="status-error">✗</span> ${groupName}: 点击无响应</div>`;
+                    addLog(`✗ ${groupName}: 点击测试失败`, 'error');
+                    allPassed = false;
+                }
+            });
+            
+            if (allPassed) {
+                eventHtml += '<div class="debug-item"><span class="status-ok">✓</span> 所有菜单组点击事件正常</div>';
+                addLog('✅ 点击事件测试全部通过', 'success');
+            }
+            
+            document.getElementById('eventCheck').innerHTML = eventHtml;
+        }
+        
+        function testScrolling() {
+            addLog('📜 开始测试滚动功能...', 'info');
+            
+            const sidebarContent = document.querySelector('.sidebar-content');
+            const scrollHeight = sidebarContent.scrollHeight;
+            const clientHeight = sidebarContent.clientHeight;
+            
+            addLog(`侧边栏内容高度: ${scrollHeight}px`, 'info');
+            addLog(`侧边栏可见高度: ${clientHeight}px`, 'info');
+            
+            if (scrollHeight > clientHeight) {
+                addLog('✓ 内容超出可见区域，滚动功能应该可用', 'success');
+                
+                // 测试滚动
+                sidebarContent.scrollTop = 100;
+                setTimeout(() => {
+                    if (sidebarContent.scrollTop > 0) {
+                        addLog('✓ 滚动功能正常工作', 'success');
+                    } else {
+                        addLog('✗ 滚动功能异常', 'error');
+                    }
+                    sidebarContent.scrollTop = 0;
+                }, 100);
+            } else {
+                addLog('⚠ 内容未超出可见区域，无需滚动', 'info');
+            }
+        }
+        
+        // 页面加载时自动运行测试
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addLog('🚀 页面加载完成，自动运行测试...', 'info');
+                testNavigation();
+            }, 500);
+        });
+        
+        // 监听所有点击事件
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-group-title')) {
+                const group = e.target.closest('.nav-group');
+                const groupName = group.getAttribute('data-group-name') || '未命名菜单组';
+                const isActive = group.classList.contains('active');
+                addLog(`👆 用户点击了"${groupName}" (${isActive ? '展开' : '收起'})`, 'info');
+            }
+        });
+    </script>
+</body>
+</html>
