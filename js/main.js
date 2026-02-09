@@ -257,53 +257,75 @@ function initChart() {
 
 // 初始化导航菜单
 function initNavigation() {
+    console.log('🔄 开始初始化导航菜单...');
+    
     // 折叠菜单功能
     const navGroups = document.querySelectorAll('.nav-group');
+    console.log(`📋 找到 ${navGroups.length} 个折叠菜单组`);
     
-    navGroups.forEach(group => {
-        const title = group.querySelector('.nav-group-title');
-        if (title) {
-            // 移除 preventDefault，避免失焦问题
-            title.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                // 切换当前组的展开状态
-                group.classList.toggle('active');
-                
-                // 可选：关闭其他展开的组（手风琴效果）
-                // navGroups.forEach(otherGroup => {
-                //     if (otherGroup !== group) {
-                //         otherGroup.classList.remove('active');
-                //     }
-                // });
-            });
-            
-            // 阻止标题区域的链接默认行为，但保持焦点
-            title.addEventListener('mousedown', function(e) {
-                // 只阻止鼠标按下时的默认行为，不影响焦点
-                if (e.target.tagName !== 'A') {
-                    e.preventDefault();
-                }
-            });
-        }
-    });
-    
-    // 检查当前页面，自动展开对应的菜单组
+    // 获取当前页面文件名
     const currentPath = window.location.pathname;
     const currentFileName = currentPath.split('/').pop() || 'index.html';
+    console.log(`📄 当前页面: ${currentFileName}`);
     
-    navGroups.forEach(group => {
+    navGroups.forEach((group, index) => {
+        const title = group.querySelector('.nav-group-title');
         const items = group.querySelectorAll('.nav-group-items .nav-item');
+        
+        if (!title) {
+            console.warn(`⚠️ 菜单组 ${index} 缺少标题元素`);
+            return;
+        }
+        
+        // 检查当前页面是否在这个菜单组中
+        let isCurrentGroup = false;
         items.forEach(item => {
             const href = item.getAttribute('href');
             if (href && (href === currentFileName || (currentFileName === '' && href === 'index.html'))) {
-                group.classList.add('active');
+                isCurrentGroup = true;
                 item.classList.add('active');
+                console.log(`✓ 找到当前页面菜单项: ${href}`);
+            }
+        });
+        
+        // 如果是当前页面所在的菜单组，自动展开
+        if (isCurrentGroup) {
+            group.classList.add('active');
+            console.log(`✓ 自动展开菜单组 ${index}`);
+        }
+        
+        // 移除旧的事件监听器（如果存在）
+        const newTitle = title.cloneNode(true);
+        title.parentNode.replaceChild(newTitle, title);
+        
+        // 添加点击事件监听器
+        newTitle.addEventListener('click', function(e) {
+            // 阻止事件冒泡
+            e.stopPropagation();
+            
+            // 切换当前组的展开状态
+            const wasActive = group.classList.contains('active');
+            group.classList.toggle('active');
+            
+            console.log(`${wasActive ? '🔽' : '🔼'} 菜单组 ${index} ${wasActive ? '收起' : '展开'}`);
+            
+            // 可选：手风琴效果（关闭其他菜单组）
+            // navGroups.forEach(otherGroup => {
+            //     if (otherGroup !== group && otherGroup.classList.contains('active')) {
+            //         otherGroup.classList.remove('active');
+            //     }
+            // });
+        });
+        
+        // 阻止标题区域的默认行为，但保持焦点
+        newTitle.addEventListener('mousedown', function(e) {
+            if (e.target.tagName !== 'A') {
+                e.preventDefault();
             }
         });
     });
     
-    console.log('✓ 导航菜单初始化完成');
+    console.log('✅ 导航菜单初始化完成');
 }
 
 // 初始化事件监听
