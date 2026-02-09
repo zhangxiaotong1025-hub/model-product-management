@@ -474,20 +474,26 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 表单提交
-        document.getElementById('menuForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            console.log('表单提交');
-            alert('创建成功！');
-            closeCreateModal();
-            // 这里可以添加实际的表单提交逻辑
-        });
-
-        // ESC 键关闭弹窗
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeCreateModal();
+        // 等待 DOM 加载完成后再绑定表单事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 表单提交
+            const menuForm = document.getElementById('menuForm');
+            if (menuForm) {
+                menuForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('表单提交');
+                    alert('创建成功！');
+                    closeCreateModal();
+                    // 这里可以添加实际的表单提交逻辑
+                });
             }
+
+            // ESC 键关闭弹窗
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeCreateModal();
+                }
+            });
         });
     </script>
 
