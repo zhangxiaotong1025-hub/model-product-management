@@ -263,8 +263,8 @@ function initNavigation() {
     navGroups.forEach(group => {
         const title = group.querySelector('.nav-group-title');
         if (title) {
+            // 移除 preventDefault，避免失焦问题
             title.addEventListener('click', function(e) {
-                e.preventDefault();
                 e.stopPropagation();
                 
                 // 切换当前组的展开状态
@@ -277,23 +277,33 @@ function initNavigation() {
                 //     }
                 // });
             });
+            
+            // 阻止标题区域的链接默认行为，但保持焦点
+            title.addEventListener('mousedown', function(e) {
+                // 只阻止鼠标按下时的默认行为，不影响焦点
+                if (e.target.tagName !== 'A') {
+                    e.preventDefault();
+                }
+            });
         }
     });
     
     // 检查当前页面，自动展开对应的菜单组
     const currentPath = window.location.pathname;
-    const currentFileName = currentPath.split('/').pop();
+    const currentFileName = currentPath.split('/').pop() || 'index.html';
     
     navGroups.forEach(group => {
         const items = group.querySelectorAll('.nav-group-items .nav-item');
         items.forEach(item => {
             const href = item.getAttribute('href');
-            if (href && href === currentFileName) {
+            if (href && (href === currentFileName || (currentFileName === '' && href === 'index.html'))) {
                 group.classList.add('active');
                 item.classList.add('active');
             }
         });
     });
+    
+    console.log('✓ 导航菜单初始化完成');
 }
 
 // 初始化事件监听
