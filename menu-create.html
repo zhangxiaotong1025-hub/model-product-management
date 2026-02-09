@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建菜单 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+            <span>PULSAR</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-project-diagram"></i><span>项目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="project-list.html" class="nav-item"><span>项目列表</span></a>
+                    <a href="project-detail.html" class="nav-item"><span>项目详情</span></a>
+                    <a href="plan-management.html" class="nav-item"><span>方案管理</span></a>
+                </div>
+            </div>
+            <a href="case-management.html" class="nav-item"><i class="fas fa-images"></i><span>智能案例管理</span></a>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-sitemap"></i><span>前台类目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="frontend-category-domestic.html" class="nav-item"><span>国内展示目录</span></a>
+                    <a href="frontend-category-international.html" class="nav-item"><span>国际展示目录</span></a>
+                    <a href="frontend-category-guide.html" class="nav-item"><span>智能导购展示目录</span></a>
+                    <a href="frontend-layout.html" class="nav-item"><span>智能导购布局管理</span></a>
+                </div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-file-alt"></i><span>内容管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="content-template.html" class="nav-item"><span>内容模版管理</span></a>
+                    <a href="content-management.html" class="nav-item"><span>内容管理</span></a>
+                    <a href="panorama-management.html" class="nav-item"><span>全景图管理</span></a>
+                    <a href="3d-product.html" class="nav-item"><span>3D爆品棚拍</span></a>
+                </div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-bullhorn"></i><span>营销管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="ad-management.html" class="nav-item"><span>广告位管理</span></a>
+                    <a href="product-pool.html" class="nav-item"><span>选品池管理</span></a>
+                    <a href="content-pool.html" class="nav-item"><span>内容池管理</span></a>
+                    <a href="promotion-management.html" class="nav-item"><span>优惠管理</span></a>
+                </div>
+            </div>
+            <a href="data-dashboard.html" class="nav-item"><i class="fas fa-chart-line"></i><span>数据看板</span></a>
+        </nav>
+        
+        <div class="nav-divider">基础模块</div>
+        
+        <nav class="nav-menu">
+            <a href="enterprise-management.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span>企业管理</span>
+            </a>
+            <a href="model-management.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                <span>模型管理</span>
+            </a>
+            <a href="product-management.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>商品管理</span>
+            </a>
+            <a href="backend-category.html" class="nav-item">
+                <i class="fas fa-folder-tree"></i>
+                <span>后台类目</span>
+            </a>
+            <a href="attribute-management.html" class="nav-item">
+                <i class="fas fa-tags"></i>
+                <span>属性管理</span>
+            </a>
+            
+            <!-- 权限管理 -->
+            <div class="nav-group">
+                <div class="nav-group-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>权限管理</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="nav-group-items">
+                    <a href="menu-management.html" class="nav-item active">
+                        <span>菜单管理</span>
+                    </a>
+                    <a href="role-management.html" class="nav-item">
+                        <span>角色管理</span>
+                    </a>
+                    <a href="policy-management.html" class="nav-item">
+                        <span>策略管理</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="nav-divider">个人中心</div>
+        
+        <nav class="nav-menu">
+            <a href="my-benefits.html" class="nav-item"><i class="fas fa-gift"></i><span>权益管理</span></a>
+            <a href="my-profile.html" class="nav-item"><i class="fas fa-user"></i><span>个人信息</span></a>
+            <a href="my-uploads.html" class="nav-item"><i class="fas fa-cloud-upload-alt"></i><span>我的上传</span></a>
+        </nav>
+        
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <h1 class="page-title">创建菜单</h1>
+            <div class="top-bar-actions">
+                <button class="btn-secondary" onclick="window.location.href='menu-management.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    返回列表
+                </button>
+            </div>
+        </header>
+
+        <!-- 表单内容 -->
+        <section class="content-section">
+            <div class="form-container">
+                <form id="menuForm">
+                    <div class="form-section">
+                        <h3 class="section-title">基本信息</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="required">菜单名称</label>
+                                <input type="text" class="form-control" placeholder="请输入菜单名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="required">菜单路径</label>
+                                <input type="text" class="form-control" placeholder="例如：/index.html" required>
+                            </div>
+                            <div class="form-group">
+                                <label>图标</label>
+                                <input type="text" class="form-control" placeholder="Font Awesome 图标类名，例如：fa-home">
+                            </div>
+                            <div class="form-group">
+                                <label>排序</label>
+                                <input type="number" class="form-control" value="0" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>上级菜单</label>
+                                <select class="form-control">
+                                    <option value="">无（顶级菜单）</option>
+                                    <option value="1">Dashboard</option>
+                                    <option value="2">项目管理</option>
+                                    <option value="3">企业管理</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>状态</label>
+                                <select class="form-control">
+                                    <option value="1">启用</option>
+                                    <option value="0">禁用</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-title">权限配置</h3>
+                        <div class="form-group">
+                            <label>可见企业类型</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> 平台企业
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> 品牌企业
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> 经销商企业
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> 供应商企业
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> 普通企业
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            保存
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="window.location.href='menu-management.html'">
+                            取消
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('menuForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('菜单保存成功！');
+            window.location.href = 'menu-management.html';
+        });
+    </script>
+</body>
+</html>

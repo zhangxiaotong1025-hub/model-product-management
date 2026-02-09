@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>策略管理 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+            <span>PULSAR</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-project-diagram"></i><span>项目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="project-list.html" class="nav-item"><span>项目列表</span></a>
+                    <a href="project-detail.html" class="nav-item"><span>项目详情</span></a>
+                    <a href="plan-management.html" class="nav-item"><span>方案管理</span></a>
+                </div>
+            </div>
+            <a href="case-management.html" class="nav-item"><i class="fas fa-images"></i><span>智能案例管理</span></a>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-sitemap"></i><span>前台类目管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="frontend-category-domestic.html" class="nav-item"><span>国内展示目录</span></a>
+                    <a href="frontend-category-international.html" class="nav-item"><span>国际展示目录</span></a>
+                    <a href="frontend-category-guide.html" class="nav-item"><span>智能导购展示目录</span></a>
+                    <a href="frontend-layout.html" class="nav-item"><span>智能导购布局管理</span></a>
+                </div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-file-alt"></i><span>内容管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="content-template.html" class="nav-item"><span>内容模版管理</span></a>
+                    <a href="content-management.html" class="nav-item"><span>内容管理</span></a>
+                    <a href="panorama-management.html" class="nav-item"><span>全景图管理</span></a>
+                    <a href="3d-product.html" class="nav-item"><span>3D爆品棚拍</span></a>
+                </div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title"><i class="fas fa-bullhorn"></i><span>营销管理</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                <div class="nav-group-items">
+                    <a href="ad-management.html" class="nav-item"><span>广告位管理</span></a>
+                    <a href="product-pool.html" class="nav-item"><span>选品池管理</span></a>
+                    <a href="content-pool.html" class="nav-item"><span>内容池管理</span></a>
+                    <a href="promotion-management.html" class="nav-item"><span>优惠管理</span></a>
+                </div>
+            </div>
+            <a href="data-dashboard.html" class="nav-item"><i class="fas fa-chart-line"></i><span>数据看板</span></a>
+        </nav>
+        
+        <div class="nav-divider">基础模块</div>
+        
+        <nav class="nav-menu">
+            <a href="enterprise-management.html" class="nav-item">
+                <i class="fas fa-building"></i>
+                <span>企业管理</span>
+            </a>
+            <a href="model-management.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                <span>模型管理</span>
+            </a>
+            <a href="product-management.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>商品管理</span>
+            </a>
+            <a href="backend-category.html" class="nav-item">
+                <i class="fas fa-folder-tree"></i>
+                <span>后台类目</span>
+            </a>
+            <a href="attribute-management.html" class="nav-item">
+                <i class="fas fa-tags"></i>
+                <span>属性管理</span>
+            </a>
+            
+            <!-- 权限管理 -->
+            <div class="nav-group">
+                <div class="nav-group-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>权限管理</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="nav-group-items">
+                    <a href="menu-management.html" class="nav-item">
+                        <span>菜单管理</span>
+                    </a>
+                    <a href="role-management.html" class="nav-item">
+                        <span>角色管理</span>
+                    </a>
+                    <a href="policy-management.html" class="nav-item active">
+                        <span>策略管理</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="nav-divider">个人中心</div>
+        
+        <nav class="nav-menu">
+            <a href="my-benefits.html" class="nav-item"><i class="fas fa-gift"></i><span>权益管理</span></a>
+            <a href="my-profile.html" class="nav-item"><i class="fas fa-user"></i><span>个人信息</span></a>
+            <a href="my-uploads.html" class="nav-item"><i class="fas fa-cloud-upload-alt"></i><span>我的上传</span></a>
+        </nav>
+        
+        <div class="user-profile">
+            <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+            <div class="user-info">
+                <div class="user-name">晴岙</div>
+                <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <h1 class="page-title">策略管理</h1>
+            <div class="top-bar-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索策略名称...">
+                </div>
+            </div>
+        </header>
+
+        <!-- 操作栏 -->
+        <section class="action-bar">
+            <div class="action-left">
+                <button class="btn-primary" onclick="window.location.href='policy-create.html'">
+                    <i class="fas fa-plus"></i>
+                    新建策略
+                </button>
+                <button class="btn-secondary" id="batchDeleteBtn" disabled>
+                    <i class="fas fa-trash"></i>
+                    批量删除
+                </button>
+            </div>
+            <div class="action-right">
+                <button class="btn-secondary">
+                    <i class="fas fa-filter"></i>
+                    筛选
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i>
+                    导出
+                </button>
+            </div>
+        </section>
+
+        <!-- 数据表格 -->
+        <section class="content-section">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th width="50"><input type="checkbox" id="selectAll"></th>
+                            <th>策略名称</th>
+                            <th>策略类型</th>
+                            <th>适用企业类型</th>
+                            <th>优先级</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th width="150">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="row-checkbox"></td>
+                            <td><strong>平台企业全权限策略</strong></td>
+                            <td><span class="badge badge-primary">全局策略</span></td>
+                            <td>平台企业</td>
+                            <td>1</td>
+                            <td><span class="badge badge-success">启用</span></td>
+                            <td>2024-01-15</td>
+                            <td>
+                                <button class="btn-icon" onclick="window.location.href='policy-create.html?id=1'" title="编辑">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deletePolicy(1)" title="删除">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="row-checkbox"></td>
+                            <td><strong>品牌企业基础权限</strong></td>
+                            <td><span class="badge badge-info">企业策略</span></td>
+                            <td>品牌企业</td>
+                            <td>2</td>
+                            <td><span class="badge badge-success">启用</span></td>
+                            <td>2024-01-15</td>
+                            <td>
+                                <button class="btn-icon" onclick="window.location.href='policy-create.html?id=2'" title="编辑">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deletePolicy(2)" title="删除">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="row-checkbox"></td>
+                            <td><strong>经销商限制策略</strong></td>
+                            <td><span class="badge badge-warning">限制策略</span></td>
+                            <td>经销商企业</td>
+                            <td>3</td>
+                            <td><span class="badge badge-success">启用</span></td>
+                            <td>2024-01-15</td>
+                            <td>
+                                <button class="btn-icon" onclick="window.location.href='policy-create.html?id=3'" title="编辑">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deletePolicy(3)" title="删除">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination">
+                <button class="btn-secondary btn-sm" disabled>上一页</button>
+                <span class="pagination-info">第 1 页，共 1 页</span>
+                <button class="btn-secondary btn-sm" disabled>下一页</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 全选功能
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+            updateBatchDeleteBtn();
+        });
+
+        // 更新批量删除按钮状态
+        function updateBatchDeleteBtn() {
+            const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
+            document.getElementById('batchDeleteBtn').disabled = checkedCount === 0;
+        }
+
+        document.querySelectorAll('.row-checkbox').forEach(cb => {
+            cb.addEventListener('change', updateBatchDeleteBtn);
+        });
+
+        // 删除策略
+        function deletePolicy(id) {
+            if (confirm('确定要删除这个策略吗？')) {
+                alert('策略已删除');
+            }
+        }
+    </script>
+</body>
+</html>
