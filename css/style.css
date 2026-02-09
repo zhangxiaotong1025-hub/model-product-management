@@ -1738,6 +1738,168 @@ tbody tr:hover {
     border-left: 4px solid var(--danger-color);
 }
 
+/* 导航分组样式 */
+.nav-group {
+    margin-bottom: 4px;
+}
+
+.nav-group-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-group-title:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.nav-group-title i.toggle-icon {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+.nav-group.expanded .nav-group-title i.toggle-icon {
+    transform: rotate(180deg);
+}
+
+.nav-group-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    margin-left: 32px;
+}
+
+.nav-group.expanded .nav-group-items {
+    max-height: 500px;
+}
+
+.nav-group-items .nav-item {
+    padding: 10px 16px;
+    font-size: 13px;
+}
+
+.nav-group-items .nav-item span {
+    color: var(--text-secondary);
+}
+
+.nav-group-items .nav-item:hover span {
+    color: var(--text-primary);
+}
+
+.nav-group-items .nav-item.active {
+    background: var(--primary-color);
+}
+
+.nav-group-items .nav-item.active span {
+    color: white;
+}
+
+/* 项目卡片样式 */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.project-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-status {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #DBEAFE;
+    color: #1E40AF;
+}
+
+.project-status.status-pending {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.project-status.status-success {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.project-card-body {
+    padding: 20px;
+}
+
+.project-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row {
+    display: flex;
+    font-size: 14px;
+}
+
+.info-row .label {
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.info-row .value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.project-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-primary);
+}
+
+.plan-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
 /* 响应式设计 */
 @media (max-width: 1200px) {
     .overview-cards {

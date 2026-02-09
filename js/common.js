@@ -1,5 +1,35 @@
 // 公共JavaScript函数
 
+// 初始化导航菜单折叠功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 导航分组折叠
+    document.querySelectorAll('.nav-group-title').forEach(title => {
+        title.addEventListener('click', function() {
+            const group = this.parentElement;
+            const isExpanded = group.classList.contains('expanded');
+            
+            // 关闭其他展开的分组
+            document.querySelectorAll('.nav-group.expanded').forEach(g => {
+                if (g !== group) {
+                    g.classList.remove('expanded');
+                }
+            });
+            
+            // 切换当前分组
+            group.classList.toggle('expanded');
+        });
+    });
+    
+    // 默认展开包含当前活动页面的分组
+    const activeItem = document.querySelector('.nav-group-items .nav-item.active');
+    if (activeItem) {
+        const group = activeItem.closest('.nav-group');
+        if (group) {
+            group.classList.add('expanded');
+        }
+    }
+});
+
 // 关闭模态框
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
