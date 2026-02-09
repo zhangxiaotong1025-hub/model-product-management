@@ -285,7 +285,7 @@
                                 <span style="color: #64748B; font-size: 13px;">企业管理/企业信息/基本信息</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=1'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(1, '企业管理', '/enterprise-management', '一级', '企业管理/企业信息/基本信息', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(1)">停用</button>
                             </td>
                         </tr>
@@ -315,7 +315,7 @@
                                 <span style="color: #64748B; font-size: 13px;">企业管理/企业列表/列表管理</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=2'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(2, '企业管理', '/enterprise-management/list', '二级', '企业管理/企业列表/列表管理', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(2)">停用</button>
                             </td>
                         </tr>
@@ -345,7 +345,7 @@
                                 <span style="color: #64748B; font-size: 13px;">企业管理/人员管理</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=3'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(3, '人员管理', '/user-management', '三级', '企业管理/人员管理', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(3)">停用</button>
                             </td>
                         </tr>
@@ -358,7 +358,7 @@
                             <td style="padding: 14px 16px;"><span style="display: inline-block; padding: 4px 10px; background: #D1FAE5; color: #059669; border-radius: 4px; font-size: 12px; font-weight: 500;">三级</span></td>
                             <td style="padding: 14px 16px;"><span style="color: #64748B; font-size: 13px;">商品管理/商品列表/商品详情</span></td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=4'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(4, '商品管理', '/product-management', '三级', '商品管理/商品列表/商品详情', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(4)">停用</button>
                             </td>
                         </tr>
@@ -388,7 +388,7 @@
                                 <span style="color: #64748B; font-size: 13px;">权限管理</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=5'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(5, '权限管理', '/permission-management', '一级', '权限管理', false)">编辑</button>
                                 <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(5)">启用</button>
                             </td>
                         </tr>
@@ -418,7 +418,7 @@
                                 <span style="color: #64748B; font-size: 13px;">素材管理/图片素材/视频素材</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=6'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(6, '素材管理', '/material-management', '一级', '素材管理/图片素材/视频素材', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(6)">停用</button>
                             </td>
                         </tr>
@@ -448,7 +448,7 @@
                                 <span style="color: #64748B; font-size: 13px;">素材管理/公有素材/素材库</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=7'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(7, '公有素材管理', '/public-material-management', '三级', '素材管理/公有素材/素材库', false)">编辑</button>
                                 <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(7)">启用</button>
                             </td>
                         </tr>
@@ -478,7 +478,7 @@
                                 <span style="color: #64748B; font-size: 13px;">素材管理/私有素材</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=8'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(8, '私有素材管理', '/private-material-management', '三级', '素材管理/私有素材', true)">编辑</button>
                                 <button class="btn-link" style="color: #64748B; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(8)">停用</button>
                             </td>
                         </tr>
@@ -508,7 +508,7 @@
                                 <span style="color: #64748B; font-size: 13px;">工程管理/工艺流程</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=9'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(9, '工程工艺', '/engineering-process', '三级', '工程管理/工艺流程', false)">编辑</button>
                                 <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(9)">启用</button>
                             </td>
                         </tr>
@@ -538,7 +538,7 @@
                                 <span style="color: #64748B; font-size: 13px;">数据中心/统计分析</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=10'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(10, '数据统计', '/data-statistics', '二级', '数据中心/统计分析', false)">编辑</button>
                                 <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(10)">启用</button>
                             </td>
                         </tr>
@@ -568,7 +568,7 @@
                                 <span style="color: #64748B; font-size: 13px;">系统管理/资源配置</span>
                             </td>
                             <td style="padding: 14px 16px;">
-                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="window.location.href='menu-create.html?id=11'">编辑</button>
+                                <button class="btn-link" style="color: #6366F1; margin-right: 12px; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="editMenu(11, '资源管理', '/resource-management', '二级', '系统管理/资源配置', false)">编辑</button>
                                 <button class="btn-link" style="color: #10B981; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;" onclick="toggleStatus(11)">启用</button>
                             </td>
                         </tr>
@@ -708,6 +708,13 @@
 
         // 弹窗控制函数
         function showCreateModal() {
+            // 重置表单
+            document.getElementById('menuForm').reset();
+            document.getElementById('menuId').value = '';
+            document.getElementById('modalTitle').textContent = '新建菜单';
+            document.getElementById('submitBtn').textContent = '创建';
+            
+            // 显示弹窗
             document.getElementById('createModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -715,6 +722,33 @@
         function closeCreateModal() {
             document.getElementById('createModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // 重置表单
+            document.getElementById('menuForm').reset();
+            document.getElementById('menuId').value = '';
+        }
+
+        // 编辑菜单
+        function editMenu(id, name, url, level, hierarchy, isActive) {
+            // 设置表单值
+            document.getElementById('menuId').value = id;
+            document.getElementById('moduleName').value = name;
+            document.getElementById('moduleUrl').value = url;
+            
+            // 设置层级
+            if (level === '一级') {
+                document.querySelector('input[name="level"][value="1"]').checked = true;
+            } else {
+                document.querySelector('input[name="level"][value="2"]').checked = true;
+            }
+            
+            // 更新弹窗标题和按钮
+            document.getElementById('modalTitle').textContent = '编辑菜单';
+            document.getElementById('submitBtn').textContent = '保存';
+            
+            // 显示弹窗
+            document.getElementById('createModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
         // 等待 DOM 加载完成后再绑定表单事件
@@ -740,35 +774,28 @@
         });
     </script>
 
-    <!-- 新建菜单弹窗 -->
+    <!-- 新建/编辑菜单弹窗 -->
     <div id="createModal" class="modal" style="display: none;">
         <div class="modal-overlay" onclick="closeCreateModal()"></div>
-        <div class="modal-dialog" style="max-width: 600px; margin: 50px auto;">
-            <div class="modal-content">
-                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #E2E8F0;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 600;">新建菜单</h3>
+        <div class="modal-dialog" style="max-width: 600px; margin: 50px auto; max-height: calc(100vh - 100px); display: flex; flex-direction: column;">
+            <div class="modal-content" style="display: flex; flex-direction: column; max-height: 100%;">
+                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #E2E8F0; flex-shrink: 0;">
+                    <h3 id="modalTitle" style="margin: 0; font-size: 18px; font-weight: 600;">新建菜单</h3>
                     <button onclick="closeCreateModal()" style="background: none; border: none; font-size: 24px; color: #94A3B8; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
                         ×
                     </button>
                 </div>
                 
-                <div class="modal-body" style="padding: 24px;">
+                <div class="modal-body" style="padding: 24px; overflow-y: auto; flex: 1;">
                     <form id="menuForm">
+                        <input type="hidden" id="menuId" value="">
                         <!-- 模块名称 -->
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>模块名称：
                             </label>
-                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
-                                <option value="">请选择模块名称</option>
-                                <option value="enterprise">企业管理</option>
-                                <option value="user">人员管理</option>
-                                <option value="product">商品管理</option>
-                                <option value="permission">权限管理</option>
-                                <option value="material">素材管理</option>
-                                <option value="public-material">公有素材管理</option>
-                                <option value="private-material">私有素材管理</option>
-                            </select>
+                            <input type="text" id="moduleName" class="form-control" placeholder="请输入模块名称" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">例如：企业管理、人员管理、商品管理</span>
                         </div>
 
                         <!-- 所属系统 -->
@@ -823,7 +850,8 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>URL：
                             </label>
-                            <input type="text" class="form-control" placeholder="请输入URL路径，例如：/enterprise-management" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <input type="text" id="moduleUrl" class="form-control" placeholder="请输入URL路径，例如：/enterprise-management" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">URL路径必须以 / 开头</span>
                         </div>
 
                         <!-- 排列顺序 -->
@@ -846,16 +874,17 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>技术标识：
                             </label>
-                            <input type="text" class="form-control" placeholder="请输入技术唯一标识" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <input type="text" id="moduleCode" class="form-control" placeholder="请输入技术唯一标识" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">用于系统内部识别的唯一标识符</span>
                         </div>
                     </form>
                 </div>
 
-                <div class="modal-footer" style="display: flex; justify-content: center; gap: 12px; padding: 20px; border-top: 1px solid #E2E8F0;">
-                    <button type="button" onclick="closeCreateModal()" style="padding: 8px 24px; background: #F1F5F9; color: #64748B; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; min-width: 100px;">
+                <div class="modal-footer" style="display: flex; justify-content: center; gap: 12px; padding: 20px; border-top: 1px solid #E2E8F0; flex-shrink: 0; background: white;">
+                    <button type="button" onclick="closeCreateModal()" class="btn btn-secondary" style="min-width: 100px;">
                         取消
                     </button>
-                    <button type="submit" form="menuForm" style="padding: 8px 24px; background: #F59E0B; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; min-width: 100px; font-weight: 500;">
+                    <button type="submit" form="menuForm" id="submitBtn" class="btn btn-primary" style="min-width: 100px;">
                         创建
                     </button>
                 </div>
