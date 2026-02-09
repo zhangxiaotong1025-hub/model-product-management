@@ -728,6 +728,24 @@
             document.getElementById('menuId').value = '';
         }
 
+        // 切换父级菜单显示
+        function toggleParentMenu() {
+            const level = document.querySelector('input[name="level"]:checked').value;
+            const parentMenuGroup = document.getElementById('parentMenuGroup');
+            const parentMenu = document.getElementById('parentMenu');
+            
+            if (level === '2') {
+                // 子级：显示父级选择
+                parentMenuGroup.style.display = 'block';
+                parentMenu.required = true;
+            } else {
+                // 一级：隐藏父级选择
+                parentMenuGroup.style.display = 'none';
+                parentMenu.required = false;
+                parentMenu.value = '';
+            }
+        }
+
         // 编辑菜单
         function editMenu(id, name, url, level, hierarchy, isActive) {
             // 设置表单值
@@ -741,6 +759,9 @@
             } else {
                 document.querySelector('input[name="level"][value="2"]').checked = true;
             }
+            
+            // 触发父级菜单显示切换
+            toggleParentMenu();
             
             // 更新弹窗标题和按钮
             document.getElementById('modalTitle').textContent = '编辑菜单';
@@ -803,13 +824,14 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>所属系统：
                             </label>
-                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <select id="systemType" class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
                                 <option value="">请选择所属系统</option>
                                 <option value="enterprise">企业管理系统</option>
                                 <option value="product">商品管理系统</option>
                                 <option value="material">素材管理系统</option>
                                 <option value="permission">权限管理系统</option>
                             </select>
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">选择该菜单所属的系统模块</span>
                         </div>
 
                         <!-- 层级结构 -->
@@ -819,30 +841,36 @@
                             </label>
                             <div style="display: flex; gap: 20px;">
                                 <label class="radio">
-                                    <input type="radio" name="level" value="1" checked>
+                                    <input type="radio" name="level" value="1" checked onchange="toggleParentMenu()">
                                     <span>一级</span>
                                 </label>
                                 <label class="radio">
-                                    <input type="radio" name="level" value="2">
+                                    <input type="radio" name="level" value="2" onchange="toggleParentMenu()">
                                     <span>子级</span>
                                 </label>
                             </div>
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">一级菜单为顶级菜单，子级菜单需要选择父级</span>
                         </div>
 
                         <!-- 选择父级 -->
-                        <div class="form-group" style="margin-bottom: 20px;">
+                        <div class="form-group" id="parentMenuGroup" style="margin-bottom: 20px; display: none;">
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>选择父级：
                             </label>
-                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <select id="parentMenu" class="form-control" style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
                                 <option value="">请选择父级菜单</option>
-                                <option value="enterprise">企业管理</option>
-                                <option value="material">素材管理</option>
-                                <option value="material-public">素材管理/公有素材管理</option>
-                                <option value="material-private">素材管理/私有素材管理</option>
-                                <option value="product">商品管理</option>
-                                <option value="permission">权限管理</option>
+                                <option value="1">企业管理</option>
+                                <option value="2">人员管理</option>
+                                <option value="3">商品管理</option>
+                                <option value="4">权限管理</option>
+                                <option value="5">素材管理</option>
+                                <option value="6">公有素材管理</option>
+                                <option value="7">私有素材管理</option>
+                                <option value="8">工程工艺</option>
+                                <option value="9">数据统计</option>
+                                <option value="10">资源管理</option>
                             </select>
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">选择子级时必须指定父级菜单</span>
                         </div>
 
                         <!-- URL -->
@@ -859,14 +887,8 @@
                             <label style="display: block; margin-bottom: 8px; color: #334155; font-size: 14px;">
                                 <span style="color: #EF4444; margin-right: 4px;">*</span>排列顺序：
                             </label>
-                            <select class="form-control" required style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
-                                <option value="">请选择排列顺序（仅在同层级模块中进行排列）</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <input type="number" id="sortOrder" class="form-control" placeholder="请输入排列顺序" required min="1" max="999" style="width: 100%; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 14px;">
+                            <span class="form-help" style="display: block; margin-top: 4px; font-size: 12px; color: #94A3B8;">数字越小越靠前，仅在同层级模块中进行排列</span>
                         </div>
 
                         <!-- 技术标识 -->
