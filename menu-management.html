@@ -145,91 +145,211 @@
             <div class="action-left">
                 <button class="btn-primary" onclick="window.location.href='menu-create.html'">
                     <i class="fas fa-plus"></i>
-                    新建菜单
+                    新建模块
                 </button>
-                <button class="btn-secondary" id="batchDeleteBtn" disabled>
-                    <i class="fas fa-trash"></i>
-                    批量删除
+                <button class="btn-secondary">
+                    <i class="fas fa-sync-alt"></i>
+                    刷新
                 </button>
             </div>
             <div class="action-right">
+                <div class="search-box" style="margin-right: 10px;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="请输入">
+                </div>
                 <button class="btn-secondary">
                     <i class="fas fa-filter"></i>
-                    筛选
+                    查询
                 </button>
                 <button class="btn-secondary">
-                    <i class="fas fa-download"></i>
-                    导出
+                    <i class="fas fa-redo"></i>
+                    重置
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-ellipsis-h"></i>
+                    更多
                 </button>
             </div>
         </section>
 
+        <!-- 筛选区域 -->
+        <section class="content-section" style="padding: 16px; margin-bottom: 0;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">公司名：</label>
+                    <select class="form-control" style="width: 100%;">
+                        <option value="">请输入</option>
+                        <option value="1">阿里巴巴集团</option>
+                        <option value="2">腾讯科技</option>
+                        <option value="3">字节跳动</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">管理员：</label>
+                    <select class="form-control" style="width: 100%;">
+                        <option value="">请输入</option>
+                        <option value="1">张三</option>
+                        <option value="2">李四</option>
+                        <option value="3">王五</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 8px; color: #64748B; font-size: 14px;">联系方式：</label>
+                    <select class="form-control" style="width: 100%;">
+                        <option value="">请输入</option>
+                        <option value="1">13800138000</option>
+                        <option value="2">13900139000</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
         <!-- 数据表格 -->
-        <section class="content-section">
+        <section class="content-section" style="padding-top: 0;">
             <div class="table-container">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th width="50"><input type="checkbox" id="selectAll"></th>
-                            <th>菜单名称</th>
-                            <th>菜单路径</th>
-                            <th>图标</th>
-                            <th>排序</th>
-                            <th>状态</th>
-                            <th>创建时间</th>
+                            <th width="120">模块ID</th>
+                            <th width="150">模块名称</th>
+                            <th width="250">URL</th>
+                            <th width="100">状态</th>
+                            <th width="120">模块层级</th>
+                            <th>层级结构</th>
                             <th width="150">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><strong>Dashboard</strong></td>
-                            <td><code>/index.html</code></td>
-                            <td><i class="fas fa-home"></i></td>
-                            <td>1</td>
-                            <td><span class="badge badge-success">启用</span></td>
-                            <td>2024-01-15</td>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110808</span></td>
+                            <td>企业管理</td>
+                            <td><code style="font-size: 12px;">/enterprise-management</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">企业管理/企业信息/基本信息</span></td>
                             <td>
-                                <button class="btn-icon" onclick="window.location.href='menu-create.html?id=1'" title="编辑">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-icon" onclick="deleteMenu(1)" title="删除">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=1'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(1)">停用</button>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><strong>项目管理</strong></td>
-                            <td><code>/project-list.html</code></td>
-                            <td><i class="fas fa-project-diagram"></i></td>
-                            <td>2</td>
-                            <td><span class="badge badge-success">启用</span></td>
-                            <td>2024-01-15</td>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110809</span></td>
+                            <td>企业管理</td>
+                            <td><code style="font-size: 12px;">/enterprise-management/list</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">企业管理/企业列表/列表管理</span></td>
                             <td>
-                                <button class="btn-icon" onclick="window.location.href='menu-create.html?id=2'" title="编辑">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-icon" onclick="deleteMenu(2)" title="删除">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=2'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(2)">停用</button>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><strong>企业管理</strong></td>
-                            <td><code>/enterprise-management.html</code></td>
-                            <td><i class="fas fa-building"></i></td>
-                            <td>3</td>
-                            <td><span class="badge badge-success">启用</span></td>
-                            <td>2024-01-15</td>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110810</span></td>
+                            <td>人员管理</td>
+                            <td><code style="font-size: 12px;">/user-management</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">企业管理/人员管理</span></td>
                             <td>
-                                <button class="btn-icon" onclick="window.location.href='menu-create.html?id=3'" title="编辑">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-icon" onclick="deleteMenu(3)" title="删除">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=3'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(3)">停用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110811</span></td>
+                            <td>商品管理</td>
+                            <td><code style="font-size: 12px;">/product-management</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">商品管理/商品列表/商品详情</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=4'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(4)">停用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110812</span></td>
+                            <td>权限管理</td>
+                            <td><code style="font-size: 12px;">/permission-management</code></td>
+                            <td><span style="color: #EF4444;">● 已停用</span></td>
+                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">权限管理</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=5'">编辑</button>
+                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(5)">启用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110813</span></td>
+                            <td>素材管理</td>
+                            <td><code style="font-size: 12px;">/material-management</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #FEF3C7; color: #D97706; border: 1px solid #FCD34D;">一级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">素材管理/图片素材/视频素材</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=6'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(6)">停用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110814</span></td>
+                            <td>公有素材管理</td>
+                            <td><code style="font-size: 12px;">/public-material-management</code></td>
+                            <td><span style="color: #EF4444;">● 已停用</span></td>
+                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">素材管理/公有素材/素材库</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=7'">编辑</button>
+                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(7)">启用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110815</span></td>
+                            <td>私有素材管理</td>
+                            <td><code style="font-size: 12px;">/private-material-management</code></td>
+                            <td><span style="color: #10B981;">● 启用</span></td>
+                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">素材管理/私有素材</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=8'">编辑</button>
+                                <button class="btn-link" style="color: #F59E0B;" onclick="toggleStatus(8)">停用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110816</span></td>
+                            <td>工程工艺</td>
+                            <td><code style="font-size: 12px;">/engineering-process</code></td>
+                            <td><span style="color: #EF4444;">● 已停用</span></td>
+                            <td><span class="badge" style="background: #D1FAE5; color: #059669; border: 1px solid #6EE7B7;">三级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">工程管理/工艺流程</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=9'">编辑</button>
+                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(9)">启用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110817</span></td>
+                            <td>数据统计</td>
+                            <td><code style="font-size: 12px;">/data-statistics</code></td>
+                            <td><span style="color: #EF4444;">● 已停用</span></td>
+                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">数据中心/统计分析</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=10'">编辑</button>
+                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(10)">启用</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: #F59E0B; font-weight: 500;">1110818</span></td>
+                            <td>资源管理</td>
+                            <td><code style="font-size: 12px;">/resource-management</code></td>
+                            <td><span style="color: #EF4444;">● 已停用</span></td>
+                            <td><span class="badge" style="background: #DBEAFE; color: #1D4ED8; border: 1px solid #93C5FD;">二级</span></td>
+                            <td><span style="color: #64748B; font-size: 13px;">系统管理/资源配置</span></td>
+                            <td>
+                                <button class="btn-link" style="color: #F59E0B; margin-right: 12px;" onclick="window.location.href='menu-create.html?id=11'">编辑</button>
+                                <button class="btn-link" style="color: #10B981;" onclick="toggleStatus(11)">启用</button>
                             </td>
                         </tr>
                     </tbody>
@@ -237,10 +357,29 @@
             </div>
 
             <!-- 分页 -->
-            <div class="pagination">
-                <button class="btn-secondary btn-sm" disabled>上一页</button>
-                <span class="pagination-info">第 1 页，共 1 页</span>
-                <button class="btn-secondary btn-sm" disabled>下一页</button>
+            <div class="pagination" style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="color: #64748B; font-size: 14px;">
+                    <select style="border: 1px solid #E2E8F0; border-radius: 4px; padding: 4px 8px; margin-right: 8px;">
+                        <option>100条/页</option>
+                        <option>50条/页</option>
+                        <option>20条/页</option>
+                    </select>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <button class="btn-secondary btn-sm" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-secondary btn-sm" style="background: #6366F1; color: white;">1</button>
+                    <button class="btn-secondary btn-sm">2</button>
+                    <button class="btn-secondary btn-sm">3</button>
+                    <button class="btn-secondary btn-sm">4</button>
+                    <button class="btn-secondary btn-sm">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span style="margin-left: 8px; color: #64748B; font-size: 14px;">前往</span>
+                    <input type="number" value="4" style="width: 50px; border: 1px solid #E2E8F0; border-radius: 4px; padding: 4px 8px; text-align: center;">
+                    <span style="color: #64748B; font-size: 14px;">页</span>
+                </div>
             </div>
         </section>
     </main>
@@ -318,28 +457,10 @@
             }
         })();
         
-        // 全选功能
-        document.getElementById('selectAll').addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('.row-checkbox');
-            checkboxes.forEach(cb => cb.checked = this.checked);
-            updateBatchDeleteBtn();
-        });
-
-        // 更新批量删除按钮状态
-        function updateBatchDeleteBtn() {
-            const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
-            document.getElementById('batchDeleteBtn').disabled = checkedCount === 0;
-        }
-
-        document.querySelectorAll('.row-checkbox').forEach(cb => {
-            cb.addEventListener('change', updateBatchDeleteBtn);
-        });
-
-        // 删除菜单
-        function deleteMenu(id) {
-            if (confirm('确定要删除这个菜单吗？')) {
-                alert('菜单已删除');
-            }
+        // 状态切换功能
+        function toggleStatus(id) {
+            console.log('切换状态:', id);
+            alert('状态切换功能待实现');
         }
     </script>
 </body>
