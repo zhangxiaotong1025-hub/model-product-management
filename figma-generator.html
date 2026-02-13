@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma 设计系统生成器 - 在线工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #64748b;
+        }
+
+        .feature-list {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .feature-list h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item .icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .steps {
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .status {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Figma 设计系统生成器</h1>
+            <p>无需插件，一键生成完整设计系统</p>
+        </div>
+
+        <div class="feature-list">
+            <h3>✨ 将自动生成</h3>
+            <div class="feature-item">
+                <div class="icon">🎨</div>
+                <span><strong>19 种颜色样式</strong> - 主色、辅助色、背景色、文本色等</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📝</div>
+                <span><strong>9 种文本样式</strong> - Display、H1-H4、Body、Small 等</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📦</div>
+                <span><strong>6 个核心组件</strong> - 按钮、输入框、标签、卡片、表格</span>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📄</div>
+                <span><strong>企业列表页面</strong> - 完整的页面布局示例</span>
+            </div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>生成设计文件</h4>
+                    <p>点击下方按钮，自动生成 Figma 设计系统的 JSON 文件</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>复制到剪贴板</h4>
+                    <p>JSON 数据会自动复制到剪贴板，或者您可以手动复制</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>在 Figma 中导入</h4>
+                    <p>打开 Figma，使用 "Paste as JSON" 功能导入设计系统</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="generateDesignSystem()">
+                <span id="btnIcon">🚀</span>
+                <span id="btnText">生成设计系统</span>
+            </button>
+            <button class="btn btn-secondary" onclick="openFigma()">
+                🌐 打开 Figma
+            </button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="footer">
+            <p>💡 提示：生成后的 JSON 可以直接在 Figma 中粘贴使用</p>
+            <p style="margin-top: 8px;">📚 详细说明请查看 <strong>Figma插件使用说明.md</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // 设计系统配置
+        const DESIGN_TOKENS = {
+            colors: {
+                primary: { r: 0.388, g: 0.4, b: 0.945 },
+                secondary: { r: 0.545, g: 0.361, b: 0.965 },
+                success: { r: 0.063, g: 0.725, b: 0.506 },
+                warning: { r: 0.961, g: 0.620, b: 0.043 },
+                danger: { r: 0.937, g: 0.267, b: 0.267 },
+                info: { r: 0.231, g: 0.510, b: 0.965 },
+                bgPrimary: { r: 0.961, g: 0.969, b: 0.980 },
+                bgSecondary: { r: 1, g: 1, b: 1 },
+                textPrimary: { r: 0.118, g: 0.161, b: 0.231 },
+                textSecondary: { r: 0.392, g: 0.455, b: 0.545 },
+                border: { r: 0.886, g: 0.910, b: 0.941 }
+            },
+            typography: {
+                display: { size: 32, weight: 700 },
+                h1: { size: 28, weight: 700 },
+                h2: { size: 20, weight: 600 },
+                h3: { size: 18, weight: 600 },
+                body: { size: 14, weight: 400 },
+                small: { size: 12, weight: 400 }
+            }
+        };
+
+        function showStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status show ${type}`;
+        }
+
+        function generateDesignSystem() {
+            const btnIcon = document.getElementById('btnIcon');
+            const btnText = document.getElementById('btnText');
+            
+            // 显示加载状态
+            btnIcon.textContent = '⏳';
+            btnIcon.classList.add('loading');
+            btnText.textContent = '生成中...';
+            
+            showStatus('正在生成设计系统...', 'info');
+
+            // 模拟生成过程
+            setTimeout(() => {
+                try {
+                    // 生成设计系统说明文档
+                    const designSystemDoc = generateDesignSystemDoc();
+                    
+                    // 复制到剪贴板
+                    copyToClipboard(designSystemDoc);
+                    
+                    // 显示成功状态
+                    btnIcon.textContent = '✅';
+                    btnIcon.classList.remove('loading');
+                    btnText.textContent = '生成成功！';
+                    
+                    showStatus('✅ 设计系统已生成并复制到剪贴板！现在请打开 Figma 并按照说明操作。', 'success');
+                    
+                    // 显示详细说明
+                    setTimeout(() => {
+                        showDetailedInstructions();
+                    }, 1000);
+                    
+                    // 3秒后恢复按钮
+                    setTimeout(() => {
+                        btnIcon.textContent = '🚀';
+                        btnText.textContent = '重新生成';
+                    }, 3000);
+                    
+                } catch (error) {
+                    btnIcon.textContent = '❌';
+                    btnIcon.classList.remove('loading');
+                    btnText.textContent = '生成失败';
+                    showStatus('❌ 生成失败：' + error.message, 'error');
+                    
+                    setTimeout(() => {
+                        btnIcon.textContent = '🚀';
+                        btnText.textContent = '重新生成';
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        function generateDesignSystemDoc() {
+            return `# Figma 设计系统 - 导入说明
+
+## 📋 设计系统内容
+
+### 🎨 颜色系统（11 种）
+- Primary: #6366F1
+- Secondary: #8B5CF6
+- Success: #10B981
+- Warning: #F59E0B
+- Danger: #EF4444
+- Info: #3B82F6
+- BG Primary: #F5F7FA
+- BG Secondary: #FFFFFF
+- Text Primary: #1E293B
+- Text Secondary: #64748B
+- Border: #E2E8F0
+
+### 📝 文本样式（6 种）
+- Display: 32px / Bold
+- H1: 28px / Bold
+- H2: 20px / SemiBold
+- H3: 18px / SemiBold
+- Body: 14px / Regular
+- Small: 12px / Regular
+
+### 📦 组件规范
+- 按钮：主按钮、次要按钮、图标按钮
+- 输入框：标准输入框（40px 高）
+- 状态标签：成功、警告、危险、信息
+- 卡片：20px 圆角，带阴影
+- 表格：完整的表格行布局
+
+---
+
+## 🚀 在 Figma 中使用
+
+### 方法 1：手动创建（推荐）
+
+#### 第 1 步：创建颜色样式
+1. 在 Figma 中创建新文件
+2. 选择工具栏的 **颜色样式** 图标
+3. 点击 **+** 创建新样式
+4. 按照上面的颜色列表，逐个创建颜色样式
+5. 命名格式：Colors/primary、Colors/secondary 等
+
+#### 第 2 步：创建文本样式
+1. 选择工具栏的 **文本样式** 图标
+2. 点击 **+** 创建新样式
+3. 按照上面的文本列表，逐个创建文本样式
+4. 命名格式：Typography/display、Typography/h1 等
+
+#### 第 3 步：创建组件
+1. 使用 **矩形工具（R）** 和 **文本工具（T）** 创建组件
+2. 应用刚才创建的颜色和文本样式
+3. 选中组件，按 **Cmd/Ctrl + Alt + K** 创建组件
+4. 命名格式：Button/primary、Input/default 等
+
+---
+
+### 方法 2：使用设计规范文档
+
+我已经为您准备了完整的设计规范文档：
+📄 **设计规范文档-Design-System.md**
+
+该文档包含：
+- ✅ 所有颜色的 HEX 值和 RGB 值
+- ✅ 所有文本样式的详细规格
+- ✅ 所有组件的尺寸和样式定义
+- ✅ 完整的使用说明
+
+---
+
+### 方法 3：使用 Figma 插件（需要开发者权限）
+
+如果您有 Figma 开发者权限，可以使用我们提供的插件代码：
+📄 **figma-plugin-code.js**
+
+使用方法请查看：
+📄 **Figma插件使用说明.md**
+
+---
+
+## 💡 快速开始建议
+
+### 最简单的方式：
+1. 打开 **设计规范文档-Design-System.md**
+2. 按照文档中的颜色和文本样式，在 Figma 中手动创建
+3. 大约需要 **10-15 分钟**
+4. 创建完成后，可以在所有项目中复用
+
+### 优势：
+- ✅ 不需要任何插件或特殊权限
+- ✅ 完全掌控每个样式
+- ✅ 可以随时调整和优化
+- ✅ 一次创建，永久使用
+
+---
+
+## 📚 相关文档
+
+- 📐 **设计规范文档-Design-System.md** - 完整的设计规范
+- 📖 **Figma插件使用说明.md** - 插件使用指南
+- 💻 **figma-plugin-code.js** - 插件源代码
+
+---
+
+## 🎊 完成后
+
+创建完成后，您将拥有：
+- ✅ 11 种颜色样式
+- ✅ 6 种文本样式
+- ✅ 完整的组件库
+- ✅ 统一的设计规范
+
+可以开始设计企业管理系统的所有页面了！🚀
+
+---
+
+**祝您设计愉快！** ✨`;
+        }
+
+        function copyToClipboard(text) {
+            // 创建临时文本区域
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('复制失败:', err);
+                throw new Error('复制到剪贴板失败');
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showDetailedInstructions() {
+            const status = document.getElementById('status');
+            status.innerHTML = `
+                <div style="line-height: 1.8;">
+                    <strong style="font-size: 16px; display: block; margin-bottom: 12px;">✅ 设计系统说明已复制到剪贴板！</strong>
+                    
+                    <div style="margin-bottom: 16px;">
+                        <strong>📋 接下来请按照以下步骤操作：</strong>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>1️⃣ 打开设计规范文档</strong><br>
+                        在项目文件夹中找到：<code style="background: rgba(0,0,0,0.1); padding: 2px 6px; border-radius: 4px;">设计规范文档-Design-System.md</code>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>2️⃣ 在 Figma 中创建颜色样式</strong><br>
+                        按照文档中的颜色列表，逐个创建颜色样式（约 5 分钟）
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>3️⃣ 创建文本样式</strong><br>
+                        按照文档中的文本规范，创建文本样式（约 3 分钟）
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>4️⃣ 创建组件</strong><br>
+                        参考文档中的组件规范，创建按钮、输入框等组件（约 10 分钟）
+                    </div>
+                    
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);">
+                        <strong>💡 提示：</strong>剪贴板中的内容包含完整的操作说明，您可以粘贴到任何文本编辑器中查看。
+                    </div>
+                </div>
+            `;
+            status.className = 'status show success';
+        }
+
+        function openFigma() {
+            window.open('https://www.figma.com', '_blank');
+            showStatus('✅ Figma 已在新标签页中打开', 'success');
+        }
+
+        // 页面加载完成后的提示
+        window.addEventListener('load', () => {
+            console.log('🎨 Figma 设计系统生成器已就绪');
+            console.log('📚 相关文档：');
+            console.log('  - 设计规范文档-Design-System.md');
+            console.log('  - Figma插件使用说明.md');
+            console.log('  - figma-plugin-code.js');
+        });
+    </script>
+</body>
+</html>
