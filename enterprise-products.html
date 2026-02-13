@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品配置 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <!-- 项目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>项目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="project-list.html" class="nav-item">
+                            <span>项目列表</span>
+                        </a>
+                        <a href="project-detail.html" class="nav-item">
+                            <span>项目详情</span>
+                        </a>
+                        <a href="plan-management.html" class="nav-item">
+                            <span>方案管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="case-management.html" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    <span>智能案例管理</span>
+                </a>
+                
+                <!-- 前台类目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-sitemap"></i>
+                        <span>前台类目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="frontend-category-domestic.html" class="nav-item">
+                            <span>国内展示目录</span>
+                        </a>
+                        <a href="frontend-category-international.html" class="nav-item">
+                            <span>国际展示目录</span>
+                        </a>
+                        <a href="frontend-category-guide.html" class="nav-item">
+                            <span>智能导购展示目录</span>
+                        </a>
+                        <a href="frontend-layout.html" class="nav-item">
+                            <span>智能导购布局管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 内容管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-file-alt"></i>
+                        <span>内容管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="content-template.html" class="nav-item">
+                            <span>内容模版管理</span>
+                        </a>
+                        <a href="content-management.html" class="nav-item">
+                            <span>内容管理</span>
+                        </a>
+                        <a href="panorama-management.html" class="nav-item">
+                            <span>全景图管理</span>
+                        </a>
+                        <a href="3d-product.html" class="nav-item">
+                            <span>3D爆品棚拍</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 营销管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>营销管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="ad-management.html" class="nav-item">
+                            <span>广告位管理</span>
+                        </a>
+                        <a href="product-pool.html" class="nav-item">
+                            <span>选品池管理</span>
+                        </a>
+                        <a href="content-pool.html" class="nav-item">
+                            <span>内容池管理</span>
+                        </a>
+                        <a href="promotion-management.html" class="nav-item">
+                            <span>优惠管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="data-dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>数据看板</span>
+                </a>
+            </nav>
+            
+            <div class="nav-divider">基础模块</div>
+            
+            <nav class="nav-menu">
+                <!-- 企业管理 -->
+                <div class="nav-group expanded">
+                    <div class="nav-group-title">
+                        <i class="fas fa-building"></i>
+                        <span>企业管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="enterprise-list.html" class="nav-item">
+                            <span>企业列表</span>
+                        </a>
+                        <a href="enterprise-management.html" class="nav-item">
+                            <span>组织架构</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="model-management.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>模型管理</span>
+                </a>
+                <a href="product-management.html" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>商品管理</span>
+                </a>
+                <a href="backend-category.html" class="nav-item">
+                    <i class="fas fa-folder-tree"></i>
+                    <span>后台类目</span>
+                </a>
+                <a href="attribute-management.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>属性管理</span>
+                </a>
+                
+                <!-- 权限管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>权限管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="menu-management.html" class="nav-item">
+                            <span>菜单管理</span>
+                        </a>
+                        <a href="role-management.html" class="nav-item">
+                            <span>角色管理</span>
+                        </a>
+                        <a href="policy-management.html" class="nav-item">
+                            <span>策略管理</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="nav-divider">个人中心</div>
+            
+            <nav class="nav-menu">
+                <a href="my-benefits.html" class="nav-item">
+                    <i class="fas fa-gift"></i>
+                    <span>权益管理</span>
+                </a>
+                <a href="my-profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>个人信息</span>
+                </a>
+                <a href="my-uploads.html" class="nav-item">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>我的上传</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <div class="breadcrumb">
+                <a href="enterprise-list.html">企业列表</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="enterprise-detail.html?id=ENT-001">企业详情</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>产品配置</span>
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn-secondary" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    返回
+                </button>
+            </div>
+        </header>
+
+        <!-- 企业信息 -->
+        <section class="content-section">
+            <div class="card">
+                <div class="card-body">
+                    <div class="enterprise-header">
+                        <div class="enterprise-info-inline">
+                            <i class="fas fa-building text-primary"></i>
+                            <div>
+                                <h2 id="enterpriseName">阿里巴巴集团</h2>
+                                <p class="text-secondary">
+                                    <span id="enterpriseCode">ENT-001</span> | 
+                                    <span id="enterpriseType">品牌商</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品配置列表 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h3>产品配置</h3>
+                <button class="btn-primary" onclick="showAddProductModal()">
+                    <i class="fas fa-plus"></i>
+                    启用新产品
+                </button>
+            </div>
+
+            <!-- 国内3D -->
+            <div class="card product-config-card">
+                <div class="card-header">
+                    <div class="product-header-info">
+                        <i class="fas fa-cube text-primary"></i>
+                        <div>
+                            <h3>国内3D</h3>
+                            <p class="text-secondary">domestic_3d</p>
+                        </div>
+                    </div>
+                    <div class="product-header-actions">
+                        <span class="status-badge status-active">已启用</span>
+                        <button class="btn-secondary btn-sm" onclick="toggleProduct('domestic_3d', false)">
+                            <i class="fas fa-ban"></i>
+                            停用
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- 功能权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-check-circle"></i>
+                            功能权益（Features）
+                        </h4>
+                        <div class="entitlement-grid">
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_3d_rendering" checked>
+                                    <label for="feature_3d_rendering">3D渲染</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_construction_drawing" checked>
+                                    <label for="feature_construction_drawing">施工图生成</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_panorama" checked>
+                                    <label for="feature_panorama">全景图</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_vr_tour" checked>
+                                    <label for="feature_vr_tour">VR漫游</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_material_editor">
+                                    <label for="feature_material_editor">材质编辑器</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_lighting_editor">
+                                    <label for="feature_lighting_editor">灯光编辑器</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 配额权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-chart-bar"></i>
+                            配额权益（Quotas）
+                        </h4>
+                        <div class="quota-config-grid">
+                            <div class="quota-config-item">
+                                <label>2K渲染次数（次/月）</label>
+                                <input type="number" class="form-control" value="100" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>4K渲染次数（次/月）</label>
+                                <input type="number" class="form-control" value="50" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>8K渲染次数（次/月）</label>
+                                <input type="number" class="form-control" value="10" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>存储空间（GB）</label>
+                                <input type="number" class="form-control" value="100" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>项目数量（个）</label>
+                                <input type="number" class="form-control" value="50" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>方案数量（个）</label>
+                                <input type="number" class="form-control" value="200" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 增值服务 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            增值服务（Services）
+                        </h4>
+                        <div class="service-grid">
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_priority_rendering">
+                                    <label for="service_priority_rendering">优先渲染</label>
+                                </div>
+                                <p class="service-desc">渲染任务优先处理</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_custom_watermark" checked>
+                                    <label for="service_custom_watermark">自定义水印</label>
+                                </div>
+                                <p class="service-desc">支持自定义渲染图水印</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_api_access">
+                                    <label for="service_api_access">API接口</label>
+                                </div>
+                                <p class="service-desc">开放API接口调用</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_technical_support" checked>
+                                    <label for="service_technical_support">技术支持</label>
+                                </div>
+                                <p class="service-desc">专属技术支持服务</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 启用信息 -->
+                    <div class="product-footer-info">
+                        <div class="info-item">
+                            <span class="info-label">启用时间：</span>
+                            <span class="info-value">2026-01-15 10:30:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">最后更新：</span>
+                            <span class="info-value">2026-02-10 15:20:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-primary" onclick="saveProductConfig('domestic_3d')">
+                        <i class="fas fa-save"></i>
+                        保存配置
+                    </button>
+                </div>
+            </div>
+
+            <!-- 智能导购 -->
+            <div class="card product-config-card">
+                <div class="card-header">
+                    <div class="product-header-info">
+                        <i class="fas fa-robot text-success"></i>
+                        <div>
+                            <h3>智能导购</h3>
+                            <p class="text-secondary">smart_guide</p>
+                        </div>
+                    </div>
+                    <div class="product-header-actions">
+                        <span class="status-badge status-active">已启用</span>
+                        <button class="btn-secondary btn-sm" onclick="toggleProduct('smart_guide', false)">
+                            <i class="fas fa-ban"></i>
+                            停用
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- 功能权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-check-circle"></i>
+                            功能权益（Features）
+                        </h4>
+                        <div class="entitlement-grid">
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_smart_recommend" checked>
+                                    <label for="feature_smart_recommend">智能推荐</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_case_display" checked>
+                                    <label for="feature_case_display">案例展示</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_style_match" checked>
+                                    <label for="feature_style_match">风格匹配</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_product_search" checked>
+                                    <label for="feature_product_search">商品搜索</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_layout_management" checked>
+                                    <label for="feature_layout_management">布局管理</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_content_management" checked>
+                                    <label for="feature_content_management">内容管理</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 配额权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-chart-bar"></i>
+                            配额权益（Quotas）
+                        </h4>
+                        <div class="quota-config-grid">
+                            <div class="quota-config-item">
+                                <label>推荐次数（次/月）</label>
+                                <input type="number" class="form-control" value="-1" min="-1" placeholder="-1表示无限制">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>案例数量（个）</label>
+                                <input type="number" class="form-control" value="1000" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>广告位数量（个）</label>
+                                <input type="number" class="form-control" value="10" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>内容池容量（个）</label>
+                                <input type="number" class="form-control" value="500" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 增值服务 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            增值服务（Services）
+                        </h4>
+                        <div class="service-grid">
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_data_analysis" checked>
+                                    <label for="service_data_analysis">数据分析</label>
+                                </div>
+                                <p class="service-desc">用户行为数据分析</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_custom_template" checked>
+                                    <label for="service_custom_template">自定义模板</label>
+                                </div>
+                                <p class="service-desc">支持自定义展示模板</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 启用信息 -->
+                    <div class="product-footer-info">
+                        <div class="info-item">
+                            <span class="info-label">启用时间：</span>
+                            <span class="info-value">2026-01-15 10:30:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">最后更新：</span>
+                            <span class="info-value">2026-02-10 15:20:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-primary" onclick="saveProductConfig('smart_guide')">
+                        <i class="fas fa-save"></i>
+                        保存配置
+                    </button>
+                </div>
+            </div>
+
+            <!-- 国际3D -->
+            <div class="card product-config-card">
+                <div class="card-header">
+                    <div class="product-header-info">
+                        <i class="fas fa-globe text-info"></i>
+                        <div>
+                            <h3>国际3D</h3>
+                            <p class="text-secondary">international_3d</p>
+                        </div>
+                    </div>
+                    <div class="product-header-actions">
+                        <span class="status-badge status-active">已启用</span>
+                        <button class="btn-secondary btn-sm" onclick="toggleProduct('international_3d', false)">
+                            <i class="fas fa-ban"></i>
+                            停用
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- 功能权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-check-circle"></i>
+                            功能权益（Features）
+                        </h4>
+                        <div class="entitlement-grid">
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_intl_3d_rendering" checked>
+                                    <label for="feature_intl_3d_rendering">3D渲染</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_multi_language" checked>
+                                    <label for="feature_multi_language">多语言支持</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_intl_standard" checked>
+                                    <label for="feature_intl_standard">国际标准</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_currency_conversion" checked>
+                                    <label for="feature_currency_conversion">货币转换</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 配额权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-chart-bar"></i>
+                            配额权益（Quotas）
+                        </h4>
+                        <div class="quota-config-grid">
+                            <div class="quota-config-item">
+                                <label>2K渲染次数（次/月）</label>
+                                <input type="number" class="form-control" value="50" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>4K渲染次数（次/月）</label>
+                                <input type="number" class="form-control" value="20" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>存储空间（GB）</label>
+                                <input type="number" class="form-control" value="50" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>项目数量（个）</label>
+                                <input type="number" class="form-control" value="30" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 增值服务 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            增值服务（Services）
+                        </h4>
+                        <div class="service-grid">
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_intl_support" checked>
+                                    <label for="service_intl_support">国际化支持</label>
+                                </div>
+                                <p class="service-desc">多语言、多货币支持</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 启用信息 -->
+                    <div class="product-footer-info">
+                        <div class="info-item">
+                            <span class="info-label">启用时间：</span>
+                            <span class="info-value">2026-01-20 14:00:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">最后更新：</span>
+                            <span class="info-value">2026-02-10 15:20:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-primary" onclick="saveProductConfig('international_3d')">
+                        <i class="fas fa-save"></i>
+                        保存配置
+                    </button>
+                </div>
+            </div>
+
+            <!-- 精准营销 -->
+            <div class="card product-config-card">
+                <div class="card-header">
+                    <div class="product-header-info">
+                        <i class="fas fa-bullhorn text-warning"></i>
+                        <div>
+                            <h3>精准营销</h3>
+                            <p class="text-secondary">precision_marketing</p>
+                        </div>
+                    </div>
+                    <div class="product-header-actions">
+                        <span class="status-badge status-active">已启用</span>
+                        <button class="btn-secondary btn-sm" onclick="toggleProduct('precision_marketing', false)">
+                            <i class="fas fa-ban"></i>
+                            停用
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- 功能权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-check-circle"></i>
+                            功能权益（Features）
+                        </h4>
+                        <div class="entitlement-grid">
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_ad_placement" checked>
+                                    <label for="feature_ad_placement">广告投放</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_data_analytics" checked>
+                                    <label for="feature_data_analytics">数据分析</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_user_portrait" checked>
+                                    <label for="feature_user_portrait">用户画像</label>
+                                </div>
+                            </div>
+                            <div class="entitlement-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="feature_campaign_management" checked>
+                                    <label for="feature_campaign_management">活动管理</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 配额权益 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-chart-bar"></i>
+                            配额权益（Quotas）
+                        </h4>
+                        <div class="quota-config-grid">
+                            <div class="quota-config-item">
+                                <label>广告位数量（个）</label>
+                                <input type="number" class="form-control" value="10" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>推送次数（次/月）</label>
+                                <input type="number" class="form-control" value="1000" min="0">
+                            </div>
+                            <div class="quota-config-item">
+                                <label>活动数量（个）</label>
+                                <input type="number" class="form-control" value="20" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 增值服务 -->
+                    <div class="entitlement-section">
+                        <h4>
+                            <i class="fas fa-star"></i>
+                            增值服务（Services）
+                        </h4>
+                        <div class="service-grid">
+                            <div class="service-item">
+                                <div class="form-switch">
+                                    <input type="checkbox" id="service_advanced_analytics" checked>
+                                    <label for="service_advanced_analytics">高级分析</label>
+                                </div>
+                                <p class="service-desc">深度数据分析和报表</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 启用信息 -->
+                    <div class="product-footer-info">
+                        <div class="info-item">
+                            <span class="info-label">启用时间：</span>
+                            <span class="info-value">2026-01-25 09:00:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">最后更新：</span>
+                            <span class="info-value">2026-02-10 15:20:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-primary" onclick="saveProductConfig('precision_marketing')">
+                        <i class="fas fa-save"></i>
+                        保存配置
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 添加产品模态框 -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>启用新产品</h3>
+                <button class="modal-close" onclick="closeModal('addProductModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="product-select-list">
+                    <div class="product-select-item">
+                        <div class="form-switch">
+                            <input type="checkbox" id="add_domestic_3d" value="domestic_3d">
+                            <label for="add_domestic_3d">
+                                <i class="fas fa-cube"></i>
+                                国内3D
+                            </label>
+                        </div>
+                        <p class="product-desc">面向国内市场的3D展示平台</p>
+                    </div>
+                    <div class="product-select-item">
+                        <div class="form-switch">
+                            <input type="checkbox" id="add_international_3d" value="international_3d">
+                            <label for="add_international_3d">
+                                <i class="fas fa-globe"></i>
+                                国际3D
+                            </label>
+                        </div>
+                        <p class="product-desc">面向国际市场的3D展示平台</p>
+                    </div>
+                    <div class="product-select-item">
+                        <div class="form-switch">
+                            <input type="checkbox" id="add_smart_guide" value="smart_guide">
+                            <label for="add_smart_guide">
+                                <i class="fas fa-robot"></i>
+                                智能导购
+                            </label>
+                        </div>
+                        <p class="product-desc">智能推荐和导购系统</p>
+                    </div>
+                    <div class="product-select-item">
+                        <div class="form-switch">
+                            <input type="checkbox" id="add_precision_marketing" value="precision_marketing">
+                            <label for="add_precision_marketing">
+                                <i class="fas fa-bullhorn"></i>
+                                精准营销
+                            </label>
+                        </div>
+                        <p class="product-desc">营销活动管理系统</p>
+                    </div>
+                    <div class="product-select-item">
+                        <div class="form-switch">
+                            <input type="checkbox" id="add_ai_designer_app" value="ai_designer_app">
+                            <label for="add_ai_designer_app">
+                                <i class="fas fa-mobile-alt"></i>
+                                AI设计家App
+                            </label>
+                        </div>
+                        <p class="product-desc">移动端设计应用</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('addProductModal')">取消</button>
+                <button class="btn-primary" onclick="confirmAddProducts()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/enterprise-management.js"></script>
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const enterpriseId = urlParams.get('id');
+
+        // 加载企业产品配置
+        if (enterpriseId) {
+            loadEnterpriseProducts(enterpriseId);
+        }
+
+        function loadEnterpriseProducts(id) {
+            // 调用API加载企业产品配置
+            console.log('加载企业产品配置:', id);
+        }
+
+        // 显示添加产品模态框
+        function showAddProductModal() {
+            showModal('addProductModal');
+        }
+
+        // 确认添加产品
+        function confirmAddProducts() {
+            const selectedProducts = Array.from(document.querySelectorAll('.product-select-item input:checked'))
+                .map(cb => cb.value);
+            
+            if (selectedProducts.length === 0) {
+                showToast('请至少选择一个产品', 'warning');
+                return;
+            }
+            
+            console.log('添加产品:', selectedProducts);
+            // 调用API添加产品
+            showToast('产品添加成功', 'success');
+            closeModal('addProductModal');
+            
+            // 刷新页面
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+
+        // 切换产品状态
+        function toggleProduct(productCode, enabled) {
+            const action = enabled ? '启用' : '停用';
+            if (confirm(`确定要${action}该产品吗？`)) {
+                console.log(`${action}产品:`, productCode);
+                // 调用API切换产品状态
+                showToast(`产品${action}成功`, 'success');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            }
+        }
+
+        // 保存产品配置
+        function saveProductConfig(productCode) {
+            // 收集产品配置数据
+            const config = {
+                productCode: productCode,
+                features: {},
+                quotas: {},
+                services: {}
+            };
+            
+            // 收集功能权益
+            document.querySelectorAll(`#${productCode} input[id^="feature_"]`).forEach(input => {
+                const key = input.id.replace('feature_', '');
+                config.features[key] = input.checked;
+            });
+            
+            // 收集配额权益
+            document.querySelectorAll(`#${productCode} .quota-config-item input`).forEach(input => {
+                const key = input.previousElementSibling.textContent;
+                config.quotas[key] = parseInt(input.value);
+            });
+            
+            // 收集增值服务
+            document.querySelectorAll(`#${productCode} input[id^="service_"]`).forEach(input => {
+                const key = input.id.replace('service_', '');
+                config.services[key] = input.checked;
+            });
+            
+            console.log('保存产品配置:', config);
+            // 调用API保存配置
+            showToast('配置保存成功', 'success');
+        }
+    </script>
+</body>
+</html>

@@ -65,10 +65,23 @@
         <div class="nav-divider">基础模块</div>
         
         <nav class="nav-menu">
-            <a href="enterprise-management.html" class="nav-item active">
-                <i class="fas fa-building"></i>
-                <span>企业管理</span>
-            </a>
+            <!-- 企业管理 -->
+            <div class="nav-group expanded">
+                <div class="nav-group-title">
+                    <i class="fas fa-building"></i>
+                    <span>企业管理</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="nav-group-items">
+                    <a href="enterprise-list.html" class="nav-item">
+                        <span>企业列表</span>
+                    </a>
+                    <a href="enterprise-management.html" class="nav-item active">
+                        <span>组织架构</span>
+                    </a>
+                </div>
+            </div>
+            
             <a href="model-management.html" class="nav-item">
                 <i class="fas fa-box"></i>
                 <span>模型管理</span>

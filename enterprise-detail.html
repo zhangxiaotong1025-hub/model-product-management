@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业详情 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <!-- 项目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>项目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="project-list.html" class="nav-item">
+                            <span>项目列表</span>
+                        </a>
+                        <a href="project-detail.html" class="nav-item">
+                            <span>项目详情</span>
+                        </a>
+                        <a href="plan-management.html" class="nav-item">
+                            <span>方案管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="case-management.html" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    <span>智能案例管理</span>
+                </a>
+                
+                <!-- 前台类目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-sitemap"></i>
+                        <span>前台类目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="frontend-category-domestic.html" class="nav-item">
+                            <span>国内展示目录</span>
+                        </a>
+                        <a href="frontend-category-international.html" class="nav-item">
+                            <span>国际展示目录</span>
+                        </a>
+                        <a href="frontend-category-guide.html" class="nav-item">
+                            <span>智能导购展示目录</span>
+                        </a>
+                        <a href="frontend-layout.html" class="nav-item">
+                            <span>智能导购布局管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 内容管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-file-alt"></i>
+                        <span>内容管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="content-template.html" class="nav-item">
+                            <span>内容模版管理</span>
+                        </a>
+                        <a href="content-management.html" class="nav-item">
+                            <span>内容管理</span>
+                        </a>
+                        <a href="panorama-management.html" class="nav-item">
+                            <span>全景图管理</span>
+                        </a>
+                        <a href="3d-product.html" class="nav-item">
+                            <span>3D爆品棚拍</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 营销管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>营销管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="ad-management.html" class="nav-item">
+                            <span>广告位管理</span>
+                        </a>
+                        <a href="product-pool.html" class="nav-item">
+                            <span>选品池管理</span>
+                        </a>
+                        <a href="content-pool.html" class="nav-item">
+                            <span>内容池管理</span>
+                        </a>
+                        <a href="promotion-management.html" class="nav-item">
+                            <span>优惠管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="data-dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>数据看板</span>
+                </a>
+            </nav>
+            
+            <div class="nav-divider">基础模块</div>
+            
+            <nav class="nav-menu">
+                <!-- 企业管理 -->
+                <div class="nav-group expanded">
+                    <div class="nav-group-title">
+                        <i class="fas fa-building"></i>
+                        <span>企业管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="enterprise-list.html" class="nav-item">
+                            <span>企业列表</span>
+                        </a>
+                        <a href="enterprise-management.html" class="nav-item">
+                            <span>组织架构</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="model-management.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>模型管理</span>
+                </a>
+                <a href="product-management.html" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>商品管理</span>
+                </a>
+                <a href="backend-category.html" class="nav-item">
+                    <i class="fas fa-folder-tree"></i>
+                    <span>后台类目</span>
+                </a>
+                <a href="attribute-management.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>属性管理</span>
+                </a>
+                
+                <!-- 权限管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>权限管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="menu-management.html" class="nav-item">
+                            <span>菜单管理</span>
+                        </a>
+                        <a href="role-management.html" class="nav-item">
+                            <span>角色管理</span>
+                        </a>
+                        <a href="policy-management.html" class="nav-item">
+                            <span>策略管理</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="nav-divider">个人中心</div>
+            
+            <nav class="nav-menu">
+                <a href="my-benefits.html" class="nav-item">
+                    <i class="fas fa-gift"></i>
+                    <span>权益管理</span>
+                </a>
+                <a href="my-profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>个人信息</span>
+                </a>
+                <a href="my-uploads.html" class="nav-item">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>我的上传</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <div class="breadcrumb">
+                <a href="enterprise-list.html">企业列表</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>企业详情</span>
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn-secondary" onclick="window.location.href='enterprise-form.html?id=ENT-001'">
+                    <i class="fas fa-edit"></i>
+                    编辑企业
+                </button>
+                <button class="btn-primary" onclick="window.location.href='enterprise-products.html?id=ENT-001'">
+                    <i class="fas fa-cog"></i>
+                    产品配置
+                </button>
+            </div>
+        </header>
+
+        <!-- 企业基本信息 -->
+        <section class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>基本信息</h3>
+                    <span class="status-badge status-active">启用</span>
+                </div>
+                <div class="card-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>企业名称</label>
+                            <div class="info-value">阿里巴巴集团</div>
+                        </div>
+                        <div class="info-item">
+                            <label>企业编号</label>
+                            <div class="info-value"><span class="text-mono">ENT-001</span></div>
+                        </div>
+                        <div class="info-item">
+                            <label>企业类型</label>
+                            <div class="info-value"><span class="badge badge-info">品牌商</span></div>
+                        </div>
+                        <div class="info-item">
+                            <label>是否平台企业</label>
+                            <div class="info-value"><span class="badge badge-success">是</span></div>
+                        </div>
+                        <div class="info-item">
+                            <label>所属行业</label>
+                            <div class="info-value">
+                                <span class="tag tag-sm">互联网</span>
+                                <span class="tag tag-sm">电子商务</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>覆盖区域</label>
+                            <div class="info-value">
+                                <span class="tag tag-sm">全国</span>
+                                <span class="tag tag-sm">国际</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>联系人</label>
+                            <div class="info-value">张三</div>
+                        </div>
+                        <div class="info-item">
+                            <label>联系电话</label>
+                            <div class="info-value">138-0000-0000</div>
+                        </div>
+                        <div class="info-item">
+                            <label>联系邮箱</label>
+                            <div class="info-value">contact@alibaba.com</div>
+                        </div>
+                        <div class="info-item">
+                            <label>企业地址</label>
+                            <div class="info-value">浙江省杭州市余杭区文一西路969号</div>
+                        </div>
+                        <div class="info-item">
+                            <label>创建时间</label>
+                            <div class="info-value">2026-01-15 10:30:00</div>
+                        </div>
+                        <div class="info-item">
+                            <label>更新时间</label>
+                            <div class="info-value">2026-02-10 15:20:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品关系 -->
+        <section class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>启用产品</h3>
+                    <button class="btn-primary btn-sm" onclick="window.location.href='enterprise-products.html?id=ENT-001'">
+                        <i class="fas fa-cog"></i>
+                        配置产品
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="product-list">
+                        <!-- 国内3D -->
+                        <div class="product-card">
+                            <div class="product-header">
+                                <div class="product-info">
+                                    <i class="fas fa-cube text-primary"></i>
+                                    <div>
+                                        <div class="product-name">国内3D</div>
+                                        <div class="product-code">domestic_3d</div>
+                                    </div>
+                                </div>
+                                <span class="status-badge status-active">已启用</span>
+                            </div>
+                            <div class="product-body">
+                                <div class="entitlement-section">
+                                    <h4>功能权益</h4>
+                                    <div class="entitlement-tags">
+                                        <span class="tag tag-success">3D渲染</span>
+                                        <span class="tag tag-success">施工图生成</span>
+                                        <span class="tag tag-success">全景图</span>
+                                        <span class="tag tag-success">VR漫游</span>
+                                    </div>
+                                </div>
+                                <div class="entitlement-section">
+                                    <h4>配额权益</h4>
+                                    <div class="quota-list">
+                                        <div class="quota-item">
+                                            <span class="quota-label">2K渲染</span>
+                                            <span class="quota-value">100次/月</span>
+                                        </div>
+                                        <div class="quota-item">
+                                            <span class="quota-label">4K渲染</span>
+                                            <span class="quota-value">50次/月</span>
+                                        </div>
+                                        <div class="quota-item">
+                                            <span class="quota-label">存储空间</span>
+                                            <span class="quota-value">100GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <span class="text-secondary">启用时间：2026-01-15 10:30</span>
+                            </div>
+                        </div>
+
+                        <!-- 智能导购 -->
+                        <div class="product-card">
+                            <div class="product-header">
+                                <div class="product-info">
+                                    <i class="fas fa-robot text-success"></i>
+                                    <div>
+                                        <div class="product-name">智能导购</div>
+                                        <div class="product-code">smart_guide</div>
+                                    </div>
+                                </div>
+                                <span class="status-badge status-active">已启用</span>
+                            </div>
+                            <div class="product-body">
+                                <div class="entitlement-section">
+                                    <h4>功能权益</h4>
+                                    <div class="entitlement-tags">
+                                        <span class="tag tag-success">智能推荐</span>
+                                        <span class="tag tag-success">案例展示</span>
+                                        <span class="tag tag-success">风格匹配</span>
+                                    </div>
+                                </div>
+                                <div class="entitlement-section">
+                                    <h4>配额权益</h4>
+                                    <div class="quota-list">
+                                        <div class="quota-item">
+                                            <span class="quota-label">推荐次数</span>
+                                            <span class="quota-value">无限制</span>
+                                        </div>
+                                        <div class="quota-item">
+                                            <span class="quota-label">案例数量</span>
+                                            <span class="quota-value">1000个</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <span class="text-secondary">启用时间：2026-01-15 10:30</span>
+                            </div>
+                        </div>
+
+                        <!-- 国际3D -->
+                        <div class="product-card">
+                            <div class="product-header">
+                                <div class="product-info">
+                                    <i class="fas fa-globe text-info"></i>
+                                    <div>
+                                        <div class="product-name">国际3D</div>
+                                        <div class="product-code">international_3d</div>
+                                    </div>
+                                </div>
+                                <span class="status-badge status-active">已启用</span>
+                            </div>
+                            <div class="product-body">
+                                <div class="entitlement-section">
+                                    <h4>功能权益</h4>
+                                    <div class="entitlement-tags">
+                                        <span class="tag tag-success">3D渲染</span>
+                                        <span class="tag tag-success">多语言支持</span>
+                                        <span class="tag tag-success">国际标准</span>
+                                    </div>
+                                </div>
+                                <div class="entitlement-section">
+                                    <h4>配额权益</h4>
+                                    <div class="quota-list">
+                                        <div class="quota-item">
+                                            <span class="quota-label">2K渲染</span>
+                                            <span class="quota-value">50次/月</span>
+                                        </div>
+                                        <div class="quota-item">
+                                            <span class="quota-label">存储空间</span>
+                                            <span class="quota-value">50GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <span class="text-secondary">启用时间：2026-01-20 14:00</span>
+                            </div>
+                        </div>
+
+                        <!-- 精准营销 -->
+                        <div class="product-card">
+                            <div class="product-header">
+                                <div class="product-info">
+                                    <i class="fas fa-bullhorn text-warning"></i>
+                                    <div>
+                                        <div class="product-name">精准营销</div>
+                                        <div class="product-code">precision_marketing</div>
+                                    </div>
+                                </div>
+                                <span class="status-badge status-active">已启用</span>
+                            </div>
+                            <div class="product-body">
+                                <div class="entitlement-section">
+                                    <h4>功能权益</h4>
+                                    <div class="entitlement-tags">
+                                        <span class="tag tag-success">广告投放</span>
+                                        <span class="tag tag-success">数据分析</span>
+                                        <span class="tag tag-success">用户画像</span>
+                                    </div>
+                                </div>
+                                <div class="entitlement-section">
+                                    <h4>配额权益</h4>
+                                    <div class="quota-list">
+                                        <div class="quota-item">
+                                            <span class="quota-label">广告位</span>
+                                            <span class="quota-value">10个</span>
+                                        </div>
+                                        <div class="quota-item">
+                                            <span class="quota-label">推送次数</span>
+                                            <span class="quota-value">1000次/月</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <span class="text-secondary">启用时间：2026-01-25 09:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 业务关系 -->
+        <section class="content-section">
+            <div class="section-grid">
+                <!-- 品牌关系 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>品牌关系</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-item">
+                            <label>品牌关系类型</label>
+                            <div class="info-value">
+                                <span class="badge badge-success">拥有（Own）</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>说明</label>
+                            <div class="info-value text-secondary">
+                                该企业拥有品牌，可以上传公有模型到平台
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>关联品牌</label>
+                            <div class="info-value">
+                                <div class="brand-list">
+                                    <div class="brand-item">
+                                        <i class="fas fa-tag"></i>
+                                        <span>阿里巴巴</span>
+                                    </div>
+                                    <div class="brand-item">
+                                        <i class="fas fa-tag"></i>
+                                        <span>淘宝</span>
+                                    </div>
+                                    <div class="brand-item">
+                                        <i class="fas fa-tag"></i>
+                                        <span>天猫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 供应链关系 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>供应链关系</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-item">
+                            <label>是否加入供应链</label>
+                            <div class="info-value">
+                                <span class="badge badge-success">已加入</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>说明</label>
+                            <div class="info-value text-secondary">
+                                该企业已加入供应链，支持商品管理功能
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>加入时间</label>
+                            <div class="info-value">2026-01-15 10:30:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 组织架构 -->
+        <section class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>组织架构</h3>
+                    <button class="btn-secondary btn-sm" onclick="window.location.href='enterprise-management.html'">
+                        <i class="fas fa-sitemap"></i>
+                        查看完整架构
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="org-tree">
+                        <div class="org-node">
+                            <div class="org-node-content">
+                                <i class="fas fa-building"></i>
+                                <span>阿里巴巴集团</span>
+                            </div>
+                            <div class="org-children">
+                                <div class="org-node">
+                                    <div class="org-node-content">
+                                        <i class="fas fa-building"></i>
+                                        <span>淘宝事业部</span>
+                                    </div>
+                                </div>
+                                <div class="org-node">
+                                    <div class="org-node-content">
+                                        <i class="fas fa-building"></i>
+                                        <span>天猫事业部</span>
+                                    </div>
+                                </div>
+                                <div class="org-node">
+                                    <div class="org-node-content">
+                                        <i class="fas fa-building"></i>
+                                        <span>阿里云事业部</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 操作日志 -->
+        <section class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>操作日志</h3>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-title">启用精准营销产品</span>
+                                    <span class="timeline-time">2026-01-25 09:00</span>
+                                </div>
+                                <div class="timeline-body">
+                                    操作人：张三 (admin@alibaba.com)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-title">启用国际3D产品</span>
+                                    <span class="timeline-time">2026-01-20 14:00</span>
+                                </div>
+                                <div class="timeline-body">
+                                    操作人：李四 (admin@alibaba.com)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-title">更新企业信息</span>
+                                    <span class="timeline-time">2026-01-18 16:30</span>
+                                </div>
+                                <div class="timeline-body">
+                                    操作人：王五 (admin@alibaba.com)<br>
+                                    修改内容：更新联系方式
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-title">创建企业</span>
+                                    <span class="timeline-time">2026-01-15 10:30</span>
+                                </div>
+                                <div class="timeline-body">
+                                    操作人：系统管理员 (system@pulsar.com)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/enterprise-management.js"></script>
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const enterpriseId = urlParams.get('id');
+        
+        // 加载企业详情
+        if (enterpriseId) {
+            loadEnterpriseDetail(enterpriseId);
+        }
+
+        function loadEnterpriseDetail(id) {
+            // 调用API加载企业详情
+            console.log('加载企业详情:', id);
+        }
+    </script>
+</body>
+</html>

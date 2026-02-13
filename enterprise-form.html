@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业表单 - PULSAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>PULSAR</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <!-- 项目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>项目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="project-list.html" class="nav-item">
+                            <span>项目列表</span>
+                        </a>
+                        <a href="project-detail.html" class="nav-item">
+                            <span>项目详情</span>
+                        </a>
+                        <a href="plan-management.html" class="nav-item">
+                            <span>方案管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="case-management.html" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    <span>智能案例管理</span>
+                </a>
+                
+                <!-- 前台类目管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-sitemap"></i>
+                        <span>前台类目管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="frontend-category-domestic.html" class="nav-item">
+                            <span>国内展示目录</span>
+                        </a>
+                        <a href="frontend-category-international.html" class="nav-item">
+                            <span>国际展示目录</span>
+                        </a>
+                        <a href="frontend-category-guide.html" class="nav-item">
+                            <span>智能导购展示目录</span>
+                        </a>
+                        <a href="frontend-layout.html" class="nav-item">
+                            <span>智能导购布局管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 内容管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-file-alt"></i>
+                        <span>内容管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="content-template.html" class="nav-item">
+                            <span>内容模版管理</span>
+                        </a>
+                        <a href="content-management.html" class="nav-item">
+                            <span>内容管理</span>
+                        </a>
+                        <a href="panorama-management.html" class="nav-item">
+                            <span>全景图管理</span>
+                        </a>
+                        <a href="3d-product.html" class="nav-item">
+                            <span>3D爆品棚拍</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 营销管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>营销管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="ad-management.html" class="nav-item">
+                            <span>广告位管理</span>
+                        </a>
+                        <a href="product-pool.html" class="nav-item">
+                            <span>选品池管理</span>
+                        </a>
+                        <a href="content-pool.html" class="nav-item">
+                            <span>内容池管理</span>
+                        </a>
+                        <a href="promotion-management.html" class="nav-item">
+                            <span>优惠管理</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="data-dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>数据看板</span>
+                </a>
+            </nav>
+            
+            <div class="nav-divider">基础模块</div>
+            
+            <nav class="nav-menu">
+                <!-- 企业管理 -->
+                <div class="nav-group expanded">
+                    <div class="nav-group-title">
+                        <i class="fas fa-building"></i>
+                        <span>企业管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="enterprise-list.html" class="nav-item">
+                            <span>企业列表</span>
+                        </a>
+                        <a href="enterprise-management.html" class="nav-item">
+                            <span>组织架构</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="model-management.html" class="nav-item">
+                    <i class="fas fa-box"></i>
+                    <span>模型管理</span>
+                </a>
+                <a href="product-management.html" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>商品管理</span>
+                </a>
+                <a href="backend-category.html" class="nav-item">
+                    <i class="fas fa-folder-tree"></i>
+                    <span>后台类目</span>
+                </a>
+                <a href="attribute-management.html" class="nav-item">
+                    <i class="fas fa-tags"></i>
+                    <span>属性管理</span>
+                </a>
+                
+                <!-- 权限管理 -->
+                <div class="nav-group">
+                    <div class="nav-group-title">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>权限管理</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="menu-management.html" class="nav-item">
+                            <span>菜单管理</span>
+                        </a>
+                        <a href="role-management.html" class="nav-item">
+                            <span>角色管理</span>
+                        </a>
+                        <a href="policy-management.html" class="nav-item">
+                            <span>策略管理</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="nav-divider">个人中心</div>
+            
+            <nav class="nav-menu">
+                <a href="my-benefits.html" class="nav-item">
+                    <i class="fas fa-gift"></i>
+                    <span>权益管理</span>
+                </a>
+                <a href="my-profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>个人信息</span>
+                </a>
+                <a href="my-uploads.html" class="nav-item">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>我的上传</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://work.alibaba-inc.com/photo/482399.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <div class="user-name">晴岙</div>
+                    <div class="user-email">qingao.zxt@alibaba-inc.com</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="top-bar">
+            <div class="breadcrumb">
+                <a href="enterprise-list.html">企业列表</a>
+                <i class="fas fa-chevron-right"></i>
+                <span id="pageTitle">新建企业</span>
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn-secondary" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    返回
+                </button>
+            </div>
+        </header>
+
+        <!-- 表单内容 -->
+        <section class="content-section">
+            <form id="enterpriseForm" onsubmit="handleSubmit(event)">
+                <!-- 基本信息 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>基本信息</h3>
+                        <span class="required-tip">* 为必填项</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="required">企业名称</label>
+                                <input type="text" id="enterpriseName" name="enterpriseName" class="form-control" placeholder="请输入企业名称" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>企业编号</label>
+                                <input type="text" id="enterpriseCode" name="enterpriseCode" class="form-control" placeholder="自动生成" readonly>
+                                <small class="form-text">系统自动生成，不可修改</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="required">企业类型</label>
+                                <select id="enterpriseType" name="enterpriseType" class="form-control" required onchange="handleTypeChange()">
+                                    <option value="">请选择企业类型</option>
+                                    <option value="mall">卖场</option>
+                                    <option value="brand">品牌商</option>
+                                    <option value="dealer">经销商</option>
+                                    <option value="decoration">装修公司</option>
+                                    <option value="studio">工作室</option>
+                                    <option value="store">门店</option>
+                                    <option value="custom">自定义</option>
+                                </select>
+                                <small class="form-text">企业类型用于初始化默认配置，创建后可调整</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>是否平台企业</label>
+                                <div class="form-switch">
+                                    <input type="checkbox" id="isPlatform" name="isPlatform">
+                                    <label for="isPlatform">平台企业</label>
+                                </div>
+                                <small class="form-text">平台企业拥有特殊权限</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>所属行业</label>
+                                <div class="tag-input">
+                                    <div class="tag-list" id="industryTags"></div>
+                                    <input type="text" id="industryInput" class="form-control" placeholder="输入行业后按回车添加">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>覆盖区域</label>
+                                <div class="tag-input">
+                                    <div class="tag-list" id="regionTags"></div>
+                                    <input type="text" id="regionInput" class="form-control" placeholder="输入区域后按回车添加">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="required">联系人</label>
+                                <input type="text" id="contactName" name="contactName" class="form-control" placeholder="请输入联系人姓名" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="required">联系电话</label>
+                                <input type="tel" id="contactPhone" name="contactPhone" class="form-control" placeholder="请输入联系电话" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="required">联系邮箱</label>
+                                <input type="email" id="contactEmail" name="contactEmail" class="form-control" placeholder="请输入联系邮箱" required>
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label>企业地址</label>
+                                <input type="text" id="address" name="address" class="form-control" placeholder="请输入企业地址">
+                            </div>
+                            
+                            <div class="form-group form-group-full">
+                                <label>企业简介</label>
+                                <textarea id="description" name="description" class="form-control" rows="4" placeholder="请输入企业简介"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 业务关系 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>业务关系</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="required">品牌关系</label>
+                                <select id="brandRelation" name="brandRelation" class="form-control" required>
+                                    <option value="">请选择品牌关系</option>
+                                    <option value="own">拥有（Own）- 可上传公有模型</option>
+                                    <option value="agent">代理（Agent）- 不可上传公有模型</option>
+                                    <option value="none">无关（None）- 无品牌设置</option>
+                                </select>
+                                <small class="form-text">品牌关系决定企业是否可以上传公有模型</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>供应链关系</label>
+                                <div class="form-switch">
+                                    <input type="checkbox" id="supplyChain" name="supplyChain">
+                                    <label for="supplyChain">已加入供应链</label>
+                                </div>
+                                <small class="form-text">加入供应链后支持商品管理功能</small>
+                            </div>
+                            
+                            <div class="form-group form-group-full" id="brandListGroup" style="display: none;">
+                                <label>关联品牌</label>
+                                <div class="tag-input">
+                                    <div class="tag-list" id="brandTags"></div>
+                                    <input type="text" id="brandInput" class="form-control" placeholder="输入品牌名称后按回车添加">
+                                </div>
+                                <small class="form-text">仅当品牌关系为"拥有"或"代理"时需要填写</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 初始产品配置 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>初始产品配置</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-text-info">
+                            <i class="fas fa-info-circle"></i>
+                            根据企业类型，系统会推荐默认的产品配置。您可以在企业创建后进行调整。
+                        </div>
+                        <div class="product-config-list" id="productConfigList">
+                            <!-- 产品配置项将通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 状态设置 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>状态设置</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>企业状态</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="status" value="active" checked>
+                                    <span>启用</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="status" value="inactive">
+                                    <span>停用</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="window.history.back()">
+                        取消
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        保存
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/enterprise-management.js"></script>
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const enterpriseId = urlParams.get('id');
+        const isEditMode = !!enterpriseId;
+
+        // 产品配置模板
+        const productTemplates = {
+            mall: ['smart_guide'],
+            brand: ['domestic_3d', 'international_3d', 'smart_guide'],
+            dealer: ['smart_guide'],
+            decoration: ['domestic_3d', 'ai_designer_app'],
+            studio: ['domestic_3d', 'ai_designer_app'],
+            store: ['smart_guide'],
+            custom: []
+        };
+
+        const productNames = {
+            domestic_3d: '国内3D',
+            international_3d: '国际3D',
+            smart_guide: '智能导购',
+            precision_marketing: '精准营销',
+            ai_designer_app: 'AI设计家App'
+        };
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isEditMode) {
+                document.getElementById('pageTitle').textContent = '编辑企业';
+                loadEnterpriseData(enterpriseId);
+            } else {
+                // 生成企业编号
+                document.getElementById('enterpriseCode').value = generateEnterpriseCode();
+            }
+
+            // 初始化标签输入
+            initTagInput('industryInput', 'industryTags');
+            initTagInput('regionInput', 'regionTags');
+            initTagInput('brandInput', 'brandTags');
+
+            // 监听品牌关系变化
+            document.getElementById('brandRelation').addEventListener('change', function() {
+                const brandListGroup = document.getElementById('brandListGroup');
+                if (this.value === 'own' || this.value === 'agent') {
+                    brandListGroup.style.display = 'block';
+                } else {
+                    brandListGroup.style.display = 'none';
+                }
+            });
+        });
+
+        // 生成企业编号
+        function generateEnterpriseCode() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `ENT-${timestamp.toString().slice(-6)}${random}`;
+        }
+
+        // 加载企业数据（编辑模式）
+        function loadEnterpriseData(id) {
+            // 调用API加载企业数据
+            console.log('加载企业数据:', id);
+            // 模拟数据
+            const mockData = {
+                enterpriseName: '阿里巴巴集团',
+                enterpriseCode: 'ENT-001',
+                enterpriseType: 'brand',
+                isPlatform: true,
+                industries: ['互联网', '电子商务'],
+                regions: ['全国', '国际'],
+                contactName: '张三',
+                contactPhone: '138-0000-0000',
+                contactEmail: 'contact@alibaba.com',
+                address: '浙江省杭州市余杭区文一西路969号',
+                description: '阿里巴巴集团是一家以电子商务为核心的互联网公司',
+                brandRelation: 'own',
+                brands: ['阿里巴巴', '淘宝', '天猫'],
+                supplyChain: true,
+                status: 'active'
+            };
+            fillFormData(mockData);
+        }
+
+        // 填充表单数据
+        function fillFormData(data) {
+            document.getElementById('enterpriseName').value = data.enterpriseName || '';
+            document.getElementById('enterpriseCode').value = data.enterpriseCode || '';
+            document.getElementById('enterpriseType').value = data.enterpriseType || '';
+            document.getElementById('isPlatform').checked = data.isPlatform || false;
+            document.getElementById('contactName').value = data.contactName || '';
+            document.getElementById('contactPhone').value = data.contactPhone || '';
+            document.getElementById('contactEmail').value = data.contactEmail || '';
+            document.getElementById('address').value = data.address || '';
+            document.getElementById('description').value = data.description || '';
+            document.getElementById('brandRelation').value = data.brandRelation || '';
+            document.getElementById('supplyChain').checked = data.supplyChain || false;
+            
+            // 填充标签
+            if (data.industries) {
+                data.industries.forEach(industry => addTag('industryTags', industry));
+            }
+            if (data.regions) {
+                data.regions.forEach(region => addTag('regionTags', region));
+            }
+            if (data.brands) {
+                data.brands.forEach(brand => addTag('brandTags', brand));
+                document.getElementById('brandListGroup').style.display = 'block';
+            }
+            
+            // 设置状态
+            document.querySelector(`input[name="status"][value="${data.status}"]`).checked = true;
+            
+            // 触发类型变化以加载产品配置
+            handleTypeChange();
+        }
+
+        // 处理企业类型变化
+        function handleTypeChange() {
+            const type = document.getElementById('enterpriseType').value;
+            if (type) {
+                renderProductConfig(type);
+            }
+        }
+
+        // 渲染产品配置
+        function renderProductConfig(type) {
+            const products = productTemplates[type] || [];
+            const container = document.getElementById('productConfigList');
+            
+            if (products.length === 0) {
+                container.innerHTML = '<div class="empty-state">该企业类型暂无推荐产品，可在创建后手动配置</div>';
+                return;
+            }
+            
+            container.innerHTML = products.map(productCode => `
+                <div class="product-config-item">
+                    <div class="product-config-header">
+                        <div class="form-switch">
+                            <input type="checkbox" id="product_${productCode}" name="products" value="${productCode}" checked>
+                            <label for="product_${productCode}">
+                                <i class="fas fa-cube"></i>
+                                ${productNames[productCode]}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="product-config-desc">
+                        推荐启用此产品
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 初始化标签输入
+        function initTagInput(inputId, tagsId) {
+            const input = document.getElementById(inputId);
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const value = this.value.trim();
+                    if (value) {
+                        addTag(tagsId, value);
+                        this.value = '';
+                    }
+                }
+            });
+        }
+
+        // 添加标签
+        function addTag(containerId, text) {
+            const container = document.getElementById(containerId);
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.innerHTML = `
+                ${text}
+                <i class="fas fa-times" onclick="removeTag(this)"></i>
+            `;
+            container.appendChild(tag);
+        }
+
+        // 删除标签
+        function removeTag(element) {
+            element.parentElement.remove();
+        }
+
+        // 获取标签值
+        function getTagValues(containerId) {
+            const container = document.getElementById(containerId);
+            const tags = container.querySelectorAll('.tag');
+            return Array.from(tags).map(tag => tag.textContent.trim());
+        }
+
+        // 提交表单
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 收集表单数据
+            const formData = {
+                enterpriseName: document.getElementById('enterpriseName').value,
+                enterpriseCode: document.getElementById('enterpriseCode').value,
+                enterpriseType: document.getElementById('enterpriseType').value,
+                isPlatform: document.getElementById('isPlatform').checked,
+                industries: getTagValues('industryTags'),
+                regions: getTagValues('regionTags'),
+                contactName: document.getElementById('contactName').value,
+                contactPhone: document.getElementById('contactPhone').value,
+                contactEmail: document.getElementById('contactEmail').value,
+                address: document.getElementById('address').value,
+                description: document.getElementById('description').value,
+                brandRelation: document.getElementById('brandRelation').value,
+                brands: getTagValues('brandTags'),
+                supplyChain: document.getElementById('supplyChain').checked,
+                products: Array.from(document.querySelectorAll('input[name="products"]:checked')).map(cb => cb.value),
+                status: document.querySelector('input[name="status"]:checked').value
+            };
+            
+            console.log('提交数据:', formData);
+            
+            // 调用API保存数据
+            if (isEditMode) {
+                // 更新企业
+                updateEnterprise(enterpriseId, formData);
+            } else {
+                // 创建企业
+                createEnterprise(formData);
+            }
+        }
+
+        // 创建企业
+        function createEnterprise(data) {
+            // 调用API创建企业
+            console.log('创建企业:', data);
+            showToast('企业创建成功', 'success');
+            setTimeout(() => {
+                window.location.href = 'enterprise-list.html';
+            }, 1000);
+        }
+
+        // 更新企业
+        function updateEnterprise(id, data) {
+            // 调用API更新企业
+            console.log('更新企业:', id, data);
+            showToast('企业更新成功', 'success');
+            setTimeout(() => {
+                window.location.href = `enterprise-detail.html?id=${id}`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
