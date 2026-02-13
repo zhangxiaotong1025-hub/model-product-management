@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 转 Figma - 自动转换工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #64748b;
+        }
+
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 32px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #f1f5f9;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .preview-area {
+            margin-top: 32px;
+            display: none;
+        }
+
+        .preview-area.show {
+            display: block;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .preview-header h3 {
+            font-size: 18px;
+            color: #1e293b;
+        }
+
+        .preview-frame {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .status {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 24px;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .instructions {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .instructions h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        .instructions li {
+            margin-bottom: 12px;
+        }
+
+        .instructions code {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 HTML 转 Figma 转换器</h1>
+            <p>将您的 HTML 页面自动转换为 Figma 可导入的 SVG 文件</p>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">拖拽 HTML 文件到这里，或点击选择文件</div>
+            <div class="upload-hint">支持 .html 文件</div>
+            <input type="file" id="fileInput" accept=".html" />
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="preview-area" id="previewArea">
+            <div class="preview-header">
+                <h3>📄 页面预览</h3>
+            </div>
+            <div class="preview-frame">
+                <iframe id="previewIframe" class="preview-iframe"></iframe>
+            </div>
+            <div class="actions">
+                <button class="btn btn-primary" id="convertBtn" disabled>
+                    <span id="convertIcon">🔄</span>
+                    <span id="convertText">转换为 SVG</span>
+                </button>
+                <button class="btn btn-primary" id="downloadBtn" style="display: none;">
+                    <span>💾</span>
+                    <span>下载 SVG 文件</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📖 使用说明</h3>
+            <ol>
+                <li><strong>上传 HTML 文件</strong>：拖拽或选择您的 HTML 文件（如 <code>enterprise-list.html</code>）</li>
+                <li><strong>预览页面</strong>：查看页面渲染效果</li>
+                <li><strong>转换为 SVG</strong>：点击转换按钮，自动生成 SVG 文件</li>
+                <li><strong>导入 Figma</strong>：
+                    <ul style="margin-top: 8px;">
+                        <li>在 Figma 中，按 <code>Cmd/Ctrl + V</code> 粘贴 SVG</li>
+                        <li>或者拖拽下载的 SVG 文件到 Figma</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewArea = document.getElementById('previewArea');
+        const previewIframe = document.getElementById('previewIframe');
+        const convertBtn = document.getElementById('convertBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const status = document.getElementById('status');
+        const convertIcon = document.getElementById('convertIcon');
+        const convertText = document.getElementById('convertText');
+
+        let currentHTML = '';
+        let currentFileName = '';
+
+        // 上传区域点击
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // 拖拽事件
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        // 文件选择
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        // 处理文件
+        function handleFile(file) {
+            if (!file.name.endsWith('.html')) {
+                showStatus('❌ 请选择 HTML 文件', 'error');
+                return;
+            }
+
+            currentFileName = file.name;
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                currentHTML = e.target.result;
+                loadPreview(currentHTML);
+                showStatus('✅ 文件加载成功！', 'success');
+            };
+
+            reader.onerror = () => {
+                showStatus('❌ 文件读取失败', 'error');
+            };
+
+            reader.readAsText(file);
+        }
+
+        // 加载预览
+        function loadPreview(html) {
+            previewIframe.srcdoc = html;
+            previewArea.classList.add('show');
+            convertBtn.disabled = false;
+            
+            // 等待 iframe 加载完成
+            previewIframe.onload = () => {
+                showStatus('✅ 页面预览加载完成，可以开始转换', 'success');
+            };
+        }
+
+        // 转换为 SVG
+        convertBtn.addEventListener('click', async () => {
+            convertIcon.textContent = '⏳';
+            convertIcon.classList.add('loading');
+            convertText.textContent = '转换中...';
+            convertBtn.disabled = true;
+            
+            showStatus('🔄 正在转换页面为 SVG...', 'info');
+
+            try {
+                // 获取 iframe 的文档
+                const iframeDoc = previewIframe.contentDocument || previewIframe.contentWindow.document;
+                const iframeBody = iframeDoc.body;
+
+                // 使用 html2canvas 转换为 canvas
+                const canvas = await html2canvas(iframeBody, {
+                    allowTaint: true,
+                    useCORS: true,
+                    scale: 2,
+                    backgroundColor: '#F5F7FA'
+                });
+
+                // 转换为 SVG
+                const svgData = canvasToSVG(canvas);
+                
+                // 复制到剪贴板
+                await copyToClipboard(svgData);
+                
+                // 创建下载链接
+                createDownloadLink(svgData);
+                
+                convertIcon.textContent = '✅';
+                convertIcon.classList.remove('loading');
+                convertText.textContent = '转换成功！';
+                downloadBtn.style.display = 'inline-flex';
+                
+                showStatus('✅ 转换成功！SVG 已复制到剪贴板，您可以直接在 Figma 中粘贴（Cmd/Ctrl + V）', 'success');
+                
+            } catch (error) {
+                console.error('转换失败:', error);
+                convertIcon.textContent = '❌';
+                convertIcon.classList.remove('loading');
+                convertText.textContent = '转换失败';
+                showStatus('❌ 转换失败：' + error.message, 'error');
+            } finally {
+                setTimeout(() => {
+                    convertIcon.textContent = '🔄';
+                    convertText.textContent = '重新转换';
+                    convertBtn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Canvas 转 SVG
+        function canvasToSVG(canvas) {
+            const dataURL = canvas.toDataURL('image/png');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image width="${width}" height="${height}" xlink:href="${dataURL}"/>
+</svg>`;
+            
+            return svg;
+        }
+
+        // 复制到剪贴板
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+            } catch (err) {
+                // 降级方案
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // 创建下载链接
+        function createDownloadLink(svgData) {
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            
+            downloadBtn.onclick = () => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = currentFileName.replace('.html', '.svg');
+                a.click();
+                showStatus('✅ SVG 文件已下载！', 'success');
+            };
+        }
+
+        // 显示状态
+        function showStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = `status show ${type}`;
+        }
+
+        // 页面加载提示
+        window.addEventListener('load', () => {
+            console.log('🎨 HTML 转 Figma 转换器已就绪');
+            console.log('📁 请上传 HTML 文件开始转换');
+        });
+    </script>
+</body>
+</html>
