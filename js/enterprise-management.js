@@ -38,8 +38,16 @@ const ENTERPRISE_STATUS = {
     inactive: { label: '停用', color: 'inactive' }
 };
 
-// 企业类型默认产品配置
-const TYPE_DEFAULT_PRODUCTS = {
+// 注意：企业类型不参与运行期权限判断
+// 企业类型仅用于：
+// 1. UI 展示（标签、筛选）
+// 2. 创建企业时的初始化建议（非强制）
+// 3. 统计分析
+// 
+// 权限判断的第一维度是「产品」，而非企业类型
+// 
+// 企业类型与产品的推荐关系（仅用于创建时的UI提示，不影响实际权限）
+const TYPE_PRODUCT_SUGGESTIONS = {
     mall: ['smart_guide'],
     brand: ['domestic_3d', 'international_3d', 'smart_guide'],
     dealer: ['smart_guide'],
@@ -532,7 +540,7 @@ if (typeof window !== 'undefined') {
         PRODUCTS,
         BRAND_RELATIONS,
         ENTERPRISE_STATUS,
-        TYPE_DEFAULT_PRODUCTS,
+        TYPE_PRODUCT_SUGGESTIONS,
         
         // 工具函数
         formatDateTime,
