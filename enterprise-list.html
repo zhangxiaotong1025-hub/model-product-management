@@ -213,59 +213,76 @@
 
     <!-- 主内容区 -->
     <main class="main-content">
-        <!-- 顶部栏 -->
-        <header class="top-bar">
-            <h1 class="page-title">企业列表</h1>
-            <div class="top-bar-actions">
+        <!-- 页面标题区 -->
+        <header class="page-header">
+            <div class="page-header-content">
+                <h1 class="page-title">企业管理</h1>
+                <p class="page-description">管理平台内企业主体</p>
+            </div>
+        </header>
+
+        <!-- 筛选区（Filter Bar） -->
+        <section class="filter-section">
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="搜索企业名称..." />
+                    </div>
+                    
+                    <select class="filter-select" id="typeFilter">
+                        <option value="">全部类型</option>
+                        <option value="brand">品牌商</option>
+                        <option value="dealer">经销商</option>
+                        <option value="store">门店</option>
+                        <option value="decoration">装修公司</option>
+                    </select>
+                    
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">全部状态</option>
+                        <option value="enabled">启用</option>
+                        <option value="disabled">停用</option>
+                    </select>
+                    
+                    <select class="filter-select" id="productFilter" multiple>
+                        <option value="domestic_3d">国内3D</option>
+                        <option value="international_3d">国际3D</option>
+                        <option value="smart_guide">智能导购</option>
+                        <option value="precision_marketing">精准营销</option>
+                        <option value="ai_designer_app">AI设计家App</option>
+                    </select>
+                    
+                    <button class="btn-primary" onclick="handleQuery()">
+                        <i class="fas fa-search"></i>
+                        查询
+                    </button>
+                    
+                    <button class="btn-secondary" onclick="resetFilters()">
+                        <i class="fas fa-redo"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 操作区（Action Bar） -->
+        <section class="action-bar">
+            <div class="action-bar-left">
+                <span class="result-count">共 <strong id="totalCount">5</strong> 条记录</span>
+            </div>
+            <div class="action-bar-right">
+                <button class="btn-secondary" onclick="batchDisable()" id="batchDisableBtn" style="display: none;">
+                    <i class="fas fa-ban"></i>
+                    批量停用
+                </button>
                 <button class="btn-primary" onclick="window.location.href='enterprise-form.html'">
                     <i class="fas fa-plus"></i>
                     新建企业
                 </button>
             </div>
-        </header>
-
-        <!-- 筛选栏 -->
-        <section class="filter-bar">
-            <div class="filter-group">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="搜索企业名称、编号..." onkeyup="handleSearch()">
-                </div>
-                
-                <select class="filter-select" id="typeFilter" onchange="handleFilter()">
-                    <option value="">全部类型</option>
-                    <option value="mall">卖场</option>
-                    <option value="brand">品牌商</option>
-                    <option value="dealer">经销商</option>
-                    <option value="decoration">装修公司</option>
-                    <option value="studio">工作室</option>
-                    <option value="store">门店</option>
-                    <option value="custom">自定义</option>
-                </select>
-                
-                <select class="filter-select" id="statusFilter" onchange="handleFilter()">
-                    <option value="">全部状态</option>
-                    <option value="active">启用</option>
-                    <option value="inactive">停用</option>
-                </select>
-                
-                <select class="filter-select" id="productFilter" onchange="handleFilter()">
-                    <option value="">全部产品</option>
-                    <option value="domestic_3d">国内3D</option>
-                    <option value="international_3d">国际3D</option>
-                    <option value="smart_guide">智能导购</option>
-                    <option value="precision_marketing">精准营销</option>
-                    <option value="ai_designer_app">AI设计家App</option>
-                </select>
-                
-                <button class="btn-secondary" onclick="resetFilters()">
-                    <i class="fas fa-redo"></i>
-                    重置
-                </button>
-            </div>
         </section>
 
-        <!-- 企业列表 -->
+        <!-- 企业列表（Table） -->
         <section class="content-section">
             <div class="table-container">
                 <table class="data-table">
@@ -274,208 +291,183 @@
                             <th width="50">
                                 <input type="checkbox" id="selectAll" onchange="handleSelectAll(this)">
                             </th>
-                            <th width="120">企业编号</th>
                             <th>企业名称</th>
                             <th width="120">企业类型</th>
-                            <th width="150">启用产品</th>
-                            <th width="120">品牌关系</th>
-                            <th width="100">状态</th>
-                            <th width="150">创建时间</th>
-                            <th width="180">操作</th>
+                            <th width="100">企业状态</th>
+                            <th width="200">启用产品</th>
+                            <th width="120">创建时间</th>
+                            <th width="120">最近更新</th>
+                            <th width="200">操作</th>
                         </tr>
                     </thead>
                     <tbody id="enterpriseTableBody">
                         <!-- 示例数据 -->
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><span class="text-mono">ENT-001</span></td>
+                            <td><input type="checkbox" class="row-checkbox" data-id="ent_001" onchange="updateBatchActions()"></td>
                             <td>
-                                <div class="enterprise-info">
-                                    <i class="fas fa-building text-primary"></i>
-                                    <div>
-                                        <div class="enterprise-name">阿里巴巴集团</div>
-                                        <div class="enterprise-desc">平台企业</div>
-                                    </div>
-                                </div>
+                                <a href="enterprise-detail.html?id=ent_001" class="enterprise-name-link">
+                                    阿里巴巴集团
+                                </a>
                             </td>
                             <td><span class="badge badge-info">品牌商</span></td>
+                            <td><span class="status-badge status-enabled">启用</span></td>
                             <td>
-                                <div class="product-tags">
+                                <div class="product-tags" title="国内3D, 国际3D, 智能导购, 精准营销">
                                     <span class="tag tag-sm">国内3D</span>
+                                    <span class="tag tag-sm">国际3D</span>
                                     <span class="tag tag-sm">智能导购</span>
-                                    <span class="tag tag-sm">+2</span>
+                                    <span class="tag tag-sm tag-more">+1</span>
                                 </div>
                             </td>
-                            <td><span class="badge badge-success">拥有</span></td>
-                            <td><span class="status-badge status-active">启用</span></td>
-                            <td>2026-01-15 10:30</td>
+                            <td>2025-01-01</td>
+                            <td>2025-02-01</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="icon-btn" title="查看详情" onclick="viewEnterprise('ENT-001')">
+                                    <button class="icon-btn" title="查看" onclick="viewEnterprise('ent_001')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ENT-001')">
+                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ent_001')">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ENT-001')">
+                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ent_001')">
                                         <i class="fas fa-cog"></i>
                                     </button>
-                                    <button class="icon-btn" title="删除" onclick="deleteEnterprise('ENT-001')">
-                                        <i class="fas fa-trash"></i>
+                                    <button class="icon-btn" title="停用" onclick="toggleStatus('ent_001', 'disabled')">
+                                        <i class="fas fa-ban"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><span class="text-mono">ENT-002</span></td>
+                            <td><input type="checkbox" class="row-checkbox" data-id="ent_002" onchange="updateBatchActions()"></td>
                             <td>
-                                <div class="enterprise-info">
-                                    <i class="fas fa-building text-secondary"></i>
-                                    <div>
-                                        <div class="enterprise-name">居然之家</div>
-                                        <div class="enterprise-desc">家居卖场</div>
-                                    </div>
-                                </div>
+                                <a href="enterprise-detail.html?id=ent_002" class="enterprise-name-link">
+                                    居然之家
+                                </a>
                             </td>
-                            <td><span class="badge badge-warning">卖场</span></td>
+                            <td><span class="badge badge-warning">门店</span></td>
+                            <td><span class="status-badge status-enabled">启用</span></td>
                             <td>
                                 <div class="product-tags">
                                     <span class="tag tag-sm">智能导购</span>
                                 </div>
                             </td>
-                            <td><span class="badge badge-secondary">无关</span></td>
-                            <td><span class="status-badge status-active">启用</span></td>
-                            <td>2026-01-20 14:20</td>
+                            <td>2025-01-05</td>
+                            <td>2025-02-05</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="icon-btn" title="查看详情" onclick="viewEnterprise('ENT-002')">
+                                    <button class="icon-btn" title="查看" onclick="viewEnterprise('ent_002')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ENT-002')">
+                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ent_002')">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ENT-002')">
+                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ent_002')">
                                         <i class="fas fa-cog"></i>
                                     </button>
-                                    <button class="icon-btn" title="删除" onclick="deleteEnterprise('ENT-002')">
-                                        <i class="fas fa-trash"></i>
+                                    <button class="icon-btn" title="停用" onclick="toggleStatus('ent_002', 'disabled')">
+                                        <i class="fas fa-ban"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><span class="text-mono">ENT-003</span></td>
+                            <td><input type="checkbox" class="row-checkbox" data-id="ent_003" onchange="updateBatchActions()"></td>
                             <td>
-                                <div class="enterprise-info">
-                                    <i class="fas fa-building text-success"></i>
-                                    <div>
-                                        <div class="enterprise-name">顾家家居</div>
-                                        <div class="enterprise-desc">家具品牌</div>
-                                    </div>
-                                </div>
+                                <a href="enterprise-detail.html?id=ent_003" class="enterprise-name-link">
+                                    顾家家居
+                                </a>
                             </td>
                             <td><span class="badge badge-info">品牌商</span></td>
+                            <td><span class="status-badge status-enabled">启用</span></td>
                             <td>
                                 <div class="product-tags">
                                     <span class="tag tag-sm">国内3D</span>
                                     <span class="tag tag-sm">国际3D</span>
                                 </div>
                             </td>
-                            <td><span class="badge badge-success">拥有</span></td>
-                            <td><span class="status-badge status-active">启用</span></td>
-                            <td>2026-01-22 09:15</td>
+                            <td>2025-01-10</td>
+                            <td>2025-02-10</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="icon-btn" title="查看详情" onclick="viewEnterprise('ENT-003')">
+                                    <button class="icon-btn" title="查看" onclick="viewEnterprise('ent_003')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ENT-003')">
+                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ent_003')">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ENT-003')">
+                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ent_003')">
                                         <i class="fas fa-cog"></i>
                                     </button>
-                                    <button class="icon-btn" title="删除" onclick="deleteEnterprise('ENT-003')">
-                                        <i class="fas fa-trash"></i>
+                                    <button class="icon-btn" title="停用" onclick="toggleStatus('ent_003', 'disabled')">
+                                        <i class="fas fa-ban"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><span class="text-mono">ENT-004</span></td>
+                            <td><input type="checkbox" class="row-checkbox" data-id="ent_004" onchange="updateBatchActions()"></td>
                             <td>
-                                <div class="enterprise-info">
-                                    <i class="fas fa-building text-warning"></i>
-                                    <div>
-                                        <div class="enterprise-name">红星美凯龙经销商</div>
-                                        <div class="enterprise-desc">区域经销商</div>
-                                    </div>
-                                </div>
+                                <a href="enterprise-detail.html?id=ent_004" class="enterprise-name-link">
+                                    红星美凯龙经销商
+                                </a>
                             </td>
                             <td><span class="badge badge-primary">经销商</span></td>
+                            <td><span class="status-badge status-enabled">启用</span></td>
                             <td>
                                 <div class="product-tags">
                                     <span class="tag tag-sm">智能导购</span>
                                 </div>
                             </td>
-                            <td><span class="badge badge-info">代理</span></td>
-                            <td><span class="status-badge status-active">启用</span></td>
-                            <td>2026-01-25 16:45</td>
+                            <td>2025-01-15</td>
+                            <td>2025-02-15</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="icon-btn" title="查看详情" onclick="viewEnterprise('ENT-004')">
+                                    <button class="icon-btn" title="查看" onclick="viewEnterprise('ent_004')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ENT-004')">
+                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ent_004')">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ENT-004')">
+                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ent_004')">
                                         <i class="fas fa-cog"></i>
                                     </button>
-                                    <button class="icon-btn" title="删除" onclick="deleteEnterprise('ENT-004')">
-                                        <i class="fas fa-trash"></i>
+                                    <button class="icon-btn" title="停用" onclick="toggleStatus('ent_004', 'disabled')">
+                                        <i class="fas fa-ban"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" class="row-checkbox"></td>
-                            <td><span class="text-mono">ENT-005</span></td>
+                            <td><input type="checkbox" class="row-checkbox" data-id="ent_005" onchange="updateBatchActions()"></td>
                             <td>
-                                <div class="enterprise-info">
-                                    <i class="fas fa-building text-danger"></i>
-                                    <div>
-                                        <div class="enterprise-name">尚品宅配</div>
-                                        <div class="enterprise-desc">定制家居</div>
-                                    </div>
-                                </div>
+                                <a href="enterprise-detail.html?id=ent_005" class="enterprise-name-link">
+                                    尚品宅配
+                                </a>
                             </td>
                             <td><span class="badge badge-success">装修公司</span></td>
+                            <td><span class="status-badge status-disabled">停用</span></td>
                             <td>
                                 <div class="product-tags">
                                     <span class="tag tag-sm">国内3D</span>
                                     <span class="tag tag-sm">AI设计家</span>
                                 </div>
                             </td>
-                            <td><span class="badge badge-secondary">无关</span></td>
-                            <td><span class="status-badge status-inactive">停用</span></td>
-                            <td>2026-01-28 11:20</td>
+                            <td>2025-01-20</td>
+                            <td>2025-02-20</td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="icon-btn" title="查看详情" onclick="viewEnterprise('ENT-005')">
+                                    <button class="icon-btn" title="查看" onclick="viewEnterprise('ent_005')">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ENT-005')">
+                                    <button class="icon-btn" title="编辑" onclick="editEnterprise('ent_005')">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ENT-005')">
+                                    <button class="icon-btn" title="产品配置" onclick="configProducts('ent_005')">
                                         <i class="fas fa-cog"></i>
                                     </button>
-                                    <button class="icon-btn" title="删除" onclick="deleteEnterprise('ENT-005')">
-                                        <i class="fas fa-trash"></i>
+                                    <button class="icon-btn" title="启用" onclick="toggleStatus('ent_005', 'enabled')">
+                                        <i class="fas fa-check"></i>
                                     </button>
                                 </div>
                             </td>
@@ -484,119 +476,323 @@
                 </table>
             </div>
 
-            <!-- 分页 -->
+            <!-- 分页（Pagination） -->
             <div class="pagination">
                 <div class="pagination-info">
-                    显示 1-5 条，共 5 条记录
+                    显示 1-5 条，共 <span id="paginationTotal">5</span> 条记录
                 </div>
                 <div class="pagination-controls">
-                    <button class="pagination-btn" disabled>
+                    <select class="pagination-size" id="pageSize" onchange="handlePageSizeChange()">
+                        <option value="20" selected>20 条/页</option>
+                        <option value="50">50 条/页</option>
+                        <option value="100">100 条/页</option>
+                    </select>
+                    
+                    <button class="pagination-btn" onclick="goToPage(1)" disabled>
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="pagination-btn active">1</button>
-                    <button class="pagination-btn">2</button>
-                    <button class="pagination-btn">3</button>
-                    <button class="pagination-btn">
+                    <button class="pagination-btn active" onclick="goToPage(1)">1</button>
+                    <button class="pagination-btn" onclick="goToPage(2)">2</button>
+                    <button class="pagination-btn" onclick="goToPage(3)">3</button>
+                    <button class="pagination-btn" onclick="goToPage(2)">
                         <i class="fas fa-chevron-right"></i>
                     </button>
+                    
+                    <div class="pagination-jump">
+                        <span>跳至</span>
+                        <input type="number" id="jumpPage" min="1" max="3" value="1" />
+                        <span>页</span>
+                        <button class="btn-secondary btn-sm" onclick="handleJumpPage()">确定</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 批量操作栏 -->
-        <div class="batch-actions" id="batchActions" style="display: none;">
-            <div class="batch-info">
-                已选择 <span id="selectedCount">0</span> 项
-            </div>
-            <div class="batch-buttons">
-                <button class="btn-secondary btn-sm" onclick="batchEnable()">
-                    <i class="fas fa-check"></i>
-                    批量启用
-                </button>
-                <button class="btn-secondary btn-sm" onclick="batchDisable()">
-                    <i class="fas fa-ban"></i>
-                    批量停用
-                </button>
-                <button class="btn-danger btn-sm" onclick="batchDelete()">
-                    <i class="fas fa-trash"></i>
-                    批量删除
-                </button>
-            </div>
+        <!-- 空状态 -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-building empty-icon"></i>
+            <p class="empty-text">暂无企业，请创建企业</p>
+            <button class="btn-primary" onclick="window.location.href='enterprise-form.html'">
+                <i class="fas fa-plus"></i>
+                新建企业
+            </button>
+        </div>
+
+        <!-- 加载状态 -->
+        <div class="loading-skeleton" id="loadingSkeleton" style="display: none;">
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
         </div>
     </main>
 
     <script src="js/common.js"></script>
     <script src="js/enterprise-management.js"></script>
     <script>
-        // 查看企业详情
-        function viewEnterprise(id) {
-            window.location.href = `enterprise-detail.html?id=${id}`;
-        }
+        // ==================== 页面初始化 ====================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化加载数据
+            loadEnterpriseList();
+        });
 
-        // 编辑企业
-        function editEnterprise(id) {
-            window.location.href = `enterprise-form.html?id=${id}`;
-        }
-
-        // 配置产品
-        function configProducts(id) {
-            window.location.href = `enterprise-products.html?id=${id}`;
-        }
-
-        // 删除企业
-        function deleteEnterprise(id) {
-            if (confirm('确定要删除该企业吗？此操作不可恢复。')) {
-                // 调用删除API
-                console.log('删除企业:', id);
-                showToast('企业删除成功', 'success');
+        // ==================== 数据加载 ====================
+        
+        /**
+         * 加载企业列表
+         */
+        async function loadEnterpriseList() {
+            try {
+                // 显示加载状态
+                showLoading();
+                
+                // 调用API获取数据
+                // const response = await fetch('/api/enterprises?' + getQueryParams());
+                // const data = await response.json();
+                
+                // 模拟数据（实际应该从API获取）
+                const data = {
+                    total: 5,
+                    list: [] // 当前页面已有示例数据
+                };
+                
+                // 更新总数
+                document.getElementById('totalCount').textContent = data.total;
+                document.getElementById('paginationTotal').textContent = data.total;
+                
+                // 隐藏加载状态
+                hideLoading();
+                
+                // 如果没有数据，显示空状态
+                if (data.total === 0) {
+                    showEmptyState();
+                }
+                
+            } catch (error) {
+                console.error('加载企业列表失败:', error);
+                hideLoading();
+                showToast('加载失败，请稍后重试', 'error');
             }
         }
 
-        // 搜索
-        function handleSearch() {
-            const keyword = document.getElementById('searchInput').value;
-            console.log('搜索关键词:', keyword);
-            // 调用搜索API
+        /**
+         * 获取查询参数
+         */
+        function getQueryParams() {
+            const params = new URLSearchParams();
+            
+            const searchInput = document.getElementById('searchInput').value;
+            if (searchInput) params.append('name', searchInput);
+            
+            const typeFilter = document.getElementById('typeFilter').value;
+            if (typeFilter) params.append('type', typeFilter);
+            
+            const statusFilter = document.getElementById('statusFilter').value;
+            if (statusFilter) params.append('status', statusFilter);
+            
+            const productFilter = document.getElementById('productFilter').value;
+            if (productFilter) params.append('products', productFilter);
+            
+            return params.toString();
         }
 
-        // 筛选
-        function handleFilter() {
-            const type = document.getElementById('typeFilter').value;
-            const status = document.getElementById('statusFilter').value;
-            const product = document.getElementById('productFilter').value;
-            console.log('筛选条件:', { type, status, product });
-            // 调用筛选API
+        // ==================== 筛选操作 ====================
+        
+        /**
+         * 查询按钮点击
+         */
+        function handleQuery() {
+            loadEnterpriseList();
         }
 
-        // 重置筛选
+        /**
+         * 重置筛选
+         */
         function resetFilters() {
             document.getElementById('searchInput').value = '';
             document.getElementById('typeFilter').value = '';
             document.getElementById('statusFilter').value = '';
-            document.getElementById('productFilter').value = '';
-            handleFilter();
+            document.getElementById('productFilter').selectedIndex = -1;
+            loadEnterpriseList();
         }
 
-        // 全选
+        // ==================== 行操作 ====================
+        
+        /**
+         * 查看企业详情
+         */
+        function viewEnterprise(id) {
+            window.location.href = `enterprise-detail.html?id=${id}`;
+        }
+
+        /**
+         * 编辑企业
+         */
+        function editEnterprise(id) {
+            window.location.href = `enterprise-form.html?id=${id}`;
+        }
+
+        /**
+         * 配置产品
+         */
+        function configProducts(id) {
+            window.location.href = `enterprise-products.html?id=${id}`;
+        }
+
+        /**
+         * 切换企业状态（启用/停用）
+         */
+        async function toggleStatus(id, newStatus) {
+            const actionText = newStatus === 'enabled' ? '启用' : '停用';
+            
+            if (!confirm(`确定要${actionText}该企业吗？`)) {
+                return;
+            }
+            
+            try {
+                // 调用API
+                // const response = await fetch(`/api/enterprises/${id}/status`, {
+                //     method: 'PUT',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ status: newStatus })
+                // });
+                
+                console.log(`${actionText}企业:`, id, newStatus);
+                showToast(`企业${actionText}成功`, 'success');
+                
+                // 刷新列表
+                loadEnterpriseList();
+                
+            } catch (error) {
+                console.error(`${actionText}企业失败:`, error);
+                showToast(`${actionText}失败，请稍后重试`, 'error');
+            }
+        }
+
+        // ==================== 批量操作 ====================
+        
+        /**
+         * 全选/取消全选
+         */
         function handleSelectAll(checkbox) {
             const checkboxes = document.querySelectorAll('.row-checkbox');
             checkboxes.forEach(cb => cb.checked = checkbox.checked);
             updateBatchActions();
         }
 
-        // 更新批量操作栏
+        /**
+         * 更新批量操作按钮显示
+         */
         function updateBatchActions() {
             const checkboxes = document.querySelectorAll('.row-checkbox:checked');
             const count = checkboxes.length;
-            const batchActions = document.getElementById('batchActions');
-            const selectedCount = document.getElementById('selectedCount');
+            const batchDisableBtn = document.getElementById('batchDisableBtn');
             
             if (count > 0) {
-                batchActions.style.display = 'flex';
-                selectedCount.textContent = count;
+                batchDisableBtn.style.display = 'inline-flex';
+                batchDisableBtn.innerHTML = `<i class="fas fa-ban"></i> 批量停用 (${count})`;
             } else {
-                batchActions.style.display = 'none';
+                batchDisableBtn.style.display = 'none';
             }
+        }
+
+        /**
+         * 批量停用
+         */
+        async function batchDisable() {
+            const checkboxes = document.querySelectorAll('.row-checkbox:checked');
+            const ids = Array.from(checkboxes).map(cb => cb.dataset.id);
+            
+            if (ids.length === 0) {
+                showToast('请先选择要停用的企业', 'warning');
+                return;
+            }
+            
+            if (!confirm(`确定要停用选中的 ${ids.length} 个企业吗？`)) {
+                return;
+            }
+            
+            try {
+                // 调用API
+                // const response = await fetch('/api/enterprises/batch-disable', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ ids })
+                // });
+                
+                console.log('批量停用企业:', ids);
+                showToast(`成功停用 ${ids.length} 个企业`, 'success');
+                
+                // 刷新列表
+                loadEnterpriseList();
+                
+                // 清空选择
+                document.getElementById('selectAll').checked = false;
+                updateBatchActions();
+                
+            } catch (error) {
+                console.error('批量停用失败:', error);
+                showToast('批量停用失败，请稍后重试', 'error');
+            }
+        }
+
+        // ==================== 分页操作 ====================
+        
+        /**
+         * 跳转到指定页
+         */
+        function goToPage(page) {
+            console.log('跳转到第', page, '页');
+            // 实际应该调用API加载对应页的数据
+            loadEnterpriseList();
+        }
+
+        /**
+         * 改变每页数量
+         */
+        function handlePageSizeChange() {
+            const pageSize = document.getElementById('pageSize').value;
+            console.log('每页显示', pageSize, '条');
+            loadEnterpriseList();
+        }
+
+        /**
+         * 跳页
+         */
+        function handleJumpPage() {
+            const jumpPage = document.getElementById('jumpPage').value;
+            if (jumpPage && jumpPage > 0) {
+                goToPage(parseInt(jumpPage));
+            }
+        }
+
+        // ==================== UI 状态控制 ====================
+        
+        /**
+         * 显示加载状态
+         */
+        function showLoading() {
+            document.getElementById('loadingSkeleton').style.display = 'block';
+            document.querySelector('.table-container').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
+        /**
+         * 隐藏加载状态
+         */
+        function hideLoading() {
+            document.getElementById('loadingSkeleton').style.display = 'none';
+            document.querySelector('.table-container').style.display = 'block';
+        }
+
+        /**
+         * 显示空状态
+         */
+        function showEmptyState() {
+            document.querySelector('.table-container').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'flex';
         }
 
         // 监听复选框变化
